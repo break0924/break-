@@ -1,0 +1,20 @@
+{
+  "description": "好友德州局微信小程序",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "compileHotReLoad": true,
+    "bigPackageSizeSupport": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.4.8",
+  "appid": "touristappid",
+  "projectname": "friends-texas-holdem",
+  "condition": {}
+}

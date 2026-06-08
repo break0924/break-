@@ -1,0 +1,63 @@
+.page {
+  padding: 24rpx;
+}
+.card {
+  background: rgba(17, 26, 46, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+.eyebrow { color: #38bdf8; font-size: 24rpx; letter-spacing: 2rpx; }
+.title { display: block; font-size: 44rpx; font-weight: 700; margin-top: 10rpx; }
+.sub { display: block; color: #94a3b8; margin-top: 12rpx; line-height: 1.7; }
+.field { margin-top: 20rpx; }
+.label, .small { color: #94a3b8; font-size: 24rpx; }
+input {
+  margin-top: 10rpx;
+  background: #16213a;
+  color: #eef2ff;
+  border-radius: 16rpx;
+  padding: 18rpx 20rpx;
+}
+.row, .actions { display: flex; gap: 16rpx; flex-wrap: wrap; margin-top: 20rpx; }
+.row.compact { margin-top: 12rpx; }
+button {
+  background: #38bdf8;
+  color: #00111d;
+  font-weight: 700;
+  border-radius: 16rpx;
+}
+button::after { border: none; }
+.share-box {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 18rpx; padding: 16rpx 18rpx; border-radius: 16rpx;
+  background: rgba(255,255,255,0.04);
+}
+.head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18rpx; }
+.section { font-size: 32rpx; font-weight: 700; }
+.badge { color: #34d399; font-size: 24rpx; }
+.message { color: #cbd5e1; margin-bottom: 18rpx; }
+.stats { display: flex; gap: 16rpx; margin-bottom: 18rpx; }
+.stats > view {
+  flex: 1; padding: 16rpx; border-radius: 16rpx; background: rgba(255,255,255,0.04);
+}
+.strong { display: block; margin-top: 8rpx; font-size: 30rpx; color: #fff; }
+.block { margin-top: 18rpx; }
+.cards { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 12rpx; min-height: 72rpx; }
+.card-chip {
+  min-width: 64rpx;
+  padding: 14rpx 12rpx;
+  text-align: center;
+  border-radius: 16rpx;
+  background: #1f2a44;
+  color: #fff;
+  font-weight: 700;
+}
+.player {
+  display: flex; justify-content: space-between; gap: 12rpx; padding: 18rpx 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.player.turn { background: rgba(56,189,248,0.08); padding: 18rpx 14rpx; border-radius: 16rpx; }
+.name { display: block; font-size: 28rpx; }
+.right { text-align: right; }
