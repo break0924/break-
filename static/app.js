@@ -12,7 +12,15 @@ const state = {
   lastResultKey: '',
   lastPhase: '',
   shareLink: '',
+  lanIp: '',
+  editingRoomId: false,
 };
+
+const params = new URLSearchParams(window.location.search);
+const roomIdFromUrl = (params.get('roomId') || '').trim().toUpperCase();
+if (roomIdFromUrl) {
+  state.roomId = roomIdFromUrl;
+}
 
 const els = {
   name: document.querySelector('#name'),
@@ -49,6 +57,13 @@ function saveProfile(name, roomId, playerId) {
   if (playerId) localStorage.setItem('playerId', playerId);
 }
 
+function updateRoomUrl(roomId = state.roomId) {
+  if (!roomId) return;
+  const nextUrl = new URL(window.location.href);
+  nextUrl.searchParams.set('roomId', roomId);
+  window.history.replaceState({}, '', nextUrl);
+}
+
 function saveSeatOrder() {
   localStorage.setItem('seatOrder', JSON.stringify(state.seatOrder));
 }
@@ -63,10 +78,28 @@ async function api(path, options = {}) {
   return data;
 }
 
+function localOnlyHost(hostname = location.hostname) {
+  return hostname === '127.0.0.1' || hostname === 'localhost' || hostname === '0.0.0.0';
+}
+
+async function loadNetworkInfo() {
+  try {
+    const data = await api('/api/network');
+    state.lanIp = data.lanIp || '';
+    refreshShareCard();
+  } catch {
+    state.lanIp = '';
+  }
+}
+
 function currentShareLink(roomId = state.roomId) {
   if (!roomId) return '';
-  const base = `${location.origin}${location.pathname}`.replace(/\/$/, '');
-  return `${base}?roomId=${encodeURIComponent(roomId)}`;
+  const url = new URL(window.location.href);
+  if (state.lanIp && localOnlyHost(url.hostname)) {
+    url.hostname = state.lanIp;
+  }
+  url.searchParams.set('roomId', roomId.toUpperCase());
+  return `${url.origin}${url.pathname}?${url.searchParams.toString()}`;
 }
 
 function refreshShareCard() {
@@ -79,6 +112,37 @@ function refreshShareCard() {
   }
   els.shareUrl.textContent = link;
   els.roomQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=10&data=${encodeURIComponent(link)}`;
+}
+
+function currentPlayer(room = state.room) {
+  return room?.players?.find((player) => player.id === state.playerId) || null;
+}
+
+function isMyTurn(room = state.room) {
+  if (!room || room.turnIndex == null) return false;
+  return room.players?.[room.turnIndex]?.id === state.playerId;
+}
+
+function syncControls(room = state.room) {
+  const joined = Boolean(state.roomId && state.playerId && room);
+  const playing = room?.status === 'playing';
+  const me = currentPlayer(room);
+  const myTurn = isMyTurn(room);
+  const canCheck = playing && myTurn && me && me.bet === room.currentBet;
+  const canCall = playing && myTurn && me && me.bet < room.currentBet;
+  const canAct = playing && myTurn;
+  const isHost = room?.hostId === state.playerId;
+
+  els.startBtn.disabled = !joined || !isHost || !room.canStart;
+  els.startBtn.textContent = room?.phase === 'showdown' ? '下一局' : '开局';
+
+  document.querySelectorAll('button[data-action]').forEach((button) => {
+    if (button.dataset.action === 'check') button.disabled = !canCheck;
+    if (button.dataset.action === 'call') button.disabled = !canCall;
+    if (button.dataset.action === 'fold') button.disabled = !canAct;
+  });
+  els.raiseBtn.disabled = !canAct;
+  els.raiseAmount.disabled = !canAct;
 }
 
 function suitSymbol(suit) {
@@ -293,8 +357,12 @@ function syncView(room) {
   renderCards(els.hole, myCards, false, holeAnimateFrom);
   renderPlayers(room.players || [], room.turnIndex);
   renderSeats(room.players || [], room.turnIndex, room);
-  els.roomId.value = room.roomId || els.roomId.value;
+  if (!state.editingRoomId && document.activeElement !== els.roomId) {
+    els.roomId.value = room.roomId || els.roomId.value;
+  }
+  updateRoomUrl(room.roomId);
   refreshShareCard();
+  syncControls(room);
 
   const newHand = prevHandNo !== null && room.handNo !== prevHandNo;
   const communityGrew = (room.community || []).length > prevCommunityCount;
@@ -338,12 +406,13 @@ async function createRoom() {
   state.name = name;
   saveProfile(name, state.roomId, state.playerId);
   els.roomId.value = state.roomId;
+  updateRoomUrl(state.roomId);
   refreshShareCard();
   await joinRoom();
 }
 
 async function joinRoom() {
-  const roomId = (els.roomId.value || '').trim();
+  const roomId = (els.roomId.value || '').trim().toUpperCase();
   const name = (els.name.value || '').trim() || '玩家';
   if (!roomId) throw new Error('请输入房间号');
   const res = await api(`/api/rooms/${roomId}/join`, {
@@ -351,9 +420,12 @@ async function joinRoom() {
     body: JSON.stringify({ name, playerId: state.playerId || undefined }),
   });
   state.roomId = roomId;
+  els.roomId.value = roomId;
+  state.editingRoomId = false;
   state.playerId = res.playerId;
   state.name = name;
   saveProfile(name, state.roomId, state.playerId);
+  updateRoomUrl(state.roomId);
   syncView(res.room);
   startPolling();
 }
@@ -402,11 +474,34 @@ els.startBtn.addEventListener('click', () => startRoom().catch((err) => alert(er
 els.raiseBtn.addEventListener('click', () => doAction('raise').catch((err) => alert(err.message)));
 els.copyLinkBtn?.addEventListener('click', () => copyLink());
 
+els.roomId.addEventListener('focus', () => {
+  state.editingRoomId = true;
+});
+
+els.roomId.addEventListener('input', () => {
+  const cursor = els.roomId.selectionStart;
+  els.roomId.value = els.roomId.value.toUpperCase();
+  els.roomId.setSelectionRange(cursor, cursor);
+});
+
+els.roomId.addEventListener('blur', () => {
+  state.editingRoomId = false;
+  els.roomId.value = els.roomId.value.trim().toUpperCase();
+});
+
 document.querySelectorAll('button[data-action]').forEach((button) => {
   button.addEventListener('click', () => doAction(button.dataset.action).catch((err) => alert(err.message)));
 });
 
-if (state.roomId) {
+syncControls();
+
+if (roomIdFromUrl && !state.name) {
+  els.shareHint.textContent = `已识别房间 ${roomIdFromUrl}，填写昵称后加入。`;
+}
+
+loadNetworkInfo();
+
+if (state.roomId && state.playerId) {
   refreshShareCard();
   refresh().catch(() => {});
   startPolling();

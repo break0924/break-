@@ -1,0 +1,168 @@
+{
+  "teams": [
+    {
+      "_id": "team_can",
+      "name": "加拿大",
+      "nameEn": "Canada",
+      "fifaCode": "CAN",
+      "countryCode": "CA",
+      "groupName": "B",
+      "flagUrl": "/static/flags/CA.svg"
+    },
+    {
+      "_id": "team_bih",
+      "name": "波黑",
+      "nameEn": "Bosnia and Herzegovina",
+      "fifaCode": "BIH",
+      "countryCode": "BA",
+      "groupName": "B",
+      "flagUrl": "/static/flags/BA.svg"
+    },
+    {
+      "_id": "team_usa",
+      "name": "美国",
+      "nameEn": "United States",
+      "fifaCode": "USA",
+      "countryCode": "US",
+      "groupName": "D",
+      "flagUrl": "/static/flags/US.svg"
+    },
+    {
+      "_id": "team_par",
+      "name": "巴拉圭",
+      "nameEn": "Paraguay",
+      "fifaCode": "PAR",
+      "countryCode": "PY",
+      "groupName": "D",
+      "flagUrl": "/static/flags/PY.svg"
+    }
+  ],
+  "matches": [
+    {
+      "_id": "match_20260613_can_bih",
+      "stage": "GROUP",
+      "groupName": "B组",
+      "matchDate": "2026-06-13",
+      "kickoffTime": "03:00",
+      "timezone": "Asia/Shanghai",
+      "kickoffAt": "2026-06-13T03:00:00+08:00",
+      "homeTeamId": "team_can",
+      "awayTeamId": "team_bih",
+      "venue": "",
+      "city": "",
+      "roundName": "小组赛",
+      "status": "FINISHED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "winnerTeamId": null
+    },
+    {
+      "_id": "match_20260613_usa_par",
+      "stage": "GROUP",
+      "groupName": "D组",
+      "matchDate": "2026-06-13",
+      "kickoffTime": "09:00",
+      "timezone": "Asia/Shanghai",
+      "kickoffAt": "2026-06-13T09:00:00+08:00",
+      "homeTeamId": "team_usa",
+      "awayTeamId": "team_par",
+      "venue": "",
+      "city": "",
+      "roundName": "小组赛",
+      "status": "FINISHED",
+      "homeScore": 4,
+      "awayScore": 1,
+      "winnerTeamId": "team_usa"
+    }
+  ],
+  "prediction_archives": [
+    {
+      "_id": "pred_20260613_can_bih",
+      "matchId": "match_20260613_can_bih",
+      "status": "PUBLISHED",
+      "predictionStage": "PUBLISHED",
+      "homeTeamName": "加拿大",
+      "awayTeamName": "波黑",
+      "kickoffAt": "2026-06-13T03:00:00+08:00",
+      "publishedAt": "2026-06-12T20:00:00+08:00",
+      "generatedAt": "2026-06-12T18:00:00+08:00",
+      "recommendationDirection": "DRAW",
+      "homeWinProb": 31,
+      "drawProb": 38,
+      "awayWinProb": 31,
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "predictedScore": "1-1",
+      "totalGoalsPrediction": 2,
+      "confidenceIndex": 66,
+      "riskIndex": 48,
+      "recommendationReason": "双方整体差距有限，比赛节奏预计偏谨慎。",
+      "riskTip": "AI分析仅供足球数据参考，不承诺结果。",
+      "shortAnalysis": "双方接近，平局方向更值得关注。",
+      "fullAnalysis": "加拿大与波黑在整体对抗强度上接近，预计中场争夺会影响比赛走势。",
+      "model": "mvp",
+      "modelVersion": "mvp-v1",
+      "promptVersion": "mvp-v1",
+      "isMemberContent": false,
+      "isPublic": true,
+      "contentHash": "mvp-can-bih",
+      "settlement": {
+        "homeScore": 1,
+        "awayScore": 1,
+        "resultDirection": "DRAW",
+        "hitResult": true,
+        "hitScore": true,
+        "hitTotalGoals": true,
+        "settledAt": "2026-06-13T05:00:00+08:00"
+      }
+    },
+    {
+      "_id": "pred_20260613_usa_par",
+      "matchId": "match_20260613_usa_par",
+      "status": "PUBLISHED",
+      "predictionStage": "PUBLISHED",
+      "homeTeamName": "美国",
+      "awayTeamName": "巴拉圭",
+      "kickoffAt": "2026-06-13T09:00:00+08:00",
+      "publishedAt": "2026-06-12T20:00:00+08:00",
+      "generatedAt": "2026-06-12T18:00:00+08:00",
+      "recommendationDirection": "HOME_WIN",
+      "homeWinProb": 46,
+      "drawProb": 27,
+      "awayWinProb": 27,
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "predictedScore": "2-1",
+      "totalGoalsPrediction": 3,
+      "confidenceIndex": 72,
+      "riskIndex": 52,
+      "recommendationReason": "美国主场氛围与进攻转换速度更有优势。",
+      "riskTip": "AI分析仅供足球数据参考，不承诺结果。",
+      "shortAnalysis": "美国方向略占优。",
+      "fullAnalysis": "美国在前场速度和主场环境上具备优势，但仍需关注巴拉圭防守反击。",
+      "model": "mvp",
+      "modelVersion": "mvp-v1",
+      "promptVersion": "mvp-v1",
+      "isMemberContent": true,
+      "isPublic": true,
+      "contentHash": "mvp-usa-par",
+      "settlement": {
+        "homeScore": 4,
+        "awayScore": 1,
+        "resultDirection": "HOME_WIN",
+        "hitResult": true,
+        "hitScore": false,
+        "hitTotalGoals": false,
+        "settledAt": "2026-06-13T11:00:00+08:00"
+      }
+    }
+  ],
+  "invite_stats": [
+    {
+      "_id": "invite_demo",
+      "userId": "demo_user",
+      "invitedCount": 8,
+      "invitedPaidCount": 2
+    }
+  ]
+}

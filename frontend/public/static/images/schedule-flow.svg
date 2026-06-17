@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360" role="img" aria-label="世界杯赛程阶段流程图">
+  <rect width="1100" height="360" rx="28" fill="#09241e"/>
+  <path d="M86 180h928" stroke="#19b67f" stroke-width="10" stroke-linecap="round" opacity=".5"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(90 180)">
+      <circle r="42" fill="#19b67f"/><text y="9" fill="#031711" font-size="24" font-weight="900">小组</text><text y="82" fill="#e7fff4" font-size="24" font-weight="700">小组赛</text>
+    </g>
+    <g transform="translate(275 180)">
+      <circle r="42" fill="#b8f6d8"/><text y="9" fill="#031711" font-size="24" font-weight="900">16</text><text y="82" fill="#e7fff4" font-size="24" font-weight="700">16强</text>
+    </g>
+    <g transform="translate(460 180)">
+      <circle r="42" fill="#19b67f"/><text y="9" fill="#031711" font-size="24" font-weight="900">8</text><text y="82" fill="#e7fff4" font-size="24" font-weight="700">8强</text>
+    </g>
+    <g transform="translate(645 180)">
+      <circle r="42" fill="#b8f6d8"/><text y="9" fill="#031711" font-size="24" font-weight="900">4</text><text y="82" fill="#e7fff4" font-size="24" font-weight="700">半决赛</text>
+    </g>
+    <g transform="translate(830 180)">
+      <circle r="42" fill="#ffd0a6"/><text y="9" fill="#35150b" font-size="23" font-weight="900">3/4</text><text y="82" fill="#e7fff4" font-size="24" font-weight="700">三四名</text>
+    </g>
+    <g transform="translate(1010 180)">
+      <circle r="48" fill="#ffe38a"/><text y="9" fill="#35150b" font-size="24" font-weight="900">决赛</text><text y="88" fill="#e7fff4" font-size="24" font-weight="700">冠军战</text>
+    </g>
+  </g>
+</svg>

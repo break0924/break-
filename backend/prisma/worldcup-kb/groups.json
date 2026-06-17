@@ -1,0 +1,302 @@
+[
+  {
+    "id": "group_a",
+    "code": "A",
+    "name": "A组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-a.webp",
+    "flagUrl": null,
+    "teams": [
+      "MEX",
+      "RSA",
+      "KOR",
+      "CZE"
+    ],
+    "teamNames": [
+      "墨西哥",
+      "南非",
+      "韩国",
+      "捷克"
+    ],
+    "worldCupIntro": "A组包含 墨西哥、南非、韩国、捷克，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group A: 墨西哥 Mexico, 南非 South Africa, 韩国 South Korea, 捷克 Czechia.",
+    "tags": [
+      "group",
+      "group-A"
+    ]
+  },
+  {
+    "id": "group_b",
+    "code": "B",
+    "name": "B组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-b.webp",
+    "flagUrl": null,
+    "teams": [
+      "CAN",
+      "BIH",
+      "QAT",
+      "SUI"
+    ],
+    "teamNames": [
+      "加拿大",
+      "波黑",
+      "卡塔尔",
+      "瑞士"
+    ],
+    "worldCupIntro": "B组包含 加拿大、波黑、卡塔尔、瑞士，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group B: 加拿大 Canada, 波黑 Bosnia and Herzegovina, 卡塔尔 Qatar, 瑞士 Switzerland.",
+    "tags": [
+      "group",
+      "group-B"
+    ]
+  },
+  {
+    "id": "group_c",
+    "code": "C",
+    "name": "C组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-c.webp",
+    "flagUrl": null,
+    "teams": [
+      "BRA",
+      "HAI",
+      "MAR",
+      "SCO"
+    ],
+    "teamNames": [
+      "巴西",
+      "海地",
+      "摩洛哥",
+      "苏格兰"
+    ],
+    "worldCupIntro": "C组包含 巴西、海地、摩洛哥、苏格兰，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group C: 巴西 Brazil, 海地 Haiti, 摩洛哥 Morocco, 苏格兰 Scotland.",
+    "tags": [
+      "group",
+      "group-C"
+    ]
+  },
+  {
+    "id": "group_d",
+    "code": "D",
+    "name": "D组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-d.webp",
+    "flagUrl": null,
+    "teams": [
+      "USA",
+      "AUS",
+      "PAR",
+      "TUR"
+    ],
+    "teamNames": [
+      "美国",
+      "澳大利亚",
+      "巴拉圭",
+      "土耳其"
+    ],
+    "worldCupIntro": "D组包含 美国、澳大利亚、巴拉圭、土耳其，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group D: 美国 United States, 澳大利亚 Australia, 巴拉圭 Paraguay, 土耳其 Turkey.",
+    "tags": [
+      "group",
+      "group-D"
+    ]
+  },
+  {
+    "id": "group_e",
+    "code": "E",
+    "name": "E组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-e.webp",
+    "flagUrl": null,
+    "teams": [
+      "GER",
+      "CUW",
+      "CIV",
+      "ECU"
+    ],
+    "teamNames": [
+      "德国",
+      "库拉索",
+      "科特迪瓦",
+      "厄瓜多尔"
+    ],
+    "worldCupIntro": "E组包含 德国、库拉索、科特迪瓦、厄瓜多尔，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group E: 德国 Germany, 库拉索 Curaçao, 科特迪瓦 Ivory Coast, 厄瓜多尔 Ecuador.",
+    "tags": [
+      "group",
+      "group-E"
+    ]
+  },
+  {
+    "id": "group_f",
+    "code": "F",
+    "name": "F组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-f.webp",
+    "flagUrl": null,
+    "teams": [
+      "NED",
+      "JPN",
+      "SWE",
+      "TUN"
+    ],
+    "teamNames": [
+      "荷兰",
+      "日本",
+      "瑞典",
+      "突尼斯"
+    ],
+    "worldCupIntro": "F组包含 荷兰、日本、瑞典、突尼斯，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group F: 荷兰 Netherlands, 日本 Japan, 瑞典 Sweden, 突尼斯 Tunisia.",
+    "tags": [
+      "group",
+      "group-F"
+    ]
+  },
+  {
+    "id": "group_g",
+    "code": "G",
+    "name": "G组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-g.webp",
+    "flagUrl": null,
+    "teams": [
+      "BEL",
+      "EGY",
+      "IRN",
+      "NZL"
+    ],
+    "teamNames": [
+      "比利时",
+      "埃及",
+      "伊朗",
+      "新西兰"
+    ],
+    "worldCupIntro": "G组包含 比利时、埃及、伊朗、新西兰，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group G: 比利时 Belgium, 埃及 Egypt, 伊朗 Iran, 新西兰 New Zealand.",
+    "tags": [
+      "group",
+      "group-G"
+    ]
+  },
+  {
+    "id": "group_h",
+    "code": "H",
+    "name": "H组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-h.webp",
+    "flagUrl": null,
+    "teams": [
+      "ESP",
+      "CPV",
+      "KSA",
+      "URU"
+    ],
+    "teamNames": [
+      "西班牙",
+      "佛得角",
+      "沙特阿拉伯",
+      "乌拉圭"
+    ],
+    "worldCupIntro": "H组包含 西班牙、佛得角、沙特阿拉伯、乌拉圭，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group H: 西班牙 Spain, 佛得角 Cape Verde, 沙特阿拉伯 Saudi Arabia, 乌拉圭 Uruguay.",
+    "tags": [
+      "group",
+      "group-H"
+    ]
+  },
+  {
+    "id": "group_i",
+    "code": "I",
+    "name": "I组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-i.webp",
+    "flagUrl": null,
+    "teams": [
+      "FRA",
+      "IRQ",
+      "NOR",
+      "SEN"
+    ],
+    "teamNames": [
+      "法国",
+      "伊拉克",
+      "挪威",
+      "塞内加尔"
+    ],
+    "worldCupIntro": "I组包含 法国、伊拉克、挪威、塞内加尔，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group I: 法国 France, 伊拉克 Iraq, 挪威 Norway, 塞内加尔 Senegal.",
+    "tags": [
+      "group",
+      "group-I"
+    ]
+  },
+  {
+    "id": "group_j",
+    "code": "J",
+    "name": "J组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-j.webp",
+    "flagUrl": null,
+    "teams": [
+      "ARG",
+      "ALG",
+      "AUT",
+      "JOR"
+    ],
+    "teamNames": [
+      "阿根廷",
+      "阿尔及利亚",
+      "奥地利",
+      "约旦"
+    ],
+    "worldCupIntro": "J组包含 阿根廷、阿尔及利亚、奥地利、约旦，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group J: 阿根廷 Argentina, 阿尔及利亚 Algeria, 奥地利 Austria, 约旦 Jordan.",
+    "tags": [
+      "group",
+      "group-J"
+    ]
+  },
+  {
+    "id": "group_k",
+    "code": "K",
+    "name": "K组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-k.webp",
+    "flagUrl": null,
+    "teams": [
+      "COL",
+      "COD",
+      "POR",
+      "UZB"
+    ],
+    "teamNames": [
+      "哥伦比亚",
+      "刚果民主共和国",
+      "葡萄牙",
+      "乌兹别克斯坦"
+    ],
+    "worldCupIntro": "K组包含 哥伦比亚、刚果民主共和国、葡萄牙、乌兹别克斯坦，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group K: 哥伦比亚 Colombia, 刚果民主共和国 DR Congo, 葡萄牙 Portugal, 乌兹别克斯坦 Uzbekistan.",
+    "tags": [
+      "group",
+      "group-K"
+    ]
+  },
+  {
+    "id": "group_l",
+    "code": "L",
+    "name": "L组",
+    "imageUrl": "/static/images/worldcup-kb/groups/group-l.webp",
+    "flagUrl": null,
+    "teams": [
+      "ENG",
+      "CRO",
+      "GHA",
+      "PAN"
+    ],
+    "teamNames": [
+      "英格兰",
+      "克罗地亚",
+      "加纳",
+      "巴拿马"
+    ],
+    "worldCupIntro": "L组包含 英格兰、克罗地亚、加纳、巴拿马，用于小组赛赛程、积分榜和AI赛前推荐。",
+    "ragText": "Group L: 英格兰 England, 克罗地亚 Croatia, 加纳 Ghana, 巴拿马 Panama.",
+    "tags": [
+      "group",
+      "group-L"
+    ]
+  }
+]

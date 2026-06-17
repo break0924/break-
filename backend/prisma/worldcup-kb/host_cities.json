@@ -1,0 +1,290 @@
+[
+  {
+    "id": "city_mexico_city",
+    "name": "Mexico City",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "timezone": "America/Mexico_City",
+    "imageUrl": "/static/images/worldcup-kb/cities/estadio-azteca.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "stadiumIds": [
+      "stadium_estadio-azteca"
+    ],
+    "worldCupIntro": "Mexico City 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Mexico City, Mexico, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "MX"
+    ]
+  },
+  {
+    "id": "city_guadalajara",
+    "name": "Guadalajara",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "timezone": "America/Mexico_City",
+    "imageUrl": "/static/images/worldcup-kb/cities/estadio-akron.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "stadiumIds": [
+      "stadium_estadio-akron"
+    ],
+    "worldCupIntro": "Guadalajara 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Guadalajara, Mexico, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "MX"
+    ]
+  },
+  {
+    "id": "city_monterrey",
+    "name": "Monterrey",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "timezone": "America/Mexico_City",
+    "imageUrl": "/static/images/worldcup-kb/cities/estadio-bbva.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "stadiumIds": [
+      "stadium_estadio-bbva"
+    ],
+    "worldCupIntro": "Monterrey 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Monterrey, Mexico, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "MX"
+    ]
+  },
+  {
+    "id": "city_toronto",
+    "name": "Toronto",
+    "country": "Canada",
+    "countryCode": "CA",
+    "timezone": "America/Toronto",
+    "imageUrl": "/static/images/worldcup-kb/cities/bmo-field.webp",
+    "flagUrl": "/static/flags/CA.svg",
+    "stadiumIds": [
+      "stadium_bmo-field"
+    ],
+    "worldCupIntro": "Toronto 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Toronto, Canada, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "CA"
+    ]
+  },
+  {
+    "id": "city_vancouver",
+    "name": "Vancouver",
+    "country": "Canada",
+    "countryCode": "CA",
+    "timezone": "America/Toronto",
+    "imageUrl": "/static/images/worldcup-kb/cities/bc-place.webp",
+    "flagUrl": "/static/flags/CA.svg",
+    "stadiumIds": [
+      "stadium_bc-place"
+    ],
+    "worldCupIntro": "Vancouver 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Vancouver, Canada, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "CA"
+    ]
+  },
+  {
+    "id": "city_atlanta",
+    "name": "Atlanta",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/mercedes-benz-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_mercedes-benz-stadium"
+    ],
+    "worldCupIntro": "Atlanta 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Atlanta, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_boston",
+    "name": "Boston",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/gillette-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_gillette-stadium"
+    ],
+    "worldCupIntro": "Boston 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Boston, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_dallas",
+    "name": "Dallas",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/att-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_att-stadium"
+    ],
+    "worldCupIntro": "Dallas 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Dallas, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_houston",
+    "name": "Houston",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/nrg-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_nrg-stadium"
+    ],
+    "worldCupIntro": "Houston 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Houston, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_kansas_city",
+    "name": "Kansas City",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/arrowhead-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_arrowhead-stadium"
+    ],
+    "worldCupIntro": "Kansas City 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Kansas City, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_los_angeles",
+    "name": "Los Angeles",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/sofi-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_sofi-stadium"
+    ],
+    "worldCupIntro": "Los Angeles 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Los Angeles, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_miami",
+    "name": "Miami",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/hard-rock-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_hard-rock-stadium"
+    ],
+    "worldCupIntro": "Miami 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Miami, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_new_york_new_jersey",
+    "name": "New York New Jersey",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/metlife-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_metlife-stadium"
+    ],
+    "worldCupIntro": "New York New Jersey 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "New York New Jersey, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_philadelphia",
+    "name": "Philadelphia",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/lincoln-financial-field.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_lincoln-financial-field"
+    ],
+    "worldCupIntro": "Philadelphia 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Philadelphia, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_san_francisco_bay_area",
+    "name": "San Francisco Bay Area",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/levis-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_levis-stadium"
+    ],
+    "worldCupIntro": "San Francisco Bay Area 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "San Francisco Bay Area, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  },
+  {
+    "id": "city_seattle",
+    "name": "Seattle",
+    "country": "United States",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "imageUrl": "/static/images/worldcup-kb/cities/lumen-field.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "stadiumIds": [
+      "stadium_lumen-field"
+    ],
+    "worldCupIntro": "Seattle 是2026世界杯主办城市，可用于城市导览、场馆说明和赛程展示。",
+    "ragText": "Seattle, United States, 2026 World Cup host city.",
+    "tags": [
+      "host-city",
+      "US"
+    ]
+  }
+]

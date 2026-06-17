@@ -1,5 +1,3 @@
 App({
-  globalData: {
-    apiBase: wx.getStorageSync('apiBase') || 'http://127.0.0.1:8787'
-  }
+  globalData: {}
 })

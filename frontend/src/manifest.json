@@ -1,0 +1,17 @@
+{
+  "name": "AI世界杯预测官",
+  "appid": "__UNI__AI_WORLDCUP",
+  "description": "足球数据分析、AI预测、挑战赛积分和会员内容解锁",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "minified": true
+    },
+    "usingComponents": true
+  }
+}

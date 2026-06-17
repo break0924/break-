@@ -1,5 +1,5 @@
 {
-  "description": "好友德州局微信小程序",
+  "description": "AI世界杯预测官微信小程序构建产物配置占位。正式上传请导入 frontend/dist/build/mp-weixin",
   "packOptions": {
     "ignore": []
   },
@@ -15,6 +15,6 @@
   "compileType": "miniprogram",
   "libVersion": "3.4.8",
   "appid": "touristappid",
-  "projectname": "friends-texas-holdem",
+  "projectname": "AI世界杯预测官",
   "condition": {}
 }

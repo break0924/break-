@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-label="原创会员权益卡片背景">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1cc58b"/>
+      <stop offset=".45" stop-color="#0c4d3e"/>
+      <stop offset="1" stop-color="#071814"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="900" height="360" rx="32" fill="url(#card)"/>
+  <circle cx="760" cy="80" r="150" fill="#f4fbf8" opacity=".1"/>
+  <circle cx="775" cy="82" r="86" fill="none" stroke="#f4fbf8" stroke-opacity=".36" stroke-width="12"/>
+  <path d="M720 85l34 34 72-84" fill="none" stroke="#f4fbf8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+  <text x="48" y="106" fill="#04150f" font-family="Arial, sans-serif" font-size="28" font-weight="800">WORLD CUP PASS</text>
+  <text x="48" y="178" fill="#f4fbf8" font-family="Arial, sans-serif" font-size="58" font-weight="900">世界杯通行证</text>
+  <text x="52" y="238" fill="#dffff0" font-family="Arial, sans-serif" font-size="28" font-weight="700">完整AI报告 · 每日精选 · 高级榜单</text>
+</svg>

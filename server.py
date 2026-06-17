@@ -4,6 +4,7 @@ import json
 import os
 import mimetypes
 import random
+import socket
 import string
 import threading
 from dataclasses import dataclass, asdict
@@ -410,6 +411,19 @@ def json_response(handler: BaseHTTPRequestHandler, payload: dict, status: int = 
     handler.wfile.write(body)
 
 
+def detect_lan_ip() -> str | None:
+    try:
+        probe = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        probe.connect(("8.8.8.8", 80))
+        ip = probe.getsockname()[0]
+        probe.close()
+        if ip and not ip.startswith("127."):
+            return ip
+    except OSError:
+        return None
+    return None
+
+
 class AppHandler(BaseHTTPRequestHandler):
     server_version = "TexasMVP/0.1"
 
@@ -423,6 +437,10 @@ class AppHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/health":
             json_response(self, {"ok": True})
+            return
+        if parsed.path == "/api/network":
+            host = self.headers.get("Host", "").split(":")[0]
+            json_response(self, {"host": host, "lanIp": detect_lan_ip()})
             return
         if parsed.path == "/":
             self.serve_static("index.html")
@@ -520,6 +538,7 @@ class AppHandler(BaseHTTPRequestHandler):
         json_response(self, {"roomId": room_id, "playerId": player_id})
 
     def join_room(self, room_id: str, body: dict):
+        room_id = room_id.upper()
         name = str(body.get("name") or "玩家")[:20]
         player_id = body.get("playerId") or player_token()
         with lock:
@@ -540,6 +559,7 @@ class AppHandler(BaseHTTPRequestHandler):
         json_response(self, {"ok": True, "room": serialize_room(room, player_id), "playerId": player_id})
 
     def start_room(self, room_id: str, body: dict):
+        room_id = room_id.upper()
         player_id = body.get("playerId")
         with lock:
             data = load_data()
@@ -556,6 +576,7 @@ class AppHandler(BaseHTTPRequestHandler):
         json_response(self, {"ok": True, "room": serialize_room(room, player_id)})
 
     def room_action(self, room_id: str, body: dict):
+        room_id = room_id.upper()
         player_id = body.get("playerId")
         action = body.get("action")
         amount = body.get("amount")
@@ -571,7 +592,7 @@ class AppHandler(BaseHTTPRequestHandler):
         json_response(self, {"ok": True, "room": serialize_room(room, player_id)})
 
     def handle_room_state(self, parsed):
-        room_id = parsed.path.strip("/").split("/")[2]
+        room_id = parsed.path.strip("/").split("/")[2].upper()
         params = parse_qs(parsed.query)
         viewer_id = params.get("playerId", [None])[0]
         with lock:

@@ -1,0 +1,354 @@
+[
+  {
+    "id": "world_cup_1930",
+    "year": 1930,
+    "host": "Uruguay",
+    "winner": "Uruguay",
+    "runnerUp": "Argentina",
+    "imageUrl": "/static/images/worldcup-kb/history/1930.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1930年世界杯由 Uruguay 主办，冠军为 Uruguay，亚军为 Argentina。",
+    "ragText": "1930 FIFA World Cup, host Uruguay, winner Uruguay, runner-up Argentina.",
+    "tags": [
+      "history",
+      "1930",
+      "Uruguay"
+    ]
+  },
+  {
+    "id": "world_cup_1934",
+    "year": 1934,
+    "host": "Italy",
+    "winner": "Italy",
+    "runnerUp": "Czechoslovakia",
+    "imageUrl": "/static/images/worldcup-kb/history/1934.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1934年世界杯由 Italy 主办，冠军为 Italy，亚军为 Czechoslovakia。",
+    "ragText": "1934 FIFA World Cup, host Italy, winner Italy, runner-up Czechoslovakia.",
+    "tags": [
+      "history",
+      "1934",
+      "Italy"
+    ]
+  },
+  {
+    "id": "world_cup_1938",
+    "year": 1938,
+    "host": "France",
+    "winner": "Italy",
+    "runnerUp": "Hungary",
+    "imageUrl": "/static/images/worldcup-kb/history/1938.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1938年世界杯由 France 主办，冠军为 Italy，亚军为 Hungary。",
+    "ragText": "1938 FIFA World Cup, host France, winner Italy, runner-up Hungary.",
+    "tags": [
+      "history",
+      "1938",
+      "Italy"
+    ]
+  },
+  {
+    "id": "world_cup_1950",
+    "year": 1950,
+    "host": "Brazil",
+    "winner": "Uruguay",
+    "runnerUp": "Brazil",
+    "imageUrl": "/static/images/worldcup-kb/history/1950.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1950年世界杯由 Brazil 主办，冠军为 Uruguay，亚军为 Brazil。",
+    "ragText": "1950 FIFA World Cup, host Brazil, winner Uruguay, runner-up Brazil.",
+    "tags": [
+      "history",
+      "1950",
+      "Uruguay"
+    ]
+  },
+  {
+    "id": "world_cup_1954",
+    "year": 1954,
+    "host": "Switzerland",
+    "winner": "West Germany",
+    "runnerUp": "Hungary",
+    "imageUrl": "/static/images/worldcup-kb/history/1954.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1954年世界杯由 Switzerland 主办，冠军为 West Germany，亚军为 Hungary。",
+    "ragText": "1954 FIFA World Cup, host Switzerland, winner West Germany, runner-up Hungary.",
+    "tags": [
+      "history",
+      "1954",
+      "West Germany"
+    ]
+  },
+  {
+    "id": "world_cup_1958",
+    "year": 1958,
+    "host": "Sweden",
+    "winner": "Brazil",
+    "runnerUp": "Sweden",
+    "imageUrl": "/static/images/worldcup-kb/history/1958.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1958年世界杯由 Sweden 主办，冠军为 Brazil，亚军为 Sweden。",
+    "ragText": "1958 FIFA World Cup, host Sweden, winner Brazil, runner-up Sweden.",
+    "tags": [
+      "history",
+      "1958",
+      "Brazil"
+    ]
+  },
+  {
+    "id": "world_cup_1962",
+    "year": 1962,
+    "host": "Chile",
+    "winner": "Brazil",
+    "runnerUp": "Czechoslovakia",
+    "imageUrl": "/static/images/worldcup-kb/history/1962.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1962年世界杯由 Chile 主办，冠军为 Brazil，亚军为 Czechoslovakia。",
+    "ragText": "1962 FIFA World Cup, host Chile, winner Brazil, runner-up Czechoslovakia.",
+    "tags": [
+      "history",
+      "1962",
+      "Brazil"
+    ]
+  },
+  {
+    "id": "world_cup_1966",
+    "year": 1966,
+    "host": "England",
+    "winner": "England",
+    "runnerUp": "West Germany",
+    "imageUrl": "/static/images/worldcup-kb/history/1966.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1966年世界杯由 England 主办，冠军为 England，亚军为 West Germany。",
+    "ragText": "1966 FIFA World Cup, host England, winner England, runner-up West Germany.",
+    "tags": [
+      "history",
+      "1966",
+      "England"
+    ]
+  },
+  {
+    "id": "world_cup_1970",
+    "year": 1970,
+    "host": "Mexico",
+    "winner": "Brazil",
+    "runnerUp": "Italy",
+    "imageUrl": "/static/images/worldcup-kb/history/1970.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1970年世界杯由 Mexico 主办，冠军为 Brazil，亚军为 Italy。",
+    "ragText": "1970 FIFA World Cup, host Mexico, winner Brazil, runner-up Italy.",
+    "tags": [
+      "history",
+      "1970",
+      "Brazil"
+    ]
+  },
+  {
+    "id": "world_cup_1974",
+    "year": 1974,
+    "host": "West Germany",
+    "winner": "West Germany",
+    "runnerUp": "Netherlands",
+    "imageUrl": "/static/images/worldcup-kb/history/1974.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1974年世界杯由 West Germany 主办，冠军为 West Germany，亚军为 Netherlands。",
+    "ragText": "1974 FIFA World Cup, host West Germany, winner West Germany, runner-up Netherlands.",
+    "tags": [
+      "history",
+      "1974",
+      "West Germany"
+    ]
+  },
+  {
+    "id": "world_cup_1978",
+    "year": 1978,
+    "host": "Argentina",
+    "winner": "Argentina",
+    "runnerUp": "Netherlands",
+    "imageUrl": "/static/images/worldcup-kb/history/1978.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1978年世界杯由 Argentina 主办，冠军为 Argentina，亚军为 Netherlands。",
+    "ragText": "1978 FIFA World Cup, host Argentina, winner Argentina, runner-up Netherlands.",
+    "tags": [
+      "history",
+      "1978",
+      "Argentina"
+    ]
+  },
+  {
+    "id": "world_cup_1982",
+    "year": 1982,
+    "host": "Spain",
+    "winner": "Italy",
+    "runnerUp": "West Germany",
+    "imageUrl": "/static/images/worldcup-kb/history/1982.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1982年世界杯由 Spain 主办，冠军为 Italy，亚军为 West Germany。",
+    "ragText": "1982 FIFA World Cup, host Spain, winner Italy, runner-up West Germany.",
+    "tags": [
+      "history",
+      "1982",
+      "Italy"
+    ]
+  },
+  {
+    "id": "world_cup_1986",
+    "year": 1986,
+    "host": "Mexico",
+    "winner": "Argentina",
+    "runnerUp": "West Germany",
+    "imageUrl": "/static/images/worldcup-kb/history/1986.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1986年世界杯由 Mexico 主办，冠军为 Argentina，亚军为 West Germany。",
+    "ragText": "1986 FIFA World Cup, host Mexico, winner Argentina, runner-up West Germany.",
+    "tags": [
+      "history",
+      "1986",
+      "Argentina"
+    ]
+  },
+  {
+    "id": "world_cup_1990",
+    "year": 1990,
+    "host": "Italy",
+    "winner": "West Germany",
+    "runnerUp": "Argentina",
+    "imageUrl": "/static/images/worldcup-kb/history/1990.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1990年世界杯由 Italy 主办，冠军为 West Germany，亚军为 Argentina。",
+    "ragText": "1990 FIFA World Cup, host Italy, winner West Germany, runner-up Argentina.",
+    "tags": [
+      "history",
+      "1990",
+      "West Germany"
+    ]
+  },
+  {
+    "id": "world_cup_1994",
+    "year": 1994,
+    "host": "United States",
+    "winner": "Brazil",
+    "runnerUp": "Italy",
+    "imageUrl": "/static/images/worldcup-kb/history/1994.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1994年世界杯由 United States 主办，冠军为 Brazil，亚军为 Italy。",
+    "ragText": "1994 FIFA World Cup, host United States, winner Brazil, runner-up Italy.",
+    "tags": [
+      "history",
+      "1994",
+      "Brazil"
+    ]
+  },
+  {
+    "id": "world_cup_1998",
+    "year": 1998,
+    "host": "France",
+    "winner": "France",
+    "runnerUp": "Brazil",
+    "imageUrl": "/static/images/worldcup-kb/history/1998.webp",
+    "flagUrl": null,
+    "worldCupIntro": "1998年世界杯由 France 主办，冠军为 France，亚军为 Brazil。",
+    "ragText": "1998 FIFA World Cup, host France, winner France, runner-up Brazil.",
+    "tags": [
+      "history",
+      "1998",
+      "France"
+    ]
+  },
+  {
+    "id": "world_cup_2002",
+    "year": 2002,
+    "host": "Japan/Korea Republic",
+    "winner": "Brazil",
+    "runnerUp": "Germany",
+    "imageUrl": "/static/images/worldcup-kb/history/2002.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2002年世界杯由 Japan/Korea Republic 主办，冠军为 Brazil，亚军为 Germany。",
+    "ragText": "2002 FIFA World Cup, host Japan/Korea Republic, winner Brazil, runner-up Germany.",
+    "tags": [
+      "history",
+      "2002",
+      "Brazil"
+    ]
+  },
+  {
+    "id": "world_cup_2006",
+    "year": 2006,
+    "host": "Germany",
+    "winner": "Italy",
+    "runnerUp": "France",
+    "imageUrl": "/static/images/worldcup-kb/history/2006.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2006年世界杯由 Germany 主办，冠军为 Italy，亚军为 France。",
+    "ragText": "2006 FIFA World Cup, host Germany, winner Italy, runner-up France.",
+    "tags": [
+      "history",
+      "2006",
+      "Italy"
+    ]
+  },
+  {
+    "id": "world_cup_2010",
+    "year": 2010,
+    "host": "South Africa",
+    "winner": "Spain",
+    "runnerUp": "Netherlands",
+    "imageUrl": "/static/images/worldcup-kb/history/2010.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2010年世界杯由 South Africa 主办，冠军为 Spain，亚军为 Netherlands。",
+    "ragText": "2010 FIFA World Cup, host South Africa, winner Spain, runner-up Netherlands.",
+    "tags": [
+      "history",
+      "2010",
+      "Spain"
+    ]
+  },
+  {
+    "id": "world_cup_2014",
+    "year": 2014,
+    "host": "Brazil",
+    "winner": "Germany",
+    "runnerUp": "Argentina",
+    "imageUrl": "/static/images/worldcup-kb/history/2014.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2014年世界杯由 Brazil 主办，冠军为 Germany，亚军为 Argentina。",
+    "ragText": "2014 FIFA World Cup, host Brazil, winner Germany, runner-up Argentina.",
+    "tags": [
+      "history",
+      "2014",
+      "Germany"
+    ]
+  },
+  {
+    "id": "world_cup_2018",
+    "year": 2018,
+    "host": "Russia",
+    "winner": "France",
+    "runnerUp": "Croatia",
+    "imageUrl": "/static/images/worldcup-kb/history/2018.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2018年世界杯由 Russia 主办，冠军为 France，亚军为 Croatia。",
+    "ragText": "2018 FIFA World Cup, host Russia, winner France, runner-up Croatia.",
+    "tags": [
+      "history",
+      "2018",
+      "France"
+    ]
+  },
+  {
+    "id": "world_cup_2022",
+    "year": 2022,
+    "host": "Qatar",
+    "winner": "Argentina",
+    "runnerUp": "France",
+    "imageUrl": "/static/images/worldcup-kb/history/2022.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2022年世界杯由 Qatar 主办，冠军为 Argentina，亚军为 France。",
+    "ragText": "2022 FIFA World Cup, host Qatar, winner Argentina, runner-up France.",
+    "tags": [
+      "history",
+      "2022",
+      "Argentina"
+    ]
+  }
+]

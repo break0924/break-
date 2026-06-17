@@ -1,0 +1,114 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ai-worldcup-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: worldcup
+      POSTGRES_PASSWORD: worldcup
+      POSTGRES_DB: ai_worldcup
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U worldcup -d ai_worldcup"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: ai-worldcup-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-worldcup-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: ${PORT:-3000}
+      DATABASE_URL: postgresql://worldcup:worldcup@postgres:5432/ai_worldcup?schema=public
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev_change_me_to_a_long_random_value}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-30d}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      AI_MOCK_MODE: ${AI_MOCK_MODE:-true}
+      APP_TIMEZONE: ${APP_TIMEZONE:-Asia/Shanghai}
+      PREDICTION_GENERATE_CRON: "${PREDICTION_GENERATE_CRON:-0 18 * * *}"
+      PREDICTION_PUBLISH_CRON: "${PREDICTION_PUBLISH_CRON:-0 20 * * *}"
+      PREDICTION_LOCK_MINUTES: ${PREDICTION_LOCK_MINUTES:-30}
+      PREDICTION_REFRESH_HOURS_BEFORE: ${PREDICTION_REFRESH_HOURS_BEFORE:-6}
+      PREDICTION_FINAL_REFRESH_MINUTES_BEFORE: ${PREDICTION_FINAL_REFRESH_MINUTES_BEFORE:-90}
+      PREDICTION_DUE_SCAN_CRON: "${PREDICTION_DUE_SCAN_CRON:-*/10 * * * *}"
+      PREDICTION_LOCK_SCAN_CRON: "${PREDICTION_LOCK_SCAN_CRON:-* * * * *}"
+      FOOTBALL_DATA_PROVIDER: ${FOOTBALL_DATA_PROVIDER:-API_FOOTBALL}
+      FOOTBALL_DATA_PRIMARY: ${FOOTBALL_DATA_PRIMARY:-API_FOOTBALL}
+      FOOTBALL_DATA_PROVIDERS: ${FOOTBALL_DATA_PROVIDERS:-API_FOOTBALL,SPORTMONKS,MANUAL}
+      FOOTBALL_DATA_TIMEOUT_MS: ${FOOTBALL_DATA_TIMEOUT_MS:-10000}
+      FOOTBALL_DATA_RETRIES: ${FOOTBALL_DATA_RETRIES:-3}
+      FOOTBALL_DATA_RETRY_DELAY_MS: ${FOOTBALL_DATA_RETRY_DELAY_MS:-500}
+      API_FOOTBALL_KEY: ${API_FOOTBALL_KEY:-}
+      API_FOOTBALL_BASE_URL: ${API_FOOTBALL_BASE_URL:-https://v3.football.api-sports.io}
+      API_FOOTBALL_WORLD_CUP_LEAGUE_ID: ${API_FOOTBALL_WORLD_CUP_LEAGUE_ID:-}
+      API_FOOTBALL_SEASON: ${API_FOOTBALL_SEASON:-2026}
+      API_FOOTBALL_PRIORITY: ${API_FOOTBALL_PRIORITY:-100}
+      SPORTMONKS_API_KEY: ${SPORTMONKS_API_KEY:-}
+      SPORTMONKS_BASE_URL: ${SPORTMONKS_BASE_URL:-https://api.sportmonks.com/v3/football}
+      SPORTMONKS_WORLD_CUP_LEAGUE_ID: ${SPORTMONKS_WORLD_CUP_LEAGUE_ID:-}
+      SPORTMONKS_SEASON_ID: ${SPORTMONKS_SEASON_ID:-}
+      SPORTMONKS_PRIORITY: ${SPORTMONKS_PRIORITY:-200}
+      RESULT_SYNC_ENABLE: ${RESULT_SYNC_ENABLE:-true}
+      RESULT_SYNC_TIMEZONE: ${RESULT_SYNC_TIMEZONE:-Asia/Shanghai}
+      RESULT_SYNC_CRON: "${RESULT_SYNC_CRON:-0 * * * *}"
+      RESULT_SYNC_BACKFILL_CRON: "${RESULT_SYNC_BACKFILL_CRON:-0 2 * * *}"
+      WECHAT_APP_ID: ${WECHAT_APP_ID:-}
+      WECHAT_APP_SECRET: ${WECHAT_APP_SECRET:-}
+      WECHAT_MCH_ID: ${WECHAT_MCH_ID:-}
+      WECHAT_PAY_SERIAL_NO: ${WECHAT_PAY_SERIAL_NO:-}
+      WECHAT_PAY_API_V3_KEY: ${WECHAT_PAY_API_V3_KEY:-}
+      WECHAT_PAY_PRIVATE_KEY_PATH: ${WECHAT_PAY_PRIVATE_KEY_PATH:-}
+      WECHAT_PAY_PRIVATE_KEY: ${WECHAT_PAY_PRIVATE_KEY:-}
+      WECHAT_PAY_NOTIFY_URL: ${WECHAT_PAY_NOTIFY_URL:-https://your-domain.com/api/wechat-pay/notify}
+      WECHAT_PAY_PLATFORM_PUBLIC_KEY: ${WECHAT_PAY_PLATFORM_PUBLIC_KEY:-}
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:3000/api}
+      ADMIN_BASE_URL: ${ADMIN_BASE_URL:-http://localhost:8088}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/certs:/app/certs:ro
+
+  admin:
+    image: nginx:1.27-alpine
+    container_name: ai-worldcup-admin
+    profiles: ["admin"]
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    volumes:
+      - ./admin:/usr/share/nginx/html:ro
+
+volumes:
+  postgres_data:
+  redis_data:

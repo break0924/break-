@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-label="原创挑战赛分享海报背景">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08342d"/>
+      <stop offset=".55" stop-color="#061613"/>
+      <stop offset="1" stop-color="#14533d"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <circle cx="740" cy="170" r="210" fill="#19b67f" opacity=".18"/>
+  <circle cx="120" cy="1020" r="260" fill="#b8f6d8" opacity=".1"/>
+  <path d="M0 815C180 760 340 740 450 740s270 20 450 75v385H0Z" fill="#0b6b4b" opacity=".75"/>
+  <path d="M95 880h710M160 805l-60 320M740 805l60 320M450 760v370" stroke="#dcfff0" stroke-opacity=".3" stroke-width="8"/>
+  <circle cx="450" cy="950" r="105" fill="none" stroke="#dcfff0" stroke-opacity=".32" stroke-width="8"/>
+  <text x="70" y="190" fill="#f4fbf8" font-family="Arial, sans-serif" font-size="64" font-weight="900">世界杯挑战赛</text>
+  <text x="74" y="250" fill="#b8f6d8" font-family="Arial, sans-serif" font-size="34" font-weight="700">AI分析 · 积分冲榜 · 虚拟称号</text>
+</svg>

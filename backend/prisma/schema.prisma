@@ -1,0 +1,810 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum MembershipStatus {
+  NONE
+  ACTIVE
+  EXPIRED
+  REFUNDED
+}
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+  POSTPONED
+  CANCELLED
+}
+
+enum TournamentStage {
+  GROUP
+  ROUND_OF_32
+  ROUND_OF_16
+  QUARTER_FINAL
+  SEMI_FINAL
+  THIRD_PLACE
+  FINAL
+}
+
+enum PredictionDirection {
+  HOME_WIN
+  DRAW
+  AWAY_WIN
+}
+
+enum PredictionLockStatus {
+  OPEN
+  LOCKED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  CLOSED
+  FAILED
+  REFUNDED
+}
+
+enum AiJobStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum PredictionArchiveStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum PredictionVersionType {
+  DAILY
+  EVENING
+  PRE_MATCH
+}
+
+enum PredictionHitStatus {
+  PENDING
+  HIT
+  MISS
+  VOID
+}
+
+enum SyncStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+  SKIPPED
+  CONFLICT
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  openId                String                 @unique
+  unionId               String?
+  nickname              String?
+  avatarUrl             String?
+  role                  UserRole               @default(USER)
+  membershipStatus      MembershipStatus       @default(NONE)
+  membershipExpireAt    DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  memberships           MembershipOrder[]
+  matchPredictions      MatchPrediction[]
+  tournamentPicks       TournamentPick[]
+  challengeScores       ChallengeScore[]
+  predictionCorrections PredictionCorrection[]
+  predictionSettlements PredictionSettlement[]
+  correctedMatchResults MatchResult[]
+
+  @@index([membershipStatus, membershipExpireAt])
+}
+
+model Team {
+  id                     String                     @id @default(cuid())
+  fifaCode               String                     @unique
+  countryCode            String?
+  name                   String
+  nameEn                 String?
+  groupId                String?
+  groupName              String?
+  flagUrl                String?
+  eloRating              Int                        @default(1500)
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
+  group                  WorldCupGroup?             @relation(fields: [groupId], references: [id])
+  homeMatches            Match[]                    @relation("HomeTeam")
+  awayMatches            Match[]                    @relation("AwayTeam")
+  wonMatches             Match[]                    @relation("WinnerTeam")
+  wonMatchResults        MatchResult[]
+  players                Player[]
+  finalFourPicks         TournamentPickFinalFour[]
+  championPicks          TournamentPick[]           @relation("ChampionTeam")
+  actualChampionSeasons  ChallengeSeason[]          @relation("ActualChampionTeam")
+  actualFinalFourSeasons ChallengeSeasonFinalFour[]
+  eloHistory             TeamEloHistory[]
+
+  @@index([groupId])
+  @@index([groupName])
+  @@index([eloRating])
+}
+
+model TeamEloHistory {
+  id             String   @id @default(cuid())
+  teamId         String
+  matchId        String
+  opponentTeamId String
+  isHome         Boolean
+  scoreFor       Int
+  scoreAgainst   Int
+  result         Float
+  oldRating      Int
+  newRating      Int
+  ratingDelta    Int
+  kFactor        Int
+  expectedScore  Float
+  createdAt      DateTime @default(now())
+  team           Team     @relation(fields: [teamId], references: [id])
+  match          Match    @relation(fields: [matchId], references: [id])
+
+  @@unique([teamId, matchId])
+  @@index([matchId])
+  @@index([teamId, createdAt])
+  @@map("team_elo_history")
+}
+
+model WorldCupGroup {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  code      String   @unique
+  sortOrder Int
+  teams     Team[]
+  matches   Match[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("world_cup_groups")
+}
+
+model Player {
+  id        String   @id @default(cuid())
+  teamId    String
+  name      String
+  nameEn    String?
+  position  String?
+  isKey     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  team      Team     @relation(fields: [teamId], references: [id])
+
+  @@unique([teamId, name])
+  @@index([teamId])
+}
+
+model Match {
+  id                    String                     @id @default(cuid())
+  externalId            String?                    @unique
+  stage                 TournamentStage
+  groupId               String?
+  groupName             String?
+  matchDate             DateTime?                  @db.Date
+  kickoffTime           String?
+  timezone              String                     @default("America/New_York")
+  homeTeamId            String
+  awayTeamId            String
+  kickoffAt             DateTime
+  venue                 String?
+  city                  String?
+  roundName             String?
+  status                MatchStatus                @default(SCHEDULED)
+  homeScore             Int?
+  awayScore             Int?
+  winnerTeamId          String?
+  lockAt                DateTime
+  predictionLockAt      DateTime?
+  predictionLockedAt    DateTime?
+  lastSyncedAt          DateTime?
+  homeInjuryImpact      Int                        @default(0)
+  awayInjuryImpact      Int                        @default(0)
+  homeInjuryNotes       Json?
+  awayInjuryNotes       Json?
+  homeLineupStatus      Json?
+  awayLineupStatus      Json?
+  homeLineupStability   Int?
+  awayLineupStability   Int?
+  homeMotivationScore   Int?
+  awayMotivationScore   Int?
+  weatherImpact         Int?
+  weatherSnapshot       Json?
+  homeTravelFatigue     Int?
+  awayTravelFatigue     Int?
+  travelSnapshot        Json?
+  preMatchDataUpdatedAt DateTime?
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  group                 WorldCupGroup?             @relation(fields: [groupId], references: [id])
+  homeTeam              Team                       @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam              Team                       @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  winnerTeam            Team?                      @relation("WinnerTeam", fields: [winnerTeamId], references: [id])
+  aiReport              AiMatchReport?
+  dailyPicks            DailyRecommendationMatch[]
+  matchPredictions      MatchPrediction[]
+  predictionArchives    PredictionArchive[]
+  featureSnapshots       PredictionFeatureSnapshot[]
+  predictionVersions    PredictionVersion[]
+  predictionSettlements PredictionSettlement[]
+  matchResults          MatchResult[]
+  resultSyncLogs        ResultSyncLog[]
+  eloHistory            TeamEloHistory[]
+  oddsSnapshots         MatchOddsSnapshot[]
+
+  @@index([kickoffAt])
+  @@index([matchDate])
+  @@index([stage, matchDate])
+  @@index([groupId])
+  @@index([status])
+  @@index([winnerTeamId])
+  @@index([predictionLockAt])
+  @@index([predictionLockedAt])
+  @@index([lastSyncedAt])
+  @@index([preMatchDataUpdatedAt])
+}
+
+model MatchOddsSnapshot {
+  id                       String   @id @default(cuid())
+  matchId                  String
+  provider                 String   @default("MANUAL")
+  capturedAt               DateTime @default(now())
+  openingHomeOdds          Decimal? @db.Decimal(8, 3)
+  openingDrawOdds          Decimal? @db.Decimal(8, 3)
+  openingAwayOdds          Decimal? @db.Decimal(8, 3)
+  currentHomeOdds          Decimal  @db.Decimal(8, 3)
+  currentDrawOdds          Decimal  @db.Decimal(8, 3)
+  currentAwayOdds          Decimal  @db.Decimal(8, 3)
+  impliedHomeProbability   Decimal  @db.Decimal(5, 2)
+  impliedDrawProbability   Decimal  @db.Decimal(5, 2)
+  impliedAwayProbability   Decimal  @db.Decimal(5, 2)
+  normalizedHomeProbability Decimal @db.Decimal(5, 2)
+  normalizedDrawProbability Decimal @db.Decimal(5, 2)
+  normalizedAwayProbability Decimal @db.Decimal(5, 2)
+  homeOddsMovement         Decimal? @db.Decimal(8, 3)
+  drawOddsMovement         Decimal? @db.Decimal(8, 3)
+  awayOddsMovement         Decimal? @db.Decimal(8, 3)
+  asianHandicapLine        String?
+  asianHandicapHomeOdds    Decimal? @db.Decimal(8, 3)
+  asianHandicapAwayOdds    Decimal? @db.Decimal(8, 3)
+  overUnderLine            Decimal? @db.Decimal(5, 2)
+  overOdds                 Decimal? @db.Decimal(8, 3)
+  underOdds                Decimal? @db.Decimal(8, 3)
+  rawPayload               Json?
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  match                    Match    @relation(fields: [matchId], references: [id])
+
+  @@index([matchId, capturedAt])
+  @@index([provider, capturedAt])
+  @@map("match_odds_snapshots")
+}
+
+model PredictionModelCalibration {
+  id                     String   @id @default(cuid())
+  modelVersion           String
+  scope                  String   @default("GLOBAL")
+  sampleSize             Int      @default(0)
+  brierScore             Float?
+  resultHitRate          Float?
+  scoreCandidateHitRate  Float?
+  totalGoalsRangeHitRate Float?
+  oddsAgreementHitRate   Float?
+  modelAgreementHitRate  Float?
+  parameters             Json
+  trainedAt              DateTime @default(now())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@unique([modelVersion, scope])
+  @@index([trainedAt])
+  @@map("prediction_model_calibrations")
+}
+
+model ResultDataSourceConfig {
+  id               String          @id @default(cuid())
+  code             String          @unique
+  name             String
+  provider         String
+  baseUrl          String
+  apiKeyEnv        String?
+  isActive         Boolean         @default(true)
+  priority         Int             @default(100)
+  pollingCron      String?
+  requestTimeoutMs Int             @default(10000)
+  config           Json?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  syncLogs         ResultSyncLog[]
+  matchResults     MatchResult[]
+
+  @@index([isActive, priority])
+  @@map("result_data_source_configs")
+}
+
+model ResultSyncLog {
+  id              String                  @id @default(cuid())
+  matchId         String?
+  provider        String?
+  syncStatus      SyncStatus              @default(PENDING)
+  rawPayload      Json?
+  syncedAt        DateTime?
+  retryCount      Int                     @default(0)
+  sourceConfigId  String?
+  targetMatchId   String?
+  status          SyncStatus              @default(PENDING)
+  triggerType     String
+  syncWindowStart DateTime?
+  syncWindowEnd   DateTime?
+  requestUrl      String?
+  requestPayload  Json?
+  responsePayload Json?
+  errorMessage    String?
+  matchedCount    Int                     @default(0)
+  updatedCount    Int                     @default(0)
+  skippedCount    Int                     @default(0)
+  conflictCount   Int                     @default(0)
+  startedAt       DateTime?
+  finishedAt      DateTime?
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+  sourceConfig    ResultDataSourceConfig? @relation(fields: [sourceConfigId], references: [id])
+  targetMatch     Match?                  @relation(fields: [targetMatchId], references: [id])
+  matchResults    MatchResult[]
+
+  @@index([status, createdAt])
+  @@index([sourceConfigId, createdAt])
+  @@index([targetMatchId, createdAt])
+  @@map("result_sync_logs")
+}
+
+model MatchResult {
+  id                String                  @id @default(cuid())
+  matchId           String
+  sourceConfigId    String?
+  syncLogId         String?
+  sourceName        String
+  sourceMatchId     String?
+  status            MatchStatus
+  homeScore         Int?
+  awayScore         Int?
+  resultDirection   PredictionDirection?
+  winnerTeamId      String?
+  isFinal           Boolean                 @default(false)
+  isManualOverride  Boolean                 @default(false)
+  rawPayload        Json?
+  syncedAt          DateTime                @default(now())
+  confirmedAt       DateTime?
+  correctedAt       DateTime?
+  correctedByUserId String?
+  correctionReason  String?
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  match             Match                   @relation(fields: [matchId], references: [id])
+  sourceConfig      ResultDataSourceConfig? @relation(fields: [sourceConfigId], references: [id])
+  syncLog           ResultSyncLog?          @relation(fields: [syncLogId], references: [id])
+  winnerTeam        Team?                   @relation(fields: [winnerTeamId], references: [id])
+  correctedBy       User?                   @relation(fields: [correctedByUserId], references: [id])
+
+  @@unique([matchId, sourceName])
+  @@index([matchId, isFinal])
+  @@index([sourceConfigId, syncedAt])
+  @@index([syncLogId])
+  @@index([status, syncedAt])
+  @@map("match_results")
+}
+
+model AiMatchReport {
+  id              String   @id @default(cuid())
+  matchId         String   @unique
+  summary         String
+  fullContent     String
+  homeWinProb     Decimal  @db.Decimal(5, 2)
+  drawProb        Decimal  @db.Decimal(5, 2)
+  awayWinProb     Decimal  @db.Decimal(5, 2)
+  predictedHome   Int
+  predictedAway   Int
+  riskIndex       Int
+  confidenceIndex Int
+  promptVersion   String
+  model           String
+  generatedAt     DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  match           Match    @relation(fields: [matchId], references: [id])
+
+  @@map("ai_reports")
+}
+
+model DailyRecommendation {
+  id            String                     @id @default(cuid())
+  date          DateTime                   @unique @db.Date
+  title         String
+  intro         String?
+  status        AiJobStatus                @default(PENDING)
+  promptVersion String
+  model         String?
+  generatedAt   DateTime?
+  createdAt     DateTime                   @default(now())
+  updatedAt     DateTime                   @updatedAt
+  matches       DailyRecommendationMatch[]
+
+  @@map("daily_recommendations")
+}
+
+model DailyRecommendationMatch {
+  id                      String              @id @default(cuid())
+  dailyRecommendationId   String
+  matchId                 String
+  recommendationDirection PredictionDirection
+  predictedHome           Int
+  predictedAway           Int
+  homeWinProb             Decimal             @db.Decimal(5, 2)
+  drawProb                Decimal             @db.Decimal(5, 2)
+  awayWinProb             Decimal             @db.Decimal(5, 2)
+  riskIndex               Int
+  confidenceIndex         Int
+  freeReason              String
+  memberReason            String
+  sortOrder               Int
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+  dailyRecommendation     DailyRecommendation @relation(fields: [dailyRecommendationId], references: [id])
+  match                   Match               @relation(fields: [matchId], references: [id])
+  predictionArchives      PredictionArchive[]
+
+  @@unique([dailyRecommendationId, matchId])
+  @@index([matchId])
+  @@map("daily_recommendation_matches")
+}
+
+model ChallengeSeason {
+  id                   String                     @id @default(cuid())
+  name                 String
+  startsAt             DateTime
+  endsAt               DateTime
+  isActive             Boolean                    @default(true)
+  actualChampionTeamId String?
+  actualGoldenBootName String?
+  resultScoredAt       DateTime?
+  createdAt            DateTime                   @default(now())
+  updatedAt            DateTime                   @updatedAt
+  actualChampionTeam   Team?                      @relation("ActualChampionTeam", fields: [actualChampionTeamId], references: [id])
+  actualFinalFour      ChallengeSeasonFinalFour[]
+  tournamentPicks      TournamentPick[]
+  scores               ChallengeScore[]
+}
+
+model ChallengeSeasonFinalFour {
+  id        String          @id @default(cuid())
+  seasonId  String
+  teamId    String
+  createdAt DateTime        @default(now())
+  season    ChallengeSeason @relation(fields: [seasonId], references: [id])
+  team      Team            @relation(fields: [teamId], references: [id])
+
+  @@unique([seasonId, teamId])
+}
+
+model MatchPrediction {
+  id            String               @id @default(cuid())
+  userId        String
+  matchId       String
+  direction     PredictionDirection
+  predictedHome Int?
+  predictedAway Int?
+  lockStatus    PredictionLockStatus @default(OPEN)
+  lockedAt      DateTime?
+  points        Int                  @default(0)
+  scoredAt      DateTime?
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  user          User                 @relation(fields: [userId], references: [id])
+  match         Match                @relation(fields: [matchId], references: [id])
+
+  @@unique([userId, matchId])
+  @@index([matchId])
+  @@index([userId, points])
+}
+
+model TournamentPick {
+  id             String                    @id @default(cuid())
+  userId         String
+  seasonId       String
+  championTeamId String?
+  goldenBootName String?
+  lockedAt       DateTime?
+  points         Int                       @default(0)
+  scoredAt       DateTime?
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+  user           User                      @relation(fields: [userId], references: [id])
+  season         ChallengeSeason           @relation(fields: [seasonId], references: [id])
+  championTeam   Team?                     @relation("ChampionTeam", fields: [championTeamId], references: [id])
+  finalFour      TournamentPickFinalFour[]
+
+  @@unique([userId, seasonId])
+}
+
+model TournamentPickFinalFour {
+  id               String         @id @default(cuid())
+  tournamentPickId String
+  teamId           String
+  createdAt        DateTime       @default(now())
+  tournamentPick   TournamentPick @relation(fields: [tournamentPickId], references: [id])
+  team             Team           @relation(fields: [teamId], references: [id])
+
+  @@unique([tournamentPickId, teamId])
+}
+
+model ChallengeScore {
+  id        String          @id @default(cuid())
+  userId    String
+  seasonId  String
+  points    Int             @default(0)
+  title     String?
+  rank      Int?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  user      User            @relation(fields: [userId], references: [id])
+  season    ChallengeSeason @relation(fields: [seasonId], references: [id])
+
+  @@unique([userId, seasonId])
+  @@index([seasonId, points])
+}
+
+model MembershipPlan {
+  id           String            @id @default(cuid())
+  code         String            @unique
+  name         String
+  priceCents   Int
+  durationDays Int
+  benefits     String[]
+  isActive     Boolean           @default(true)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  orders       MembershipOrder[]
+
+  @@map("membership_plans")
+}
+
+model MembershipOrder {
+  id                  String         @id @default(cuid())
+  userId              String
+  planId              String
+  orderNo             String         @unique
+  wechatPrepayId      String?
+  wechatTransactionId String?
+  amountCents         Int
+  status              PaymentStatus  @default(PENDING)
+  paidAt              DateTime?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  user                User           @relation(fields: [userId], references: [id])
+  plan                MembershipPlan @relation(fields: [planId], references: [id])
+
+  @@index([userId, status])
+  @@index([orderNo])
+  @@map("membership_orders")
+}
+
+model AiGenerationLog {
+  id            String      @id @default(cuid())
+  jobType       String
+  targetId      String?
+  status        AiJobStatus @default(PENDING)
+  promptVersion String
+  model         String
+  errorMessage  String?
+  inputTokens   Int?
+  outputTokens  Int?
+  startedAt     DateTime?
+  finishedAt    DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([jobType, targetId])
+  @@index([status])
+  @@map("ai_generation_logs")
+}
+
+model KnowledgeBaseDocument {
+  id            String   @id @default(cuid())
+  sourceKey     String   @unique
+  type          String
+  title         String
+  summary       String?
+  content       Json
+  imageUrl      String?
+  flagUrl       String?
+  embeddingText String
+  tags          String[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([type])
+  @@map("knowledge_base_documents")
+}
+
+model PredictionArchive {
+  id                         String                    @id @default(cuid())
+  matchId                    String
+  dailyRecommendationMatchId String?
+  status                     PredictionArchiveStatus   @default(DRAFT)
+  homeTeamName               String
+  awayTeamName               String
+  kickoffAt                  DateTime
+  publishedAt                DateTime?
+  predictionTime             DateTime                  @default(now())
+  generatedAt                DateTime                  @default(now())
+  recommendationDirection    PredictionDirection
+  homeWinProb                Decimal                   @db.Decimal(5, 2)
+  drawProb                   Decimal                   @db.Decimal(5, 2)
+  awayWinProb                Decimal                   @db.Decimal(5, 2)
+  predictedHome              Int
+  predictedAway              Int
+  totalGoalsPrediction       Int
+  confidenceIndex            Int
+  riskIndex                  Int
+  recommendationReason       String
+  riskTip                    String
+  model                      String
+  promptVersion              String
+  engineModelVersion         String                    @default("prediction-engine-v1")
+  modelVersion               String                    @default("prediction-engine-v1")
+  predictionStage            String                    @default("DRAFT")
+  engineWeightConfig         Json?
+  engineFactorScores         Json?
+  finalProbability           Json?
+  predictedScore             String?
+  confidenceLevel            String?
+  riskLevel                  String?
+  shortAnalysis              String?
+  fullAnalysis               String?
+  disclaimer                 String?
+  correctionNote             String?
+  isMemberContent            Boolean                   @default(false)
+  isPublic                   Boolean                   @default(true)
+  originalContent            Json
+  contentHash                String                    @unique
+  lockedAt                   DateTime?
+  createdAt                  DateTime                  @default(now())
+  updatedAt                  DateTime                  @updatedAt
+  match                      Match                     @relation(fields: [matchId], references: [id])
+  dailyRecommendationMatch   DailyRecommendationMatch? @relation(fields: [dailyRecommendationMatchId], references: [id])
+  settlement                 PredictionSettlement?
+  corrections                PredictionCorrection[]
+  featureSnapshot            PredictionFeatureSnapshot?
+
+  @@unique([matchId, promptVersion, engineModelVersion, isMemberContent, predictionStage])
+  @@index([predictionTime])
+  @@index([predictionStage, predictionTime])
+  @@index([status, publishedAt])
+  @@index([matchId, status])
+  @@index([lockedAt])
+  @@index([isPublic, status, publishedAt])
+  @@map("prediction_archives")
+}
+
+model PredictionFeatureSnapshot {
+  id             String            @id @default(cuid())
+  matchId        String
+  archiveId      String            @unique
+  snapshotAt     DateTime          @default(now())
+  modelVersion   String
+  dataVersion    String
+  promptVersion  String?
+  featureInputs  Json
+  rawInputs      Json?
+  factorScores   Json
+  weightConfig   Json
+  modelOutput    Json
+  dataQuality    Json?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  match          Match             @relation(fields: [matchId], references: [id])
+  archive        PredictionArchive @relation(fields: [archiveId], references: [id])
+
+  @@index([matchId, snapshotAt])
+  @@index([modelVersion, snapshotAt])
+  @@map("prediction_feature_snapshots")
+}
+
+model PredictionVersion {
+  id                      String                @id @default(cuid())
+  matchId                 String
+  predictionTime          DateTime              @default(now())
+  predictionType          PredictionVersionType
+  refreshStage            String                @default("STANDARD")
+  scheduledFor            DateTime?
+  recommendationDirection PredictionDirection
+  winDrawLossProbability  Json
+  scorePrediction         String
+  predictedHome           Int
+  predictedAway           Int
+  overUnderPrediction     String
+  totalGoalsPrediction    Int
+  confidenceScore         Int
+  riskIndex               Int
+  recommendationReason    String
+  riskTip                 String
+  actualResult            String?
+  hitStatus               PredictionHitStatus   @default(PENDING)
+  hitResult               Boolean?
+  hitScore                Boolean?
+  hitTotalGoals           Boolean?
+  model                   String
+  promptVersion           String
+  originalContent         Json
+  contentHash             String                @unique
+  lockedAt                DateTime?
+  settledAt               DateTime?
+  createdAt               DateTime              @default(now())
+  updatedAt               DateTime              @updatedAt
+  match                   Match                 @relation(fields: [matchId], references: [id])
+
+  @@index([matchId, predictionTime])
+  @@index([predictionType, predictionTime])
+  @@index([hitStatus, settledAt])
+  @@index([refreshStage, scheduledFor])
+  @@index([lockedAt])
+  @@unique([matchId, predictionType, refreshStage])
+  @@map("prediction_versions")
+}
+
+model PredictionSettlement {
+  id                  String              @id @default(cuid())
+  predictionArchiveId String              @unique
+  matchId             String
+  homeScore           Int
+  awayScore           Int
+  resultDirection     PredictionDirection
+  hitResult           Boolean
+  hitScore            Boolean
+  hitTotalGoals       Boolean
+  settledAt           DateTime            @default(now())
+  settledByUserId     String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  predictionArchive   PredictionArchive   @relation(fields: [predictionArchiveId], references: [id])
+  match               Match               @relation(fields: [matchId], references: [id])
+  settledBy           User?               @relation(fields: [settledByUserId], references: [id])
+
+  @@index([matchId])
+  @@index([settledAt])
+  @@index([hitResult, hitScore, hitTotalGoals])
+  @@map("prediction_settlements")
+}
+
+model PredictionCorrection {
+  id                  String            @id @default(cuid())
+  predictionArchiveId String
+  correctionNote      String
+  createdByUserId     String?
+  createdAt           DateTime          @default(now())
+  predictionArchive   PredictionArchive @relation(fields: [predictionArchiveId], references: [id])
+  createdBy           User?             @relation(fields: [createdByUserId], references: [id])
+
+  @@index([predictionArchiveId, createdAt])
+  @@map("prediction_corrections")
+}

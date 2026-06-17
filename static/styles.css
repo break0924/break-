@@ -44,6 +44,10 @@ input {
 button {
   cursor: pointer; padding: 12px 16px; background: var(--accent); color: #00111d; font-weight: 700;
 }
+button:disabled, input:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
 button.secondary { background: transparent; color: var(--text); }
 button.danger { border-color: rgba(251,113,133,0.35); color: #fecdd3; }
 .row, .actions { display: flex; flex-wrap: wrap; gap: 10px; }

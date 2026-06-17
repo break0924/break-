@@ -1,0 +1,290 @@
+[
+  {
+    "id": "stadium_estadio-azteca",
+    "slug": "estadio-azteca",
+    "name": "Estadio Azteca",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "capacity": 87523,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/estadio-azteca.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "worldCupIntro": "Estadio Azteca 是2026世界杯承办场馆之一，位于 Mexico City，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Estadio Azteca, Mexico City, Mexico, capacity 87523, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "MX",
+      "Mexico City"
+    ]
+  },
+  {
+    "id": "stadium_estadio-akron",
+    "slug": "estadio-akron",
+    "name": "Estadio Akron",
+    "city": "Guadalajara",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "capacity": 49850,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/estadio-akron.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "worldCupIntro": "Estadio Akron 是2026世界杯承办场馆之一，位于 Guadalajara，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Estadio Akron, Guadalajara, Mexico, capacity 49850, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "MX",
+      "Guadalajara"
+    ]
+  },
+  {
+    "id": "stadium_estadio-bbva",
+    "slug": "estadio-bbva",
+    "name": "Estadio BBVA",
+    "city": "Monterrey",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "capacity": 53500,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/estadio-bbva.webp",
+    "flagUrl": "/static/flags/MX.svg",
+    "worldCupIntro": "Estadio BBVA 是2026世界杯承办场馆之一，位于 Monterrey，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Estadio BBVA, Monterrey, Mexico, capacity 53500, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "MX",
+      "Monterrey"
+    ]
+  },
+  {
+    "id": "stadium_bmo-field",
+    "slug": "bmo-field",
+    "name": "BMO Field",
+    "city": "Toronto",
+    "country": "Canada",
+    "countryCode": "CA",
+    "capacity": 45000,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/bmo-field.webp",
+    "flagUrl": "/static/flags/CA.svg",
+    "worldCupIntro": "BMO Field 是2026世界杯承办场馆之一，位于 Toronto，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "BMO Field, Toronto, Canada, capacity 45000, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "CA",
+      "Toronto"
+    ]
+  },
+  {
+    "id": "stadium_bc-place",
+    "slug": "bc-place",
+    "name": "BC Place",
+    "city": "Vancouver",
+    "country": "Canada",
+    "countryCode": "CA",
+    "capacity": 54500,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/bc-place.webp",
+    "flagUrl": "/static/flags/CA.svg",
+    "worldCupIntro": "BC Place 是2026世界杯承办场馆之一，位于 Vancouver，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "BC Place, Vancouver, Canada, capacity 54500, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "CA",
+      "Vancouver"
+    ]
+  },
+  {
+    "id": "stadium_mercedes-benz-stadium",
+    "slug": "mercedes-benz-stadium",
+    "name": "Mercedes-Benz Stadium",
+    "city": "Atlanta",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 71000,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/mercedes-benz-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Mercedes-Benz Stadium 是2026世界杯承办场馆之一，位于 Atlanta，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Mercedes-Benz Stadium, Atlanta, United States, capacity 71000, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Atlanta"
+    ]
+  },
+  {
+    "id": "stadium_gillette-stadium",
+    "slug": "gillette-stadium",
+    "name": "Gillette Stadium",
+    "city": "Boston",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 65878,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/gillette-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Gillette Stadium 是2026世界杯承办场馆之一，位于 Boston，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Gillette Stadium, Boston, United States, capacity 65878, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Boston"
+    ]
+  },
+  {
+    "id": "stadium_att-stadium",
+    "slug": "att-stadium",
+    "name": "AT&T Stadium",
+    "city": "Dallas",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 80000,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/att-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "AT&T Stadium 是2026世界杯承办场馆之一，位于 Dallas，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "AT&T Stadium, Dallas, United States, capacity 80000, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Dallas"
+    ]
+  },
+  {
+    "id": "stadium_nrg-stadium",
+    "slug": "nrg-stadium",
+    "name": "NRG Stadium",
+    "city": "Houston",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 72220,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/nrg-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "NRG Stadium 是2026世界杯承办场馆之一，位于 Houston，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "NRG Stadium, Houston, United States, capacity 72220, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Houston"
+    ]
+  },
+  {
+    "id": "stadium_arrowhead-stadium",
+    "slug": "arrowhead-stadium",
+    "name": "Arrowhead Stadium",
+    "city": "Kansas City",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 76416,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/arrowhead-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Arrowhead Stadium 是2026世界杯承办场馆之一，位于 Kansas City，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Arrowhead Stadium, Kansas City, United States, capacity 76416, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Kansas City"
+    ]
+  },
+  {
+    "id": "stadium_sofi-stadium",
+    "slug": "sofi-stadium",
+    "name": "SoFi Stadium",
+    "city": "Los Angeles",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 70240,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/sofi-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "SoFi Stadium 是2026世界杯承办场馆之一，位于 Los Angeles，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "SoFi Stadium, Los Angeles, United States, capacity 70240, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Los Angeles"
+    ]
+  },
+  {
+    "id": "stadium_hard-rock-stadium",
+    "slug": "hard-rock-stadium",
+    "name": "Hard Rock Stadium",
+    "city": "Miami",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 64767,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/hard-rock-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Hard Rock Stadium 是2026世界杯承办场馆之一，位于 Miami，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Hard Rock Stadium, Miami, United States, capacity 64767, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Miami"
+    ]
+  },
+  {
+    "id": "stadium_metlife-stadium",
+    "slug": "metlife-stadium",
+    "name": "MetLife Stadium",
+    "city": "New York New Jersey",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 82500,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/metlife-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "MetLife Stadium 是2026世界杯承办场馆之一，位于 New York New Jersey，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "MetLife Stadium, New York New Jersey, United States, capacity 82500, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "New York New Jersey"
+    ]
+  },
+  {
+    "id": "stadium_lincoln-financial-field",
+    "slug": "lincoln-financial-field",
+    "name": "Lincoln Financial Field",
+    "city": "Philadelphia",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 67594,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/lincoln-financial-field.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Lincoln Financial Field 是2026世界杯承办场馆之一，位于 Philadelphia，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Lincoln Financial Field, Philadelphia, United States, capacity 67594, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Philadelphia"
+    ]
+  },
+  {
+    "id": "stadium_levis-stadium",
+    "slug": "levis-stadium",
+    "name": "Levi's Stadium",
+    "city": "San Francisco Bay Area",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 68500,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/levis-stadium.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Levi's Stadium 是2026世界杯承办场馆之一，位于 San Francisco Bay Area，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Levi's Stadium, San Francisco Bay Area, United States, capacity 68500, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "San Francisco Bay Area"
+    ]
+  },
+  {
+    "id": "stadium_lumen-field",
+    "slug": "lumen-field",
+    "name": "Lumen Field",
+    "city": "Seattle",
+    "country": "United States",
+    "countryCode": "US",
+    "capacity": 68740,
+    "imageUrl": "/static/images/worldcup-kb/stadiums/lumen-field.webp",
+    "flagUrl": "/static/flags/US.svg",
+    "worldCupIntro": "Lumen Field 是2026世界杯承办场馆之一，位于 Seattle，可用于赛程地点、城市介绍和比赛详情展示。",
+    "ragText": "Lumen Field, Seattle, United States, capacity 68740, 2026 World Cup stadium.",
+    "tags": [
+      "stadium",
+      "US",
+      "Seattle"
+    ]
+  }
+]

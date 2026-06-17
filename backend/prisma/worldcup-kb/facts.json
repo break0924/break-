@@ -1,0 +1,80 @@
+[
+  {
+    "id": "fact_format",
+    "title": "format",
+    "content": "2026世界杯首次扩军至48支球队，分为12个小组。",
+    "imageUrl": "/static/images/worldcup-kb/facts/format.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2026世界杯首次扩军至48支球队，分为12个小组。",
+    "ragText": "2026世界杯首次扩军至48支球队，分为12个小组。",
+    "tags": [
+      "fact",
+      "format"
+    ]
+  },
+  {
+    "id": "fact_hosts",
+    "title": "hosts",
+    "content": "2026世界杯由加拿大、墨西哥和美国联合举办。",
+    "imageUrl": "/static/images/worldcup-kb/facts/hosts.webp",
+    "flagUrl": null,
+    "worldCupIntro": "2026世界杯由加拿大、墨西哥和美国联合举办。",
+    "ragText": "2026世界杯由加拿大、墨西哥和美国联合举办。",
+    "tags": [
+      "fact",
+      "hosts"
+    ]
+  },
+  {
+    "id": "fact_groups",
+    "title": "groups",
+    "content": "小组赛阶段包括A到L共12个小组，每组4队。",
+    "imageUrl": "/static/images/worldcup-kb/facts/groups.webp",
+    "flagUrl": null,
+    "worldCupIntro": "小组赛阶段包括A到L共12个小组，每组4队。",
+    "ragText": "小组赛阶段包括A到L共12个小组，每组4队。",
+    "tags": [
+      "fact",
+      "groups"
+    ]
+  },
+  {
+    "id": "fact_visual_policy",
+    "title": "visual_policy",
+    "content": "产品视觉系统只使用国旗、原创插画、原创图标和授权素材，不使用官方赛事标识、吉祥物、奖杯照片、队徽或未经授权球员照片。",
+    "imageUrl": "/static/images/worldcup-kb/facts/visual_policy.webp",
+    "flagUrl": null,
+    "worldCupIntro": "产品视觉系统只使用国旗、原创插画、原创图标和授权素材，不使用官方赛事标识、吉祥物、奖杯照片、队徽或未经授权球员照片。",
+    "ragText": "产品视觉系统只使用国旗、原创插画、原创图标和授权素材，不使用官方赛事标识、吉祥物、奖杯照片、队徽或未经授权球员照片。",
+    "tags": [
+      "fact",
+      "visual_policy"
+    ]
+  },
+  {
+    "id": "fact_ai_usage",
+    "title": "ai_usage",
+    "content": "AI报告应结合球队、球员、赛程、场馆、历史事实和风险提示生成，输出仅用于足球数据分析参考。",
+    "imageUrl": "/static/images/worldcup-kb/facts/ai_usage.webp",
+    "flagUrl": null,
+    "worldCupIntro": "AI报告应结合球队、球员、赛程、场馆、历史事实和风险提示生成，输出仅用于足球数据分析参考。",
+    "ragText": "AI报告应结合球队、球员、赛程、场馆、历史事实和风险提示生成，输出仅用于足球数据分析参考。",
+    "tags": [
+      "fact",
+      "ai_usage"
+    ]
+  },
+  {
+    "id": "fact_rag",
+    "title": "rag",
+    "content": "RAG检索建议按team、player、group、match、stadium、host-city、history、fact等type过滤。",
+    "imageUrl": "/static/images/worldcup-kb/facts/rag.webp",
+    "flagUrl": null,
+    "worldCupIntro": "RAG检索建议按team、player、group、match、stadium、host-city、history、fact等type过滤。",
+    "ragText": "RAG检索建议按team、player、group、match、stadium、host-city、history、fact等type过滤。",
+    "tags": [
+      "fact",
+      "rag"
+    ]
+  }
+]

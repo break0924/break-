@@ -1,0 +1,66 @@
+{
+  "envId": "{{CLOUDBASE_ENV_ID}}",
+  "framework": {
+    "name": "ai-world-cup-predictor",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "buildCommand": "cd frontend && npm run build:h5",
+          "outputPath": "frontend/dist/build/h5"
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "name": "homeData",
+      "timeout": 10,
+      "envVariables": {}
+    },
+    {
+      "name": "predictions",
+      "timeout": 20,
+      "envVariables": {}
+    },
+    {
+      "name": "matches",
+      "timeout": 10,
+      "envVariables": {}
+    },
+    {
+      "name": "member",
+      "timeout": 10,
+      "envVariables": {}
+    },
+    {
+      "name": "invite",
+      "timeout": 10,
+      "envVariables": {}
+    },
+    {
+      "name": "admin",
+      "timeout": 20,
+      "envVariables": {
+        "ADMIN_TOKEN": "{{ADMIN_TOKEN}}",
+        "ADMIN_OPENIDS": "{{ADMIN_OPENIDS}}",
+        "ALLOW_DEV_ADMIN": "false"
+      }
+    },
+    {
+      "name": "resultSync",
+      "timeout": 30,
+      "envVariables": {
+        "RESULT_SYNC_PROVIDER": "SIMPLE_HTTP",
+        "RESULT_SYNC_API_URL": ""
+      },
+      "triggers": [
+        {
+          "name": "hourly-result-sync",
+          "type": "timer",
+          "config": "0 0 * * * * *"
+        }
+      ]
+    }
+  ]
+}

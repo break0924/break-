@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="原创足球场夜景背景">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#061b22"/>
+      <stop offset="0.48" stop-color="#0c3b34"/>
+      <stop offset="1" stop-color="#07120f"/>
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="18%" r="58%">
+      <stop offset="0" stop-color="#d9fff0" stop-opacity=".7"/>
+      <stop offset=".34" stop-color="#8ff0c7" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#08120f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pitch" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0d6a49"/>
+      <stop offset=".5" stop-color="#19a86f"/>
+      <stop offset="1" stop-color="#0a5e44"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#sky)"/>
+  <rect width="1200" height="520" fill="url(#light)"/>
+  <path d="M0 310C180 250 350 236 600 236s420 14 600 74v210H0Z" fill="#06100e" opacity=".72"/>
+  <path d="M70 350C240 300 408 284 600 284s360 16 530 66v120H70Z" fill="url(#pitch)"/>
+  <path d="M92 365C245 326 410 310 600 310s355 16 508 55" fill="none" stroke="#c7ffe0" stroke-opacity=".52" stroke-width="5"/>
+  <path d="M600 286v184" stroke="#dffff0" stroke-opacity=".5" stroke-width="4"/>
+  <ellipse cx="600" cy="376" rx="86" ry="34" fill="none" stroke="#dffff0" stroke-opacity=".52" stroke-width="4"/>
+  <path d="M186 340v96h120v-76M1014 340v96H894v-76" fill="none" stroke="#dffff0" stroke-opacity=".45" stroke-width="4"/>
+  <g opacity=".62">
+    <circle cx="178" cy="110" r="8" fill="#eafff5"/>
+    <circle cx="252" cy="88" r="6" fill="#eafff5"/>
+    <circle cx="925" cy="82" r="7" fill="#eafff5"/>
+    <circle cx="1025" cy="118" r="8" fill="#eafff5"/>
+  </g>
+  <g fill="none" stroke="#b8f6d8" stroke-opacity=".24" stroke-width="2">
+    <path d="M60 278h1080"/>
+    <path d="M110 252h980"/>
+    <path d="M170 229h860"/>
+  </g>
+  <text x="66" y="112" fill="#f4fbf8" font-family="Arial, sans-serif" font-size="56" font-weight="800">AI足球情报</text>
+  <text x="70" y="166" fill="#b8f6d8" font-family="Arial, sans-serif" font-size="30" font-weight="700">每日赛前分析</text>
+</svg>

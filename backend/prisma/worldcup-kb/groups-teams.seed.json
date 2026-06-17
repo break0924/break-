@@ -1,0 +1,518 @@
+[
+  {
+    "code": "A",
+    "name": "A组",
+    "sortOrder": 1,
+    "teams": [
+      {
+        "fifaCode": "MEX",
+        "countryCode": "MX",
+        "name": "墨西哥",
+        "nameEn": "Mexico",
+        "groupName": "A",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/MX.svg"
+      },
+      {
+        "fifaCode": "RSA",
+        "countryCode": "ZA",
+        "name": "南非",
+        "nameEn": "South Africa",
+        "groupName": "A",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/ZA.svg"
+      },
+      {
+        "fifaCode": "KOR",
+        "countryCode": "KR",
+        "name": "韩国",
+        "nameEn": "South Korea",
+        "groupName": "A",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/KR.svg"
+      },
+      {
+        "fifaCode": "CZE",
+        "countryCode": "CZ",
+        "name": "捷克",
+        "nameEn": "Czechia",
+        "groupName": "A",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/CZ.svg"
+      }
+    ]
+  },
+  {
+    "code": "B",
+    "name": "B组",
+    "sortOrder": 2,
+    "teams": [
+      {
+        "fifaCode": "CAN",
+        "countryCode": "CA",
+        "name": "加拿大",
+        "nameEn": "Canada",
+        "groupName": "B",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/CA.svg"
+      },
+      {
+        "fifaCode": "BIH",
+        "countryCode": "BA",
+        "name": "波黑",
+        "nameEn": "Bosnia and Herzegovina",
+        "groupName": "B",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/BA.svg"
+      },
+      {
+        "fifaCode": "QAT",
+        "countryCode": "QA",
+        "name": "卡塔尔",
+        "nameEn": "Qatar",
+        "groupName": "B",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/QA.svg"
+      },
+      {
+        "fifaCode": "SUI",
+        "countryCode": "CH",
+        "name": "瑞士",
+        "nameEn": "Switzerland",
+        "groupName": "B",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/CH.svg"
+      }
+    ]
+  },
+  {
+    "code": "C",
+    "name": "C组",
+    "sortOrder": 3,
+    "teams": [
+      {
+        "fifaCode": "BRA",
+        "countryCode": "BR",
+        "name": "巴西",
+        "nameEn": "Brazil",
+        "groupName": "C",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/BR.svg"
+      },
+      {
+        "fifaCode": "HAI",
+        "countryCode": "HT",
+        "name": "海地",
+        "nameEn": "Haiti",
+        "groupName": "C",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/HT.svg"
+      },
+      {
+        "fifaCode": "MAR",
+        "countryCode": "MA",
+        "name": "摩洛哥",
+        "nameEn": "Morocco",
+        "groupName": "C",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/MA.svg"
+      },
+      {
+        "fifaCode": "SCO",
+        "countryCode": "GB-SCT",
+        "name": "苏格兰",
+        "nameEn": "Scotland",
+        "groupName": "C",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/GB-SCT.svg"
+      }
+    ]
+  },
+  {
+    "code": "D",
+    "name": "D组",
+    "sortOrder": 4,
+    "teams": [
+      {
+        "fifaCode": "USA",
+        "countryCode": "US",
+        "name": "美国",
+        "nameEn": "United States",
+        "groupName": "D",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/US.svg"
+      },
+      {
+        "fifaCode": "AUS",
+        "countryCode": "AU",
+        "name": "澳大利亚",
+        "nameEn": "Australia",
+        "groupName": "D",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/AU.svg"
+      },
+      {
+        "fifaCode": "PAR",
+        "countryCode": "PY",
+        "name": "巴拉圭",
+        "nameEn": "Paraguay",
+        "groupName": "D",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/PY.svg"
+      },
+      {
+        "fifaCode": "TUR",
+        "countryCode": "TR",
+        "name": "土耳其",
+        "nameEn": "Turkey",
+        "groupName": "D",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/TR.svg"
+      }
+    ]
+  },
+  {
+    "code": "E",
+    "name": "E组",
+    "sortOrder": 5,
+    "teams": [
+      {
+        "fifaCode": "GER",
+        "countryCode": "DE",
+        "name": "德国",
+        "nameEn": "Germany",
+        "groupName": "E",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/DE.svg"
+      },
+      {
+        "fifaCode": "CUW",
+        "countryCode": "CW",
+        "name": "库拉索",
+        "nameEn": "Curaçao",
+        "groupName": "E",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/CW.svg"
+      },
+      {
+        "fifaCode": "CIV",
+        "countryCode": "CI",
+        "name": "科特迪瓦",
+        "nameEn": "Ivory Coast",
+        "groupName": "E",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/CI.svg"
+      },
+      {
+        "fifaCode": "ECU",
+        "countryCode": "EC",
+        "name": "厄瓜多尔",
+        "nameEn": "Ecuador",
+        "groupName": "E",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/EC.svg"
+      }
+    ]
+  },
+  {
+    "code": "F",
+    "name": "F组",
+    "sortOrder": 6,
+    "teams": [
+      {
+        "fifaCode": "NED",
+        "countryCode": "NL",
+        "name": "荷兰",
+        "nameEn": "Netherlands",
+        "groupName": "F",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/NL.svg"
+      },
+      {
+        "fifaCode": "JPN",
+        "countryCode": "JP",
+        "name": "日本",
+        "nameEn": "Japan",
+        "groupName": "F",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/JP.svg"
+      },
+      {
+        "fifaCode": "SWE",
+        "countryCode": "SE",
+        "name": "瑞典",
+        "nameEn": "Sweden",
+        "groupName": "F",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/SE.svg"
+      },
+      {
+        "fifaCode": "TUN",
+        "countryCode": "TN",
+        "name": "突尼斯",
+        "nameEn": "Tunisia",
+        "groupName": "F",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/TN.svg"
+      }
+    ]
+  },
+  {
+    "code": "G",
+    "name": "G组",
+    "sortOrder": 7,
+    "teams": [
+      {
+        "fifaCode": "BEL",
+        "countryCode": "BE",
+        "name": "比利时",
+        "nameEn": "Belgium",
+        "groupName": "G",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/BE.svg"
+      },
+      {
+        "fifaCode": "EGY",
+        "countryCode": "EG",
+        "name": "埃及",
+        "nameEn": "Egypt",
+        "groupName": "G",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/EG.svg"
+      },
+      {
+        "fifaCode": "IRN",
+        "countryCode": "IR",
+        "name": "伊朗",
+        "nameEn": "Iran",
+        "groupName": "G",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/IR.svg"
+      },
+      {
+        "fifaCode": "NZL",
+        "countryCode": "NZ",
+        "name": "新西兰",
+        "nameEn": "New Zealand",
+        "groupName": "G",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/NZ.svg"
+      }
+    ]
+  },
+  {
+    "code": "H",
+    "name": "H组",
+    "sortOrder": 8,
+    "teams": [
+      {
+        "fifaCode": "ESP",
+        "countryCode": "ES",
+        "name": "西班牙",
+        "nameEn": "Spain",
+        "groupName": "H",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/ES.svg"
+      },
+      {
+        "fifaCode": "CPV",
+        "countryCode": "CV",
+        "name": "佛得角",
+        "nameEn": "Cape Verde",
+        "groupName": "H",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/CV.svg"
+      },
+      {
+        "fifaCode": "KSA",
+        "countryCode": "SA",
+        "name": "沙特阿拉伯",
+        "nameEn": "Saudi Arabia",
+        "groupName": "H",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/SA.svg"
+      },
+      {
+        "fifaCode": "URU",
+        "countryCode": "UY",
+        "name": "乌拉圭",
+        "nameEn": "Uruguay",
+        "groupName": "H",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/UY.svg"
+      }
+    ]
+  },
+  {
+    "code": "I",
+    "name": "I组",
+    "sortOrder": 9,
+    "teams": [
+      {
+        "fifaCode": "FRA",
+        "countryCode": "FR",
+        "name": "法国",
+        "nameEn": "France",
+        "groupName": "I",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/FR.svg"
+      },
+      {
+        "fifaCode": "IRQ",
+        "countryCode": "IQ",
+        "name": "伊拉克",
+        "nameEn": "Iraq",
+        "groupName": "I",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/IQ.svg"
+      },
+      {
+        "fifaCode": "NOR",
+        "countryCode": "NO",
+        "name": "挪威",
+        "nameEn": "Norway",
+        "groupName": "I",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/NO.svg"
+      },
+      {
+        "fifaCode": "SEN",
+        "countryCode": "SN",
+        "name": "塞内加尔",
+        "nameEn": "Senegal",
+        "groupName": "I",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/SN.svg"
+      }
+    ]
+  },
+  {
+    "code": "J",
+    "name": "J组",
+    "sortOrder": 10,
+    "teams": [
+      {
+        "fifaCode": "ARG",
+        "countryCode": "AR",
+        "name": "阿根廷",
+        "nameEn": "Argentina",
+        "groupName": "J",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/AR.svg"
+      },
+      {
+        "fifaCode": "ALG",
+        "countryCode": "DZ",
+        "name": "阿尔及利亚",
+        "nameEn": "Algeria",
+        "groupName": "J",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/DZ.svg"
+      },
+      {
+        "fifaCode": "AUT",
+        "countryCode": "AT",
+        "name": "奥地利",
+        "nameEn": "Austria",
+        "groupName": "J",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/AT.svg"
+      },
+      {
+        "fifaCode": "JOR",
+        "countryCode": "JO",
+        "name": "约旦",
+        "nameEn": "Jordan",
+        "groupName": "J",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/JO.svg"
+      }
+    ]
+  },
+  {
+    "code": "K",
+    "name": "K组",
+    "sortOrder": 11,
+    "teams": [
+      {
+        "fifaCode": "COL",
+        "countryCode": "CO",
+        "name": "哥伦比亚",
+        "nameEn": "Colombia",
+        "groupName": "K",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/CO.svg"
+      },
+      {
+        "fifaCode": "COD",
+        "countryCode": "CD",
+        "name": "刚果民主共和国",
+        "nameEn": "DR Congo",
+        "groupName": "K",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/CD.svg"
+      },
+      {
+        "fifaCode": "POR",
+        "countryCode": "PT",
+        "name": "葡萄牙",
+        "nameEn": "Portugal",
+        "groupName": "K",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/PT.svg"
+      },
+      {
+        "fifaCode": "UZB",
+        "countryCode": "UZ",
+        "name": "乌兹别克斯坦",
+        "nameEn": "Uzbekistan",
+        "groupName": "K",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/UZ.svg"
+      }
+    ]
+  },
+  {
+    "code": "L",
+    "name": "L组",
+    "sortOrder": 12,
+    "teams": [
+      {
+        "fifaCode": "ENG",
+        "countryCode": "GB-ENG",
+        "name": "英格兰",
+        "nameEn": "England",
+        "groupName": "L",
+        "groupSeed": 1,
+        "flagUrl": "/static/flags/GB-ENG.svg"
+      },
+      {
+        "fifaCode": "CRO",
+        "countryCode": "HR",
+        "name": "克罗地亚",
+        "nameEn": "Croatia",
+        "groupName": "L",
+        "groupSeed": 2,
+        "flagUrl": "/static/flags/HR.svg"
+      },
+      {
+        "fifaCode": "GHA",
+        "countryCode": "GH",
+        "name": "加纳",
+        "nameEn": "Ghana",
+        "groupName": "L",
+        "groupSeed": 3,
+        "flagUrl": "/static/flags/GH.svg"
+      },
+      {
+        "fifaCode": "PAN",
+        "countryCode": "PA",
+        "name": "巴拿马",
+        "nameEn": "Panama",
+        "groupName": "L",
+        "groupSeed": 4,
+        "flagUrl": "/static/flags/PA.svg"
+      }
+    ]
+  }
+]

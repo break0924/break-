@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>比赛结果同步管理 - AI世界杯预测官</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --text: #172033;
+        --muted: #667085;
+        --line: #dde5ef;
+        --green: #0f8f62;
+        --blue: #1769e0;
+        --yellow: #a36400;
+        --red: #c83a3a;
+        --chip: #eef4ff;
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      button.primary {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+      }
+
+      button.warn {
+        border-color: #f3b33d;
+        background: #fff9e8;
+        color: var(--yellow);
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.58;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        padding: 7px 10px;
+      }
+
+      textarea {
+        min-height: 64px;
+        resize: vertical;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--line);
+        background: rgba(244, 247, 251, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) 420px auto;
+        gap: 14px;
+        align-items: end;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .subtitle {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .field label {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 8px;
+      }
+
+      main {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 22px 24px 48px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+
+      .panel-head {
+        min-height: 48px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .panel-title {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .panel-body {
+        padding: 16px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .stat {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fff;
+        padding: 12px;
+      }
+
+      .stat-label {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .stat-value {
+        margin-top: 6px;
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        border-radius: 999px;
+        padding: 0 9px;
+        background: var(--chip);
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .status.ok {
+        background: #e7f8ef;
+        color: var(--green);
+      }
+
+      .status.warn {
+        background: #fff5dc;
+        color: var(--yellow);
+      }
+
+      .status.fail {
+        background: #ffe8e8;
+        color: var(--red);
+      }
+
+      .table-wrap {
+        overflow: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 860px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 11px 10px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        font-size: 13px;
+      }
+
+      th {
+        color: var(--muted);
+        font-weight: 700;
+        background: #fbfcfe;
+      }
+
+      tr.active {
+        background: #eef6ff;
+      }
+
+      .match-name {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-weight: 800;
+      }
+
+      .team {
+        white-space: nowrap;
+      }
+
+      .score {
+        color: var(--blue);
+        font-weight: 900;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .logs {
+        display: grid;
+        gap: 10px;
+        max-height: 520px;
+        overflow: auto;
+      }
+
+      .log-item {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 10px;
+        background: #fff;
+      }
+
+      .log-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .log-meta {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .source-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .source {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 10px;
+      }
+
+      .notice {
+        border: 1px solid #cce1ff;
+        border-radius: var(--radius);
+        background: #f2f8ff;
+        color: #25466f;
+        padding: 11px 12px;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        z-index: 20;
+        transform: translateX(-50%);
+        max-width: min(560px, calc(100vw - 32px));
+        border-radius: 8px;
+        background: #172033;
+        color: #fff;
+        padding: 10px 14px;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+        display: none;
+      }
+
+      .toast.show {
+        display: block;
+      }
+
+      @media (max-width: 980px) {
+        .header-inner,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <div>
+          <h1>比赛结果同步管理</h1>
+          <div class="subtitle">AI世界杯预测官后台 · 仅用于赛果同步、命中结算和挑战赛积分维护</div>
+        </div>
+        <div class="field">
+          <label for="apiBase">后端 API 地址</label>
+          <input id="apiBase" value="http://localhost:3000/api" />
+        </div>
+        <div class="toolbar">
+          <button id="saveApiBtn">保存</button>
+          <button class="primary" id="refreshBtn">刷新</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="stats" id="stats"></section>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">今日同步状态</h2>
+              <div class="muted" id="lastSyncText">正在读取同步状态</div>
+            </div>
+            <div class="toolbar">
+              <input id="dateInput" type="date" />
+              <button class="primary" id="syncDateBtn">同步所选日期</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>比赛</th>
+                  <th>状态</th>
+                  <th>比分</th>
+                  <th>数据来源</th>
+                  <th>最后同步</th>
+                  <th>结算</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="matchRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="stack">
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">单场操作</h2>
+              <span class="status" id="selectedStatus">未选择</span>
+            </div>
+            <div class="panel-body stack">
+              <div class="notice" id="selectedMatchText">
+                请选择左侧某一场比赛后再执行单场同步、比分修正或重新结算。
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="homeScore">主队进球</label>
+                  <input id="homeScore" type="number" min="0" max="99" />
+                </div>
+                <div class="field">
+                  <label for="awayScore">客队进球</label>
+                  <input id="awayScore" type="number" min="0" max="99" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="reason">修正说明</label>
+                <textarea id="reason" placeholder="例如：第三方数据延迟，按官方赛果更正"></textarea>
+              </div>
+              <div class="actions">
+                <button id="syncMatchBtn">同步本场</button>
+                <button class="warn" id="correctBtn">保存比分修正</button>
+                <button id="settleAiBtn">重算 AI 预测</button>
+                <button id="settleChallengeBtn">重算挑战赛积分</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">数据源状态</h2>
+            </div>
+            <div class="panel-body source-list" id="sourceList"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">同步日志</h2>
+            </div>
+            <div class="panel-body logs" id="logList"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const state = {
+        apiBase:
+          localStorage.getItem("adminApiBase") || "http://localhost:3000/api",
+        date: today(),
+        selectedMatch: null,
+        matches: [],
+      };
+
+      const els = {
+        apiBase: document.querySelector("#apiBase"),
+        saveApiBtn: document.querySelector("#saveApiBtn"),
+        refreshBtn: document.querySelector("#refreshBtn"),
+        dateInput: document.querySelector("#dateInput"),
+        syncDateBtn: document.querySelector("#syncDateBtn"),
+        stats: document.querySelector("#stats"),
+        lastSyncText: document.querySelector("#lastSyncText"),
+        matchRows: document.querySelector("#matchRows"),
+        selectedStatus: document.querySelector("#selectedStatus"),
+        selectedMatchText: document.querySelector("#selectedMatchText"),
+        homeScore: document.querySelector("#homeScore"),
+        awayScore: document.querySelector("#awayScore"),
+        reason: document.querySelector("#reason"),
+        syncMatchBtn: document.querySelector("#syncMatchBtn"),
+        correctBtn: document.querySelector("#correctBtn"),
+        settleAiBtn: document.querySelector("#settleAiBtn"),
+        settleChallengeBtn: document.querySelector("#settleChallengeBtn"),
+        sourceList: document.querySelector("#sourceList"),
+        logList: document.querySelector("#logList"),
+        toast: document.querySelector("#toast"),
+      };
+
+      els.apiBase.value = state.apiBase;
+      els.dateInput.value = state.date;
+
+      els.saveApiBtn.addEventListener("click", () => {
+        state.apiBase = els.apiBase.value.replace(/\/$/, "");
+        localStorage.setItem("adminApiBase", state.apiBase);
+        toast("API 地址已保存");
+        loadAll();
+      });
+
+      els.refreshBtn.addEventListener("click", loadAll);
+      els.dateInput.addEventListener("change", () => {
+        state.date = els.dateInput.value || today();
+        loadAll();
+      });
+      els.syncDateBtn.addEventListener("click", () =>
+        action("正在同步所选日期", () =>
+          api("/admin/result-sync/run", {
+            method: "POST",
+            body: {
+              mode: "DATE",
+              date: state.date,
+              forceSettlement: true,
+            },
+          }),
+        ),
+      );
+
+      els.syncMatchBtn.addEventListener("click", () =>
+        withSelected((match) =>
+          action("正在同步本场比赛", () =>
+            api(`/admin/result-sync/matches/${match.id}/sync`, {
+              method: "POST",
+              body: { forceSettlement: true },
+            }),
+          ),
+        ),
+      );
+
+      els.correctBtn.addEventListener("click", () =>
+        withSelected((match) => {
+          const homeScore = Number(els.homeScore.value);
+          const awayScore = Number(els.awayScore.value);
+          if (!Number.isInteger(homeScore) || !Number.isInteger(awayScore)) {
+            toast("请填写完整比分");
+            return;
+          }
+
+          return action("正在保存比分修正", () =>
+            api(`/admin/result-sync/matches/${match.id}/result`, {
+              method: "PATCH",
+              body: {
+                homeScore,
+                awayScore,
+                reason: els.reason.value.trim() || undefined,
+              },
+            }),
+          );
+        }),
+      );
+
+      els.settleAiBtn.addEventListener("click", () =>
+        withSelected((match) =>
+          action("正在重算 AI 预测", () =>
+            api(`/admin/result-sync/matches/${match.id}/settle-predictions`, {
+              method: "POST",
+            }),
+          ),
+        ),
+      );
+
+      els.settleChallengeBtn.addEventListener("click", () =>
+        withSelected((match) =>
+          action("正在重算挑战赛积分", () =>
+            api(`/admin/result-sync/matches/${match.id}/settle-challenge`, {
+              method: "POST",
+            }),
+          ),
+        ),
+      );
+
+      loadAll();
+
+      async function loadAll() {
+        try {
+          setBusy(true);
+          const [dashboard, matches, sources, logs] = await Promise.all([
+            api(`/admin/result-sync/dashboard?date=${state.date}`),
+            api(`/admin/result-sync/matches?date=${state.date}`),
+            api("/admin/result-sync/sources"),
+            api("/admin/result-sync/logs?limit=20"),
+          ]);
+          state.matches = matches.items || [];
+          renderStats(dashboard);
+          renderMatches(state.matches);
+          renderSources(sources.items || []);
+          renderLogs(logs.items || []);
+          restoreSelection();
+        } catch (error) {
+          toast(error.message || "读取失败");
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      async function action(label, fn) {
+        try {
+          setBusy(true);
+          toast(label);
+          await fn();
+          toast("操作完成");
+          await loadAll();
+        } catch (error) {
+          toast(error.message || "操作失败");
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      function renderStats(data) {
+        const stats = [
+          ["比赛数", data.matchCount ?? 0],
+          ["进行中", data.liveCount ?? 0],
+          ["已结束", data.finishedCount ?? 0],
+          ["AI 已结算", data.predictionSettledCount ?? 0],
+          ["挑战已结算", data.challengeSettledCount ?? 0],
+          ["数据源", `${data.healthyProviderCount ?? 0}/${data.providerCount ?? 0}`],
+          ["最近状态", data.lastStatus || "-"],
+          ["最后同步", formatDateTime(data.lastSyncAt)],
+        ];
+        els.stats.innerHTML = stats
+          .map(
+            ([label, value]) => `
+              <div class="stat">
+                <div class="stat-label">${escapeHtml(label)}</div>
+                <div class="stat-value">${escapeHtml(String(value))}</div>
+              </div>
+            `,
+          )
+          .join("");
+
+        els.lastSyncText.textContent = data.lastFailureReason
+          ? `最近失败原因：${data.lastFailureReason}`
+          : `最后同步时间：${formatDateTime(data.lastSyncAt)}`;
+      }
+
+      function renderMatches(matches) {
+        if (!matches.length) {
+          els.matchRows.innerHTML = `
+            <tr>
+              <td colspan="8" class="muted">当前日期暂无比赛数据</td>
+            </tr>
+          `;
+          return;
+        }
+
+        els.matchRows.innerHTML = matches
+          .map((match) => {
+            const selected = state.selectedMatch?.id === match.id ? "active" : "";
+            const score =
+              match.homeScore === null || match.homeScore === undefined
+                ? "-"
+                : `${match.homeScore} : ${match.awayScore}`;
+            return `
+              <tr class="${selected}" data-match-id="${match.id}">
+                <td>
+                  <strong>${escapeHtml(match.kickoffTime || formatTime(match.kickoffAt))}</strong>
+                  <div class="muted">${escapeHtml(match.groupName || match.stage || "")}</div>
+                </td>
+                <td>
+                  <div class="match-name">
+                    <span class="team">${escapeHtml(match.homeTeam?.name || "主队")}</span>
+                    <span class="muted">VS</span>
+                    <span class="team">${escapeHtml(match.awayTeam?.name || "客队")}</span>
+                  </div>
+                  <div class="muted">${escapeHtml([match.city, match.venue].filter(Boolean).join(" · "))}</div>
+                </td>
+                <td>${statusBadge(match.status)}</td>
+                <td class="score">${escapeHtml(score)}</td>
+                <td>${escapeHtml(match.dataSource || "-")}</td>
+                <td>${formatDateTime(match.lastSyncedAt)}</td>
+                <td>
+                  ${match.predictionSettled ? '<span class="status ok">AI 已结算</span>' : '<span class="status warn">AI 待结算</span>'}
+                  <div style="height:6px"></div>
+                  ${match.challengeSettled ? '<span class="status ok">挑战已结算</span>' : `<span class="status warn">挑战 ${match.challengeScoredCount || 0}/${match.challengePredictionCount || 0}</span>`}
+                </td>
+                <td><button data-pick="${match.id}">选择</button></td>
+              </tr>
+            `;
+          })
+          .join("");
+
+        els.matchRows.querySelectorAll("button[data-pick]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const match = state.matches.find((item) => item.id === button.dataset.pick);
+            selectMatch(match);
+            renderMatches(state.matches);
+          });
+        });
+      }
+
+      function renderSources(items) {
+        if (!items.length) {
+          els.sourceList.innerHTML = '<div class="muted">暂无数据源配置</div>';
+          return;
+        }
+
+        els.sourceList.innerHTML = items
+          .map(
+            (item) => `
+              <div class="source">
+                <div>
+                  <strong>${escapeHtml(item.name || item.code)}</strong>
+                  <div class="muted">${escapeHtml(item.provider)} · 优先级 ${escapeHtml(String(item.priority ?? "-"))}</div>
+                  <div class="muted">${escapeHtml(item.baseUrl || item.runtime?.code || "-")}</div>
+                </div>
+                ${item.enabled ? '<span class="status ok">可用</span>' : '<span class="status fail">未启用</span>'}
+              </div>
+            `,
+          )
+          .join("");
+      }
+
+      function renderLogs(items) {
+        if (!items.length) {
+          els.logList.innerHTML = '<div class="muted">暂无同步日志</div>';
+          return;
+        }
+
+        els.logList.innerHTML = items
+          .map(
+            (item) => `
+              <article class="log-item">
+                <div class="log-top">
+                  <strong>${escapeHtml(item.triggerType || "-")}</strong>
+                  ${syncBadge(item.status)}
+                </div>
+                <div class="log-meta">
+                  开始：${formatDateTime(item.startedAt)}<br />
+                  结束：${formatDateTime(item.finishedAt)}<br />
+                  匹配 ${item.matchedCount || 0}，更新 ${item.updatedCount || 0}，跳过 ${item.skippedCount || 0}，冲突 ${item.conflictCount || 0}
+                  ${item.errorMessage ? `<br />失败原因：${escapeHtml(item.errorMessage)}` : ""}
+                </div>
+              </article>
+            `,
+          )
+          .join("");
+      }
+
+      function selectMatch(match) {
+        state.selectedMatch = match || null;
+        if (!match) {
+          els.selectedStatus.textContent = "未选择";
+          els.selectedStatus.className = "status";
+          els.selectedMatchText.textContent =
+            "请选择左侧某一场比赛后再执行单场同步、比分修正或重新结算。";
+          els.homeScore.value = "";
+          els.awayScore.value = "";
+          return;
+        }
+
+        els.selectedStatus.textContent = match.status;
+        els.selectedStatus.className =
+          "status " + (match.status === "FINISHED" ? "ok" : match.status === "LIVE" ? "warn" : "");
+        els.selectedMatchText.textContent = `${match.homeTeam?.name || "主队"} VS ${
+          match.awayTeam?.name || "客队"
+        } · ${formatDateTime(match.kickoffAt)} · 来源 ${match.dataSource || "-"}`;
+        els.homeScore.value = match.homeScore ?? "";
+        els.awayScore.value = match.awayScore ?? "";
+      }
+
+      function restoreSelection() {
+        if (!state.selectedMatch) {
+          return selectMatch(null);
+        }
+
+        selectMatch(state.matches.find((item) => item.id === state.selectedMatch.id));
+      }
+
+      function withSelected(fn) {
+        if (!state.selectedMatch) {
+          toast("请先选择比赛");
+          return;
+        }
+        return fn(state.selectedMatch);
+      }
+
+      async function api(path, options = {}) {
+        const headers = { "Content-Type": "application/json" };
+        const token = localStorage.getItem("adminToken");
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
+        }
+
+        const res = await fetch(`${state.apiBase}${path}`, {
+          method: options.method || "GET",
+          headers,
+          body: options.body ? JSON.stringify(options.body) : undefined,
+        });
+        if (!res.ok) {
+          let message = "请求失败";
+          try {
+            const data = await res.json();
+            message = Array.isArray(data.message)
+              ? data.message.join("；")
+              : data.message || message;
+          } catch {
+            message = `${res.status} ${res.statusText}`;
+          }
+          throw new Error(message);
+        }
+        return res.json();
+      }
+
+      function setBusy(busy) {
+        document.querySelectorAll("button").forEach((button) => {
+          button.disabled = busy;
+        });
+      }
+
+      function toast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("show");
+        clearTimeout(toast.timer);
+        toast.timer = setTimeout(() => els.toast.classList.remove("show"), 2600);
+      }
+
+      function today() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      }
+
+      function formatDateTime(value) {
+        if (!value) return "-";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "-";
+        return date.toLocaleString("zh-CN", {
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+
+      function formatTime(value) {
+        if (!value) return "-";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "-";
+        return date.toLocaleTimeString("zh-CN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+
+      function statusBadge(status) {
+        if (status === "FINISHED") return '<span class="status ok">已结束</span>';
+        if (status === "LIVE") return '<span class="status warn">进行中</span>';
+        if (status === "CANCELLED") return '<span class="status fail">已取消</span>';
+        return '<span class="status">未开始</span>';
+      }
+
+      function syncBadge(status) {
+        if (status === "SUCCEEDED") return '<span class="status ok">成功</span>';
+        if (status === "FAILED") return '<span class="status fail">失败</span>';
+        if (status === "RUNNING") return '<span class="status warn">执行中</span>';
+        if (status === "CONFLICT") return '<span class="status fail">冲突</span>';
+        return `<span class="status">${escapeHtml(status || "-")}</span>`;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+    </script>
+  </body>
+</html>
