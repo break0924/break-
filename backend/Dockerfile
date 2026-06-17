@@ -20,9 +20,10 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 ENV NODE_ENV=production
+ENV PORT=80
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 COPY package*.json ./
-EXPOSE 3000
+EXPOSE 80
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
