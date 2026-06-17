@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "odds-table": "../../components/odds-table/index",
+    "risk-notice": "../../components/risk-notice/index",
+    "team-badge": "../../components/team-badge/index"
+  },
+  "navigationBarTitleText": "比赛详情"
+}

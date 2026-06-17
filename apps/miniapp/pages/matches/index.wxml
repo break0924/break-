@@ -1,0 +1,7 @@
+<view class="page">
+  <risk-notice />
+  <view class="section-title">赛程</view>
+  <view wx:if="{{ loading }}" class="muted">加载中...</view>
+  <match-card wx:for="{{ matches }}" wx:key="id" match="{{ item }}" />
+  <view wx:if="{{ !loading && matches.length === 0 }}" class="muted">暂无赛程数据</view>
+</view>

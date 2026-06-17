@@ -1,0 +1,9 @@
+<view class="card" bindtap="openDetail">
+  <view class="meta">{{ match.matchNo }} · {{ match.stage }}</view>
+  <view class="teams">
+    <text>{{ match.homeTeam.name }}</text>
+    <text class="vs">VS</text>
+    <text>{{ match.awayTeam.name }}</text>
+  </view>
+  <view class="meta">{{ match.kickoffAt }} · {{ match.status }}</view>
+</view>

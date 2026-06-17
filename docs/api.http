@@ -1,0 +1,120 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = replace-with-admin-token
+@teamAId = replace-with-team-a-id
+@teamBId = replace-with-team-b-id
+@matchId = replace-with-match-id
+@analysisId = replace-with-analysis-id
+
+### 后台登录
+POST {{baseUrl}}/admin/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin12345"
+}
+
+### 新增球队
+POST {{baseUrl}}/admin/teams
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "阿根廷",
+  "nameEn": "Argentina",
+  "fifaCode": "ARG",
+  "groupName": "A"
+}
+
+### 新增比赛
+POST {{baseUrl}}/admin/matches
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "matchNo": "WC-001",
+  "stage": "GROUP",
+  "groupName": "A",
+  "kickoffAt": "2026-06-12T00:00:00.000Z",
+  "venue": "示例球场",
+  "homeTeamId": "{{teamAId}}",
+  "awayTeamId": "{{teamBId}}"
+}
+
+### 录入赔率
+POST {{baseUrl}}/admin/matches/{{matchId}}/odds
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "market": "WIN_DRAW_LOSE",
+  "selection": "HOME_WIN",
+  "odds": "2.1000",
+  "source": "manual"
+}
+
+### 生成 AI 分析草稿
+POST {{baseUrl}}/admin/matches/{{matchId}}/analysis/generate
+Authorization: Bearer {{token}}
+
+### 发布 AI 分析
+PATCH {{baseUrl}}/admin/analysis/{{analysisId}}/publish
+Authorization: Bearer {{token}}
+
+### 小程序赛程列表
+GET {{baseUrl}}/matches
+
+### 小程序比赛详情
+GET {{baseUrl}}/matches/{{matchId}}
+
+### 理论奖金计算
+POST {{baseUrl}}/calculator/prize
+Content-Type: application/json
+
+{
+  "stake": "20.00",
+  "multiple": 1,
+  "mode": "SINGLE",
+  "selections": [
+    {
+      "market": "WIN_DRAW_LOSE",
+      "selection": "HOME_WIN",
+      "odds": "2.1000"
+    }
+  ]
+}
+
+### 创建模拟方案
+POST {{baseUrl}}/simulation/plans
+Content-Type: application/json
+
+{
+  "name": "小程序模拟方案",
+  "stake": "20.00",
+  "multiple": 1,
+  "mode": "SINGLE",
+  "riskNoticeAccepted": true,
+  "selections": [
+    {
+      "matchId": "{{matchId}}",
+      "market": "WIN_DRAW_LOSE",
+      "selection": "HOME_WIN",
+      "odds": "2.1000"
+    }
+  ]
+}
+
+### 录入赛果
+PATCH {{baseUrl}}/admin/matches/{{matchId}}/result
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "homeScore": 2,
+  "awayScore": 1,
+  "resultNote": "常规时间比分"
+}
+
+### 审计日志
+GET {{baseUrl}}/admin/audit-logs?page=1&pageSize=50
+Authorization: Bearer {{token}}

@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "entity": "players",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Official 2026 squad/player data should be refreshed from FIFA team squad feeds before production use."
+  },
+  "items": []
+}

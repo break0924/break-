@@ -1,0 +1,18 @@
+{
+  "name": "世界杯竞彩助手",
+  "appid": "__UNI__WC_ASSISTANT",
+  "description": "赛事信息、模拟方案和理论奖金计算工具",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "touristappid",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "postcss": true,
+      "minified": true
+    },
+    "usingComponents": true
+  }
+}

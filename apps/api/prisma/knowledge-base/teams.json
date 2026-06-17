@@ -1,0 +1,1455 @@
+{
+  "metadata": {
+    "entity": "teams",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "team-canada",
+      "fifa_code": "CAN",
+      "name": "Canada",
+      "name_en": "Canada",
+      "country_code": "CA",
+      "confederation": "CONCACAF",
+      "qualification": "Host nation",
+      "group_id": "group-a",
+      "seed_slot": "A1",
+      "flag_url": "https://flagcdn.com/w320/ca.png",
+      "image_url": "https://source.unsplash.com/1200x800/?Canada%20football%20team",
+      "introduction": "Canada men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "host_team_verified"
+      },
+      "rag": {
+        "title": "Canada 2026 World Cup team",
+        "summary": "Canada men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+        "keywords": [
+          "team",
+          "Canada",
+          "CAN",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Canada men’s national team is one of the three host associations for the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "team-mexico",
+      "fifa_code": "MEX",
+      "name": "Mexico",
+      "name_en": "Mexico",
+      "country_code": "MX",
+      "confederation": "CONCACAF",
+      "qualification": "Host nation",
+      "group_id": "group-a",
+      "seed_slot": "A2",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "image_url": "https://source.unsplash.com/1200x800/?Mexico%20football%20team",
+      "introduction": "Mexico men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "host_team_verified"
+      },
+      "rag": {
+        "title": "Mexico 2026 World Cup team",
+        "summary": "Mexico men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+        "keywords": [
+          "team",
+          "Mexico",
+          "MEX",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Mexico men’s national team is one of the three host associations for the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "team-united-states",
+      "fifa_code": "USA",
+      "name": "United States",
+      "name_en": "United States",
+      "country_code": "US",
+      "confederation": "CONCACAF",
+      "qualification": "Host nation",
+      "group_id": "group-a",
+      "seed_slot": "A3",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "image_url": "https://source.unsplash.com/1200x800/?United%20States%20football%20team",
+      "introduction": "United States men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "host_team_verified"
+      },
+      "rag": {
+        "title": "United States 2026 World Cup team",
+        "summary": "United States men’s national team is one of the three host associations for the 2026 FIFA World Cup.",
+        "keywords": [
+          "team",
+          "United States",
+          "USA",
+          "2026 FIFA World Cup"
+        ],
+        "content": "United States men’s national team is one of the three host associations for the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "team-slot-01",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 1",
+      "name_en": "Qualified Team Slot 1",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-a",
+      "seed_slot": "A4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%201%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 1 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 1",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-02",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 2",
+      "name_en": "Qualified Team Slot 2",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-b",
+      "seed_slot": "B1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%202%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 2 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 2",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-03",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 3",
+      "name_en": "Qualified Team Slot 3",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-b",
+      "seed_slot": "B2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%203%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 3 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 3",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-04",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 4",
+      "name_en": "Qualified Team Slot 4",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-b",
+      "seed_slot": "B3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%204%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 4 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 4",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-05",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 5",
+      "name_en": "Qualified Team Slot 5",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-b",
+      "seed_slot": "B4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%205%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 5 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 5",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-06",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 6",
+      "name_en": "Qualified Team Slot 6",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-c",
+      "seed_slot": "C1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%206%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 6 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 6",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-07",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 7",
+      "name_en": "Qualified Team Slot 7",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-c",
+      "seed_slot": "C2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%207%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 7 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 7",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-08",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 8",
+      "name_en": "Qualified Team Slot 8",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-c",
+      "seed_slot": "C3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%208%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 8 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 8",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-09",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 9",
+      "name_en": "Qualified Team Slot 9",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-c",
+      "seed_slot": "C4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%209%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 9 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 9",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-10",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 10",
+      "name_en": "Qualified Team Slot 10",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-d",
+      "seed_slot": "D1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2010%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 10 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 10",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-11",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 11",
+      "name_en": "Qualified Team Slot 11",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-d",
+      "seed_slot": "D2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2011%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 11 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 11",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-12",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 12",
+      "name_en": "Qualified Team Slot 12",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-d",
+      "seed_slot": "D3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2012%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 12 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 12",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-13",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 13",
+      "name_en": "Qualified Team Slot 13",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-d",
+      "seed_slot": "D4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2013%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 13 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 13",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-14",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 14",
+      "name_en": "Qualified Team Slot 14",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-e",
+      "seed_slot": "E1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2014%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 14 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 14",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-15",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 15",
+      "name_en": "Qualified Team Slot 15",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-e",
+      "seed_slot": "E2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2015%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 15 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 15",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-16",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 16",
+      "name_en": "Qualified Team Slot 16",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-e",
+      "seed_slot": "E3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2016%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 16 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 16",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-17",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 17",
+      "name_en": "Qualified Team Slot 17",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-e",
+      "seed_slot": "E4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2017%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 17 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 17",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-18",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 18",
+      "name_en": "Qualified Team Slot 18",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-f",
+      "seed_slot": "F1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2018%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 18 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 18",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-19",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 19",
+      "name_en": "Qualified Team Slot 19",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-f",
+      "seed_slot": "F2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2019%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 19 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 19",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-20",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 20",
+      "name_en": "Qualified Team Slot 20",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-f",
+      "seed_slot": "F3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2020%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 20 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 20",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-21",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 21",
+      "name_en": "Qualified Team Slot 21",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-f",
+      "seed_slot": "F4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2021%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 21 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 21",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-22",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 22",
+      "name_en": "Qualified Team Slot 22",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-g",
+      "seed_slot": "G1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2022%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 22 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 22",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-23",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 23",
+      "name_en": "Qualified Team Slot 23",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-g",
+      "seed_slot": "G2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2023%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 23 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 23",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-24",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 24",
+      "name_en": "Qualified Team Slot 24",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-g",
+      "seed_slot": "G3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2024%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 24 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 24",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-25",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 25",
+      "name_en": "Qualified Team Slot 25",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-g",
+      "seed_slot": "G4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2025%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 25 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 25",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-26",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 26",
+      "name_en": "Qualified Team Slot 26",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-h",
+      "seed_slot": "H1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2026%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 26 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 26",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-27",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 27",
+      "name_en": "Qualified Team Slot 27",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-h",
+      "seed_slot": "H2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2027%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 27 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 27",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-28",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 28",
+      "name_en": "Qualified Team Slot 28",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-h",
+      "seed_slot": "H3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2028%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 28 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 28",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-29",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 29",
+      "name_en": "Qualified Team Slot 29",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-h",
+      "seed_slot": "H4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2029%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 29 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 29",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-30",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 30",
+      "name_en": "Qualified Team Slot 30",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-i",
+      "seed_slot": "I1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2030%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 30 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 30",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-31",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 31",
+      "name_en": "Qualified Team Slot 31",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-i",
+      "seed_slot": "I2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2031%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 31 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 31",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-32",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 32",
+      "name_en": "Qualified Team Slot 32",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-i",
+      "seed_slot": "I3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2032%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 32 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 32",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-33",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 33",
+      "name_en": "Qualified Team Slot 33",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-i",
+      "seed_slot": "I4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2033%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 33 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 33",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-34",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 34",
+      "name_en": "Qualified Team Slot 34",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-j",
+      "seed_slot": "J1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2034%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 34 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 34",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-35",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 35",
+      "name_en": "Qualified Team Slot 35",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-j",
+      "seed_slot": "J2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2035%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 35 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 35",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-36",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 36",
+      "name_en": "Qualified Team Slot 36",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-j",
+      "seed_slot": "J3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2036%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 36 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 36",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-37",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 37",
+      "name_en": "Qualified Team Slot 37",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-j",
+      "seed_slot": "J4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2037%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 37 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 37",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-38",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 38",
+      "name_en": "Qualified Team Slot 38",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-k",
+      "seed_slot": "K1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2038%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 38 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 38",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-39",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 39",
+      "name_en": "Qualified Team Slot 39",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-k",
+      "seed_slot": "K2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2039%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 39 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 39",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-40",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 40",
+      "name_en": "Qualified Team Slot 40",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-k",
+      "seed_slot": "K3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2040%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 40 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 40",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-41",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 41",
+      "name_en": "Qualified Team Slot 41",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-k",
+      "seed_slot": "K4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2041%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 41 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 41",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-42",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 42",
+      "name_en": "Qualified Team Slot 42",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-l",
+      "seed_slot": "L1",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2042%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 42 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 42",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-43",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 43",
+      "name_en": "Qualified Team Slot 43",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-l",
+      "seed_slot": "L2",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2043%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 43 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 43",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-44",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 44",
+      "name_en": "Qualified Team Slot 44",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-l",
+      "seed_slot": "L3",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2044%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 44 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 44",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    },
+    {
+      "id": "team-slot-45",
+      "fifa_code": null,
+      "name": "Qualified Team Slot 45",
+      "name_en": "Qualified Team Slot 45",
+      "country_code": null,
+      "confederation": null,
+      "qualification": "Pending official data refresh",
+      "group_id": "group-l",
+      "seed_slot": "L4",
+      "flag_url": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Qualified%20Team%20Slot%2045%20football%20team",
+      "introduction": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_refresh"
+      },
+      "rag": {
+        "title": "Qualified Team Slot 45 2026 World Cup team",
+        "summary": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use.",
+        "keywords": [
+          "team",
+          "Qualified Team Slot 45",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Placeholder slot for a qualified 2026 FIFA World Cup team. Replace with official FIFA team data before production use."
+      }
+    }
+  ]
+}

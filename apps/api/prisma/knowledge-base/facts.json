@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "entity": "facts",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "fact-2026-hosts",
+      "category": "2026",
+      "title": "First three-country FIFA World Cup",
+      "content": "The 2026 FIFA World Cup is hosted across Canada, Mexico and the United States, making it the first men’s World Cup hosted by three countries.",
+      "introduction": "The 2026 FIFA World Cup is hosted across Canada, Mexico and the United States, making it the first men’s World Cup hosted by three countries.",
+      "image_url": "https://source.unsplash.com/1200x800/?First%20three-country%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "First three-country FIFA World Cup",
+        "summary": "The 2026 FIFA World Cup is hosted across Canada, Mexico and the United States, making it the first men’s World Cup hosted by three countries.",
+        "keywords": [
+          "fact",
+          "2026",
+          "2026 FIFA World Cup"
+        ],
+        "content": "The 2026 FIFA World Cup is hosted across Canada, Mexico and the United States, making it the first men’s World Cup hosted by three countries."
+      }
+    },
+    {
+      "id": "fact-2026-format",
+      "category": "2026",
+      "title": "Expanded 48-team format",
+      "content": "The 2026 edition expands the men’s FIFA World Cup to 48 teams and 104 matches.",
+      "introduction": "The 2026 edition expands the men’s FIFA World Cup to 48 teams and 104 matches.",
+      "image_url": "https://source.unsplash.com/1200x800/?Expanded%2048-team%20format",
+      "flag_url": null,
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Expanded 48-team format",
+        "summary": "The 2026 edition expands the men’s FIFA World Cup to 48 teams and 104 matches.",
+        "keywords": [
+          "fact",
+          "2026",
+          "2026 FIFA World Cup"
+        ],
+        "content": "The 2026 edition expands the men’s FIFA World Cup to 48 teams and 104 matches."
+      }
+    },
+    {
+      "id": "fact-2026-groups",
+      "category": "2026",
+      "title": "Twelve groups of four",
+      "content": "The expanded 2026 format uses 12 groups of four teams before the knockout rounds.",
+      "introduction": "The expanded 2026 format uses 12 groups of four teams before the knockout rounds.",
+      "image_url": "https://source.unsplash.com/1200x800/?Twelve%20groups%20of%20four",
+      "flag_url": null,
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Twelve groups of four",
+        "summary": "The expanded 2026 format uses 12 groups of four teams before the knockout rounds.",
+        "keywords": [
+          "fact",
+          "2026",
+          "2026 FIFA World Cup"
+        ],
+        "content": "The expanded 2026 format uses 12 groups of four teams before the knockout rounds."
+      }
+    },
+    {
+      "id": "fact-mexico-history",
+      "category": "Hosts",
+      "title": "Mexico hosts for a third time",
+      "content": "Mexico becomes the first country to host or co-host the men’s FIFA World Cup for a third time.",
+      "introduction": "Mexico becomes the first country to host or co-host the men’s FIFA World Cup for a third time.",
+      "image_url": "https://source.unsplash.com/1200x800/?Mexico%20hosts%20for%20a%20third%20time",
+      "flag_url": null,
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Mexico hosts for a third time",
+        "summary": "Mexico becomes the first country to host or co-host the men’s FIFA World Cup for a third time.",
+        "keywords": [
+          "fact",
+          "Hosts",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Mexico becomes the first country to host or co-host the men’s FIFA World Cup for a third time."
+      }
+    },
+    {
+      "id": "fact-rag-compliance",
+      "category": "Compliance",
+      "title": "No betting transaction data",
+      "content": "This knowledge base is designed for information retrieval, AI analysis and theoretical simulation only; it does not include purchase, recharge or prize-redemption workflows.",
+      "introduction": "This knowledge base is designed for information retrieval, AI analysis and theoretical simulation only; it does not include purchase, recharge or prize-redemption workflows.",
+      "image_url": "https://source.unsplash.com/1200x800/?No%20betting%20transaction%20data",
+      "flag_url": null,
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "No betting transaction data",
+        "summary": "This knowledge base is designed for information retrieval, AI analysis and theoretical simulation only; it does not include purchase, recharge or prize-redemption workflows.",
+        "keywords": [
+          "fact",
+          "Compliance",
+          "2026 FIFA World Cup"
+        ],
+        "content": "This knowledge base is designed for information retrieval, AI analysis and theoretical simulation only; it does not include purchase, recharge or prize-redemption workflows."
+      }
+    }
+  ]
+}

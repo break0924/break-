@@ -1,0 +1,24 @@
+{
+  "name": "world-cup-jc-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:api": "pnpm --filter @wc-assistant/api start:dev",
+    "dev:admin": "pnpm --filter @wc-assistant/admin-web dev",
+    "dev:uniapp:h5": "pnpm --filter @wc-assistant/uniapp dev:h5",
+    "dev:uniapp:mp-weixin": "pnpm --filter @wc-assistant/uniapp dev:mp-weixin",
+    "build:api": "pnpm --filter @wc-assistant/api build",
+    "build:admin": "pnpm --filter @wc-assistant/admin-web build",
+    "build:uniapp:h5": "pnpm --filter @wc-assistant/uniapp build:h5",
+    "build:uniapp:mp-weixin": "pnpm --filter @wc-assistant/uniapp build:mp-weixin",
+    "prisma:generate": "pnpm --filter @wc-assistant/api prisma generate",
+    "prisma:migrate": "pnpm --filter @wc-assistant/api prisma migrate dev",
+    "lint": "pnpm --filter @wc-assistant/api lint"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "pnpm": {
+    "overrides": {
+      "rollup": "npm:@rollup/wasm-node@4.61.1"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "risk-notice": "../../components/risk-notice/index"
+  },
+  "navigationBarTitleText": "模拟方案"
+}

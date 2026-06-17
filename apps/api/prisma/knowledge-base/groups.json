@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "entity": "groups",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "group-a",
+      "name": "Group A",
+      "group_code": "A",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20A",
+      "flag_url": null,
+      "introduction": "Group A is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group A",
+        "summary": "Group A contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "A",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group A contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-b",
+      "name": "Group B",
+      "group_code": "B",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20B",
+      "flag_url": null,
+      "introduction": "Group B is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group B",
+        "summary": "Group B contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "B",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group B contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-c",
+      "name": "Group C",
+      "group_code": "C",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20C",
+      "flag_url": null,
+      "introduction": "Group C is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group C",
+        "summary": "Group C contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "C",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group C contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-d",
+      "name": "Group D",
+      "group_code": "D",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20D",
+      "flag_url": null,
+      "introduction": "Group D is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group D",
+        "summary": "Group D contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "D",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group D contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-e",
+      "name": "Group E",
+      "group_code": "E",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20E",
+      "flag_url": null,
+      "introduction": "Group E is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group E",
+        "summary": "Group E contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "E",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group E contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-f",
+      "name": "Group F",
+      "group_code": "F",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20F",
+      "flag_url": null,
+      "introduction": "Group F is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group F",
+        "summary": "Group F contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "F",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group F contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-g",
+      "name": "Group G",
+      "group_code": "G",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20G",
+      "flag_url": null,
+      "introduction": "Group G is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group G",
+        "summary": "Group G contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "G",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group G contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-h",
+      "name": "Group H",
+      "group_code": "H",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20H",
+      "flag_url": null,
+      "introduction": "Group H is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group H",
+        "summary": "Group H contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "H",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group H contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-i",
+      "name": "Group I",
+      "group_code": "I",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20I",
+      "flag_url": null,
+      "introduction": "Group I is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group I",
+        "summary": "Group I contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "I",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group I contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-j",
+      "name": "Group J",
+      "group_code": "J",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20J",
+      "flag_url": null,
+      "introduction": "Group J is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group J",
+        "summary": "Group J contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "J",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group J contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-k",
+      "name": "Group K",
+      "group_code": "K",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20K",
+      "flag_url": null,
+      "introduction": "Group K is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group K",
+        "summary": "Group K contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "K",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group K contains four team slots in the 2026 FIFA World Cup."
+      }
+    },
+    {
+      "id": "group-l",
+      "name": "Group L",
+      "group_code": "L",
+      "image_url": "https://source.unsplash.com/1200x800/?football%20group%20L",
+      "flag_url": null,
+      "introduction": "Group L is one of the 12 groups in the expanded 48-team 2026 FIFA World Cup format.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "note": "Group composition should be refreshed from official FIFA draw data."
+      },
+      "rag": {
+        "title": "2026 World Cup Group L",
+        "summary": "Group L contains four team slots in the 2026 FIFA World Cup.",
+        "keywords": [
+          "group",
+          "L",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Group L contains four team slots in the 2026 FIFA World Cup."
+      }
+    }
+  ]
+}

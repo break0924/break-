@@ -1,0 +1,3444 @@
+{
+  "metadata": {
+    "entity": "matches",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Schedule placeholders generated to preserve 104-match structure; refresh from official FIFA schedule for production."
+  },
+  "items": [
+    {
+      "id": "match-001",
+      "match_no": 1,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A1",
+      "away_slot": "A2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%201",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A1 vs A2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 1: A1 vs A2",
+        "summary": "2026 World Cup group placeholder match 1.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 1."
+      }
+    },
+    {
+      "id": "match-002",
+      "match_no": 2,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A3",
+      "away_slot": "A4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%202",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A3 vs A4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 2: A3 vs A4",
+        "summary": "2026 World Cup group placeholder match 2.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 2."
+      }
+    },
+    {
+      "id": "match-003",
+      "match_no": 3,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A1",
+      "away_slot": "A3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%203",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A1 vs A3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 3: A1 vs A3",
+        "summary": "2026 World Cup group placeholder match 3.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 3."
+      }
+    },
+    {
+      "id": "match-004",
+      "match_no": 4,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A4",
+      "away_slot": "A2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%204",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A4 vs A2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 4: A4 vs A2",
+        "summary": "2026 World Cup group placeholder match 4.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 4."
+      }
+    },
+    {
+      "id": "match-005",
+      "match_no": 5,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A4",
+      "away_slot": "A1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%205",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A4 vs A1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 5: A4 vs A1",
+        "summary": "2026 World Cup group placeholder match 5.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 5."
+      }
+    },
+    {
+      "id": "match-006",
+      "match_no": 6,
+      "stage": "GROUP",
+      "group_id": "group-a",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "A2",
+      "away_slot": "A3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%206",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture A2 vs A3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 6: A2 vs A3",
+        "summary": "2026 World Cup group placeholder match 6.",
+        "keywords": [
+          "match",
+          "group stage",
+          "A"
+        ],
+        "content": "2026 World Cup group placeholder match 6."
+      }
+    },
+    {
+      "id": "match-007",
+      "match_no": 7,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B1",
+      "away_slot": "B2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%207",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B1 vs B2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 7: B1 vs B2",
+        "summary": "2026 World Cup group placeholder match 7.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 7."
+      }
+    },
+    {
+      "id": "match-008",
+      "match_no": 8,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B3",
+      "away_slot": "B4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%208",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B3 vs B4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 8: B3 vs B4",
+        "summary": "2026 World Cup group placeholder match 8.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 8."
+      }
+    },
+    {
+      "id": "match-009",
+      "match_no": 9,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B1",
+      "away_slot": "B3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%209",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B1 vs B3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 9: B1 vs B3",
+        "summary": "2026 World Cup group placeholder match 9.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 9."
+      }
+    },
+    {
+      "id": "match-010",
+      "match_no": 10,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B4",
+      "away_slot": "B2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2010",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B4 vs B2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 10: B4 vs B2",
+        "summary": "2026 World Cup group placeholder match 10.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 10."
+      }
+    },
+    {
+      "id": "match-011",
+      "match_no": 11,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B4",
+      "away_slot": "B1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2011",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B4 vs B1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 11: B4 vs B1",
+        "summary": "2026 World Cup group placeholder match 11.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 11."
+      }
+    },
+    {
+      "id": "match-012",
+      "match_no": 12,
+      "stage": "GROUP",
+      "group_id": "group-b",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "B2",
+      "away_slot": "B3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2012",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture B2 vs B3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 12: B2 vs B3",
+        "summary": "2026 World Cup group placeholder match 12.",
+        "keywords": [
+          "match",
+          "group stage",
+          "B"
+        ],
+        "content": "2026 World Cup group placeholder match 12."
+      }
+    },
+    {
+      "id": "match-013",
+      "match_no": 13,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C1",
+      "away_slot": "C2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2013",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C1 vs C2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 13: C1 vs C2",
+        "summary": "2026 World Cup group placeholder match 13.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 13."
+      }
+    },
+    {
+      "id": "match-014",
+      "match_no": 14,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C3",
+      "away_slot": "C4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2014",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C3 vs C4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 14: C3 vs C4",
+        "summary": "2026 World Cup group placeholder match 14.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 14."
+      }
+    },
+    {
+      "id": "match-015",
+      "match_no": 15,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C1",
+      "away_slot": "C3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2015",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C1 vs C3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 15: C1 vs C3",
+        "summary": "2026 World Cup group placeholder match 15.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 15."
+      }
+    },
+    {
+      "id": "match-016",
+      "match_no": 16,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C4",
+      "away_slot": "C2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2016",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C4 vs C2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 16: C4 vs C2",
+        "summary": "2026 World Cup group placeholder match 16.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 16."
+      }
+    },
+    {
+      "id": "match-017",
+      "match_no": 17,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C4",
+      "away_slot": "C1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2017",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C4 vs C1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 17: C4 vs C1",
+        "summary": "2026 World Cup group placeholder match 17.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 17."
+      }
+    },
+    {
+      "id": "match-018",
+      "match_no": 18,
+      "stage": "GROUP",
+      "group_id": "group-c",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "C2",
+      "away_slot": "C3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2018",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture C2 vs C3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 18: C2 vs C3",
+        "summary": "2026 World Cup group placeholder match 18.",
+        "keywords": [
+          "match",
+          "group stage",
+          "C"
+        ],
+        "content": "2026 World Cup group placeholder match 18."
+      }
+    },
+    {
+      "id": "match-019",
+      "match_no": 19,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D1",
+      "away_slot": "D2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2019",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D1 vs D2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 19: D1 vs D2",
+        "summary": "2026 World Cup group placeholder match 19.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 19."
+      }
+    },
+    {
+      "id": "match-020",
+      "match_no": 20,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D3",
+      "away_slot": "D4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2020",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D3 vs D4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 20: D3 vs D4",
+        "summary": "2026 World Cup group placeholder match 20.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 20."
+      }
+    },
+    {
+      "id": "match-021",
+      "match_no": 21,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D1",
+      "away_slot": "D3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2021",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D1 vs D3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 21: D1 vs D3",
+        "summary": "2026 World Cup group placeholder match 21.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 21."
+      }
+    },
+    {
+      "id": "match-022",
+      "match_no": 22,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D4",
+      "away_slot": "D2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2022",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D4 vs D2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 22: D4 vs D2",
+        "summary": "2026 World Cup group placeholder match 22.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 22."
+      }
+    },
+    {
+      "id": "match-023",
+      "match_no": 23,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D4",
+      "away_slot": "D1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2023",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D4 vs D1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 23: D4 vs D1",
+        "summary": "2026 World Cup group placeholder match 23.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 23."
+      }
+    },
+    {
+      "id": "match-024",
+      "match_no": 24,
+      "stage": "GROUP",
+      "group_id": "group-d",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "D2",
+      "away_slot": "D3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2024",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture D2 vs D3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 24: D2 vs D3",
+        "summary": "2026 World Cup group placeholder match 24.",
+        "keywords": [
+          "match",
+          "group stage",
+          "D"
+        ],
+        "content": "2026 World Cup group placeholder match 24."
+      }
+    },
+    {
+      "id": "match-025",
+      "match_no": 25,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E1",
+      "away_slot": "E2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2025",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E1 vs E2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 25: E1 vs E2",
+        "summary": "2026 World Cup group placeholder match 25.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 25."
+      }
+    },
+    {
+      "id": "match-026",
+      "match_no": 26,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E3",
+      "away_slot": "E4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2026",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E3 vs E4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 26: E3 vs E4",
+        "summary": "2026 World Cup group placeholder match 26.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 26."
+      }
+    },
+    {
+      "id": "match-027",
+      "match_no": 27,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E1",
+      "away_slot": "E3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2027",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E1 vs E3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 27: E1 vs E3",
+        "summary": "2026 World Cup group placeholder match 27.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 27."
+      }
+    },
+    {
+      "id": "match-028",
+      "match_no": 28,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E4",
+      "away_slot": "E2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2028",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E4 vs E2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 28: E4 vs E2",
+        "summary": "2026 World Cup group placeholder match 28.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 28."
+      }
+    },
+    {
+      "id": "match-029",
+      "match_no": 29,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E4",
+      "away_slot": "E1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2029",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E4 vs E1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 29: E4 vs E1",
+        "summary": "2026 World Cup group placeholder match 29.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 29."
+      }
+    },
+    {
+      "id": "match-030",
+      "match_no": 30,
+      "stage": "GROUP",
+      "group_id": "group-e",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "E2",
+      "away_slot": "E3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2030",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture E2 vs E3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 30: E2 vs E3",
+        "summary": "2026 World Cup group placeholder match 30.",
+        "keywords": [
+          "match",
+          "group stage",
+          "E"
+        ],
+        "content": "2026 World Cup group placeholder match 30."
+      }
+    },
+    {
+      "id": "match-031",
+      "match_no": 31,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F1",
+      "away_slot": "F2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2031",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F1 vs F2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 31: F1 vs F2",
+        "summary": "2026 World Cup group placeholder match 31.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 31."
+      }
+    },
+    {
+      "id": "match-032",
+      "match_no": 32,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F3",
+      "away_slot": "F4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2032",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F3 vs F4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 32: F3 vs F4",
+        "summary": "2026 World Cup group placeholder match 32.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 32."
+      }
+    },
+    {
+      "id": "match-033",
+      "match_no": 33,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F1",
+      "away_slot": "F3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2033",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F1 vs F3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 33: F1 vs F3",
+        "summary": "2026 World Cup group placeholder match 33.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 33."
+      }
+    },
+    {
+      "id": "match-034",
+      "match_no": 34,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F4",
+      "away_slot": "F2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2034",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F4 vs F2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 34: F4 vs F2",
+        "summary": "2026 World Cup group placeholder match 34.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 34."
+      }
+    },
+    {
+      "id": "match-035",
+      "match_no": 35,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F4",
+      "away_slot": "F1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2035",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F4 vs F1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 35: F4 vs F1",
+        "summary": "2026 World Cup group placeholder match 35.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 35."
+      }
+    },
+    {
+      "id": "match-036",
+      "match_no": 36,
+      "stage": "GROUP",
+      "group_id": "group-f",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "F2",
+      "away_slot": "F3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2036",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture F2 vs F3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 36: F2 vs F3",
+        "summary": "2026 World Cup group placeholder match 36.",
+        "keywords": [
+          "match",
+          "group stage",
+          "F"
+        ],
+        "content": "2026 World Cup group placeholder match 36."
+      }
+    },
+    {
+      "id": "match-037",
+      "match_no": 37,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G1",
+      "away_slot": "G2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2037",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G1 vs G2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 37: G1 vs G2",
+        "summary": "2026 World Cup group placeholder match 37.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 37."
+      }
+    },
+    {
+      "id": "match-038",
+      "match_no": 38,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G3",
+      "away_slot": "G4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2038",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G3 vs G4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 38: G3 vs G4",
+        "summary": "2026 World Cup group placeholder match 38.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 38."
+      }
+    },
+    {
+      "id": "match-039",
+      "match_no": 39,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G1",
+      "away_slot": "G3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2039",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G1 vs G3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 39: G1 vs G3",
+        "summary": "2026 World Cup group placeholder match 39.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 39."
+      }
+    },
+    {
+      "id": "match-040",
+      "match_no": 40,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G4",
+      "away_slot": "G2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2040",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G4 vs G2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 40: G4 vs G2",
+        "summary": "2026 World Cup group placeholder match 40.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 40."
+      }
+    },
+    {
+      "id": "match-041",
+      "match_no": 41,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G4",
+      "away_slot": "G1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2041",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G4 vs G1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 41: G4 vs G1",
+        "summary": "2026 World Cup group placeholder match 41.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 41."
+      }
+    },
+    {
+      "id": "match-042",
+      "match_no": 42,
+      "stage": "GROUP",
+      "group_id": "group-g",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "G2",
+      "away_slot": "G3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2042",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture G2 vs G3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 42: G2 vs G3",
+        "summary": "2026 World Cup group placeholder match 42.",
+        "keywords": [
+          "match",
+          "group stage",
+          "G"
+        ],
+        "content": "2026 World Cup group placeholder match 42."
+      }
+    },
+    {
+      "id": "match-043",
+      "match_no": 43,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H1",
+      "away_slot": "H2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2043",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H1 vs H2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 43: H1 vs H2",
+        "summary": "2026 World Cup group placeholder match 43.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 43."
+      }
+    },
+    {
+      "id": "match-044",
+      "match_no": 44,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H3",
+      "away_slot": "H4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2044",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H3 vs H4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 44: H3 vs H4",
+        "summary": "2026 World Cup group placeholder match 44.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 44."
+      }
+    },
+    {
+      "id": "match-045",
+      "match_no": 45,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H1",
+      "away_slot": "H3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2045",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H1 vs H3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 45: H1 vs H3",
+        "summary": "2026 World Cup group placeholder match 45.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 45."
+      }
+    },
+    {
+      "id": "match-046",
+      "match_no": 46,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H4",
+      "away_slot": "H2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2046",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H4 vs H2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 46: H4 vs H2",
+        "summary": "2026 World Cup group placeholder match 46.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 46."
+      }
+    },
+    {
+      "id": "match-047",
+      "match_no": 47,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H4",
+      "away_slot": "H1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2047",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H4 vs H1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 47: H4 vs H1",
+        "summary": "2026 World Cup group placeholder match 47.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 47."
+      }
+    },
+    {
+      "id": "match-048",
+      "match_no": 48,
+      "stage": "GROUP",
+      "group_id": "group-h",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "H2",
+      "away_slot": "H3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2048",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture H2 vs H3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 48: H2 vs H3",
+        "summary": "2026 World Cup group placeholder match 48.",
+        "keywords": [
+          "match",
+          "group stage",
+          "H"
+        ],
+        "content": "2026 World Cup group placeholder match 48."
+      }
+    },
+    {
+      "id": "match-049",
+      "match_no": 49,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I1",
+      "away_slot": "I2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2049",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I1 vs I2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 49: I1 vs I2",
+        "summary": "2026 World Cup group placeholder match 49.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 49."
+      }
+    },
+    {
+      "id": "match-050",
+      "match_no": 50,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I3",
+      "away_slot": "I4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2050",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I3 vs I4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 50: I3 vs I4",
+        "summary": "2026 World Cup group placeholder match 50.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 50."
+      }
+    },
+    {
+      "id": "match-051",
+      "match_no": 51,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I1",
+      "away_slot": "I3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2051",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I1 vs I3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 51: I1 vs I3",
+        "summary": "2026 World Cup group placeholder match 51.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 51."
+      }
+    },
+    {
+      "id": "match-052",
+      "match_no": 52,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I4",
+      "away_slot": "I2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2052",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I4 vs I2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 52: I4 vs I2",
+        "summary": "2026 World Cup group placeholder match 52.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 52."
+      }
+    },
+    {
+      "id": "match-053",
+      "match_no": 53,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I4",
+      "away_slot": "I1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2053",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I4 vs I1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 53: I4 vs I1",
+        "summary": "2026 World Cup group placeholder match 53.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 53."
+      }
+    },
+    {
+      "id": "match-054",
+      "match_no": 54,
+      "stage": "GROUP",
+      "group_id": "group-i",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "I2",
+      "away_slot": "I3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2054",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture I2 vs I3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 54: I2 vs I3",
+        "summary": "2026 World Cup group placeholder match 54.",
+        "keywords": [
+          "match",
+          "group stage",
+          "I"
+        ],
+        "content": "2026 World Cup group placeholder match 54."
+      }
+    },
+    {
+      "id": "match-055",
+      "match_no": 55,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J1",
+      "away_slot": "J2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2055",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J1 vs J2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 55: J1 vs J2",
+        "summary": "2026 World Cup group placeholder match 55.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 55."
+      }
+    },
+    {
+      "id": "match-056",
+      "match_no": 56,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J3",
+      "away_slot": "J4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2056",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J3 vs J4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 56: J3 vs J4",
+        "summary": "2026 World Cup group placeholder match 56.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 56."
+      }
+    },
+    {
+      "id": "match-057",
+      "match_no": 57,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J1",
+      "away_slot": "J3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2057",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J1 vs J3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 57: J1 vs J3",
+        "summary": "2026 World Cup group placeholder match 57.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 57."
+      }
+    },
+    {
+      "id": "match-058",
+      "match_no": 58,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J4",
+      "away_slot": "J2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2058",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J4 vs J2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 58: J4 vs J2",
+        "summary": "2026 World Cup group placeholder match 58.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 58."
+      }
+    },
+    {
+      "id": "match-059",
+      "match_no": 59,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J4",
+      "away_slot": "J1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2059",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J4 vs J1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 59: J4 vs J1",
+        "summary": "2026 World Cup group placeholder match 59.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 59."
+      }
+    },
+    {
+      "id": "match-060",
+      "match_no": 60,
+      "stage": "GROUP",
+      "group_id": "group-j",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "J2",
+      "away_slot": "J3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2060",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture J2 vs J3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 60: J2 vs J3",
+        "summary": "2026 World Cup group placeholder match 60.",
+        "keywords": [
+          "match",
+          "group stage",
+          "J"
+        ],
+        "content": "2026 World Cup group placeholder match 60."
+      }
+    },
+    {
+      "id": "match-061",
+      "match_no": 61,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K1",
+      "away_slot": "K2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2061",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K1 vs K2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 61: K1 vs K2",
+        "summary": "2026 World Cup group placeholder match 61.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 61."
+      }
+    },
+    {
+      "id": "match-062",
+      "match_no": 62,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K3",
+      "away_slot": "K4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2062",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K3 vs K4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 62: K3 vs K4",
+        "summary": "2026 World Cup group placeholder match 62.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 62."
+      }
+    },
+    {
+      "id": "match-063",
+      "match_no": 63,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K1",
+      "away_slot": "K3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2063",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K1 vs K3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 63: K1 vs K3",
+        "summary": "2026 World Cup group placeholder match 63.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 63."
+      }
+    },
+    {
+      "id": "match-064",
+      "match_no": 64,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K4",
+      "away_slot": "K2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2064",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K4 vs K2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 64: K4 vs K2",
+        "summary": "2026 World Cup group placeholder match 64.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 64."
+      }
+    },
+    {
+      "id": "match-065",
+      "match_no": 65,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K4",
+      "away_slot": "K1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2065",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K4 vs K1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 65: K4 vs K1",
+        "summary": "2026 World Cup group placeholder match 65.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 65."
+      }
+    },
+    {
+      "id": "match-066",
+      "match_no": 66,
+      "stage": "GROUP",
+      "group_id": "group-k",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "K2",
+      "away_slot": "K3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2066",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture K2 vs K3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 66: K2 vs K3",
+        "summary": "2026 World Cup group placeholder match 66.",
+        "keywords": [
+          "match",
+          "group stage",
+          "K"
+        ],
+        "content": "2026 World Cup group placeholder match 66."
+      }
+    },
+    {
+      "id": "match-067",
+      "match_no": 67,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L1",
+      "away_slot": "L2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2067",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L1 vs L2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 67: L1 vs L2",
+        "summary": "2026 World Cup group placeholder match 67.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 67."
+      }
+    },
+    {
+      "id": "match-068",
+      "match_no": 68,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L3",
+      "away_slot": "L4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2068",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L3 vs L4 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 68: L3 vs L4",
+        "summary": "2026 World Cup group placeholder match 68.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 68."
+      }
+    },
+    {
+      "id": "match-069",
+      "match_no": 69,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L1",
+      "away_slot": "L3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2069",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L1 vs L3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 69: L1 vs L3",
+        "summary": "2026 World Cup group placeholder match 69.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 69."
+      }
+    },
+    {
+      "id": "match-070",
+      "match_no": 70,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L4",
+      "away_slot": "L2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2070",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L4 vs L2 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 70: L4 vs L2",
+        "summary": "2026 World Cup group placeholder match 70.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 70."
+      }
+    },
+    {
+      "id": "match-071",
+      "match_no": 71,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L4",
+      "away_slot": "L1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2071",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L4 vs L1 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 71: L4 vs L1",
+        "summary": "2026 World Cup group placeholder match 71.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 71."
+      }
+    },
+    {
+      "id": "match-072",
+      "match_no": 72,
+      "stage": "GROUP",
+      "group_id": "group-l",
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "L2",
+      "away_slot": "L3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20match%2072",
+      "flag_url": null,
+      "introduction": "Group-stage placeholder fixture L2 vs L3 for the 2026 FIFA World Cup. Refresh from official FIFA schedule for date, venue and teams.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_schedule_refresh"
+      },
+      "rag": {
+        "title": "Match 72: L2 vs L3",
+        "summary": "2026 World Cup group placeholder match 72.",
+        "keywords": [
+          "match",
+          "group stage",
+          "L"
+        ],
+        "content": "2026 World Cup group placeholder match 72."
+      }
+    },
+    {
+      "id": "match-073",
+      "match_no": 73,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_1",
+      "away_slot": "ROUND_OF_32_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 73: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 73.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 73."
+      }
+    },
+    {
+      "id": "match-074",
+      "match_no": 74,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_2",
+      "away_slot": "ROUND_OF_32_AWAY_2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 74: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 74.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 74."
+      }
+    },
+    {
+      "id": "match-075",
+      "match_no": 75,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_3",
+      "away_slot": "ROUND_OF_32_AWAY_3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 75: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 75.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 75."
+      }
+    },
+    {
+      "id": "match-076",
+      "match_no": 76,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_4",
+      "away_slot": "ROUND_OF_32_AWAY_4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 76: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 76.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 76."
+      }
+    },
+    {
+      "id": "match-077",
+      "match_no": 77,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_5",
+      "away_slot": "ROUND_OF_32_AWAY_5",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 77: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 77.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 77."
+      }
+    },
+    {
+      "id": "match-078",
+      "match_no": 78,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_6",
+      "away_slot": "ROUND_OF_32_AWAY_6",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 78: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 78.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 78."
+      }
+    },
+    {
+      "id": "match-079",
+      "match_no": 79,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_7",
+      "away_slot": "ROUND_OF_32_AWAY_7",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 79: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 79.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 79."
+      }
+    },
+    {
+      "id": "match-080",
+      "match_no": 80,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_8",
+      "away_slot": "ROUND_OF_32_AWAY_8",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 80: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 80.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 80."
+      }
+    },
+    {
+      "id": "match-081",
+      "match_no": 81,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_9",
+      "away_slot": "ROUND_OF_32_AWAY_9",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 81: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 81.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 81."
+      }
+    },
+    {
+      "id": "match-082",
+      "match_no": 82,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_10",
+      "away_slot": "ROUND_OF_32_AWAY_10",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 82: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 82.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 82."
+      }
+    },
+    {
+      "id": "match-083",
+      "match_no": 83,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_11",
+      "away_slot": "ROUND_OF_32_AWAY_11",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 83: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 83.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 83."
+      }
+    },
+    {
+      "id": "match-084",
+      "match_no": 84,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_12",
+      "away_slot": "ROUND_OF_32_AWAY_12",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 84: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 84.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 84."
+      }
+    },
+    {
+      "id": "match-085",
+      "match_no": 85,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_13",
+      "away_slot": "ROUND_OF_32_AWAY_13",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 85: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 85.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 85."
+      }
+    },
+    {
+      "id": "match-086",
+      "match_no": 86,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_14",
+      "away_slot": "ROUND_OF_32_AWAY_14",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 86: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 86.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 86."
+      }
+    },
+    {
+      "id": "match-087",
+      "match_no": 87,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_15",
+      "away_slot": "ROUND_OF_32_AWAY_15",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 87: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 87.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 87."
+      }
+    },
+    {
+      "id": "match-088",
+      "match_no": 88,
+      "stage": "ROUND_OF_32",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_32_HOME_16",
+      "away_slot": "ROUND_OF_32_AWAY_16",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_32",
+      "flag_url": null,
+      "introduction": "ROUND OF 32 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 88: ROUND_OF_32",
+        "summary": "2026 World Cup knockout placeholder match 88.",
+        "keywords": [
+          "match",
+          "ROUND_OF_32",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 88."
+      }
+    },
+    {
+      "id": "match-089",
+      "match_no": 89,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_1",
+      "away_slot": "ROUND_OF_16_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 89: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 89.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 89."
+      }
+    },
+    {
+      "id": "match-090",
+      "match_no": 90,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_2",
+      "away_slot": "ROUND_OF_16_AWAY_2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 90: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 90.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 90."
+      }
+    },
+    {
+      "id": "match-091",
+      "match_no": 91,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_3",
+      "away_slot": "ROUND_OF_16_AWAY_3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 91: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 91.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 91."
+      }
+    },
+    {
+      "id": "match-092",
+      "match_no": 92,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_4",
+      "away_slot": "ROUND_OF_16_AWAY_4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 92: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 92.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 92."
+      }
+    },
+    {
+      "id": "match-093",
+      "match_no": 93,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_5",
+      "away_slot": "ROUND_OF_16_AWAY_5",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 93: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 93.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 93."
+      }
+    },
+    {
+      "id": "match-094",
+      "match_no": 94,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_6",
+      "away_slot": "ROUND_OF_16_AWAY_6",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 94: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 94.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 94."
+      }
+    },
+    {
+      "id": "match-095",
+      "match_no": 95,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_7",
+      "away_slot": "ROUND_OF_16_AWAY_7",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 95: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 95.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 95."
+      }
+    },
+    {
+      "id": "match-096",
+      "match_no": 96,
+      "stage": "ROUND_OF_16",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "ROUND_OF_16_HOME_8",
+      "away_slot": "ROUND_OF_16_AWAY_8",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20ROUND_OF_16",
+      "flag_url": null,
+      "introduction": "ROUND OF 16 placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 96: ROUND_OF_16",
+        "summary": "2026 World Cup knockout placeholder match 96.",
+        "keywords": [
+          "match",
+          "ROUND_OF_16",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 96."
+      }
+    },
+    {
+      "id": "match-097",
+      "match_no": 97,
+      "stage": "QUARTER_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "QUARTER_FINAL_HOME_1",
+      "away_slot": "QUARTER_FINAL_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20QUARTER_FINAL",
+      "flag_url": null,
+      "introduction": "QUARTER FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 97: QUARTER_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 97.",
+        "keywords": [
+          "match",
+          "QUARTER_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 97."
+      }
+    },
+    {
+      "id": "match-098",
+      "match_no": 98,
+      "stage": "QUARTER_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "QUARTER_FINAL_HOME_2",
+      "away_slot": "QUARTER_FINAL_AWAY_2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20QUARTER_FINAL",
+      "flag_url": null,
+      "introduction": "QUARTER FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 98: QUARTER_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 98.",
+        "keywords": [
+          "match",
+          "QUARTER_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 98."
+      }
+    },
+    {
+      "id": "match-099",
+      "match_no": 99,
+      "stage": "QUARTER_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "QUARTER_FINAL_HOME_3",
+      "away_slot": "QUARTER_FINAL_AWAY_3",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20QUARTER_FINAL",
+      "flag_url": null,
+      "introduction": "QUARTER FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 99: QUARTER_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 99.",
+        "keywords": [
+          "match",
+          "QUARTER_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 99."
+      }
+    },
+    {
+      "id": "match-100",
+      "match_no": 100,
+      "stage": "QUARTER_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "QUARTER_FINAL_HOME_4",
+      "away_slot": "QUARTER_FINAL_AWAY_4",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20QUARTER_FINAL",
+      "flag_url": null,
+      "introduction": "QUARTER FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 100: QUARTER_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 100.",
+        "keywords": [
+          "match",
+          "QUARTER_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 100."
+      }
+    },
+    {
+      "id": "match-101",
+      "match_no": 101,
+      "stage": "SEMI_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "SEMI_FINAL_HOME_1",
+      "away_slot": "SEMI_FINAL_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20SEMI_FINAL",
+      "flag_url": null,
+      "introduction": "SEMI FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 101: SEMI_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 101.",
+        "keywords": [
+          "match",
+          "SEMI_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 101."
+      }
+    },
+    {
+      "id": "match-102",
+      "match_no": 102,
+      "stage": "SEMI_FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "SEMI_FINAL_HOME_2",
+      "away_slot": "SEMI_FINAL_AWAY_2",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20SEMI_FINAL",
+      "flag_url": null,
+      "introduction": "SEMI FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 102: SEMI_FINAL",
+        "summary": "2026 World Cup knockout placeholder match 102.",
+        "keywords": [
+          "match",
+          "SEMI_FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 102."
+      }
+    },
+    {
+      "id": "match-103",
+      "match_no": 103,
+      "stage": "THIRD_PLACE",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "THIRD_PLACE_HOME_1",
+      "away_slot": "THIRD_PLACE_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20THIRD_PLACE",
+      "flag_url": null,
+      "introduction": "THIRD PLACE placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 103: THIRD_PLACE",
+        "summary": "2026 World Cup knockout placeholder match 103.",
+        "keywords": [
+          "match",
+          "THIRD_PLACE",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 103."
+      }
+    },
+    {
+      "id": "match-104",
+      "match_no": 104,
+      "stage": "FINAL",
+      "group_id": null,
+      "home_team_id": null,
+      "away_team_id": null,
+      "home_slot": "FINAL_HOME_1",
+      "away_slot": "FINAL_AWAY_1",
+      "kickoff_at": null,
+      "stadium_id": null,
+      "host_city_id": null,
+      "status": "SCHEDULED",
+      "image_url": "https://source.unsplash.com/1200x800/?FIFA%20World%20Cup%20FINAL",
+      "flag_url": null,
+      "introduction": "FINAL placeholder fixture for the 2026 FIFA World Cup knockout phase. Refresh from official FIFA bracket data.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {
+        "data_status": "placeholder_requires_official_bracket_refresh"
+      },
+      "rag": {
+        "title": "Match 104: FINAL",
+        "summary": "2026 World Cup knockout placeholder match 104.",
+        "keywords": [
+          "match",
+          "FINAL",
+          "knockout"
+        ],
+        "content": "2026 World Cup knockout placeholder match 104."
+      }
+    }
+  ]
+}

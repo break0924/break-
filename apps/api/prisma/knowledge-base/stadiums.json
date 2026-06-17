@@ -1,0 +1,460 @@
+{
+  "metadata": {
+    "entity": "stadiums",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "stadium-atlanta",
+      "name": "Mercedes-Benz Stadium",
+      "fifa_name": "Atlanta Stadium",
+      "host_city_id": "host-city-atlanta",
+      "country_code": "US",
+      "capacity": 71000,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Mercedes-Benz%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Mercedes-Benz Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Atlanta Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Mercedes-Benz Stadium 2026 World Cup stadium",
+        "summary": "Mercedes-Benz Stadium (Atlanta Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Mercedes-Benz Stadium",
+          "Atlanta Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Mercedes-Benz Stadium (Atlanta Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-boston",
+      "name": "Gillette Stadium",
+      "fifa_name": "Boston Stadium",
+      "host_city_id": "host-city-boston",
+      "country_code": "US",
+      "capacity": 65878,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Gillette%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Gillette Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Boston Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Gillette Stadium 2026 World Cup stadium",
+        "summary": "Gillette Stadium (Boston Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Gillette Stadium",
+          "Boston Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Gillette Stadium (Boston Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-dallas",
+      "name": "AT&T Stadium",
+      "fifa_name": "Dallas Stadium",
+      "host_city_id": "host-city-dallas",
+      "country_code": "US",
+      "capacity": 80000,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?AT%26T%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "AT&T Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Dallas Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "AT&T Stadium 2026 World Cup stadium",
+        "summary": "AT&T Stadium (Dallas Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "AT&T Stadium",
+          "Dallas Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "AT&T Stadium (Dallas Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-guadalajara",
+      "name": "Estadio Akron",
+      "fifa_name": "Guadalajara Stadium",
+      "host_city_id": "host-city-guadalajara",
+      "country_code": "MX",
+      "capacity": 48071,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Estadio%20Akron%20stadium",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Estadio Akron is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Guadalajara Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Estadio Akron 2026 World Cup stadium",
+        "summary": "Estadio Akron (Guadalajara Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Estadio Akron",
+          "Guadalajara Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Estadio Akron (Guadalajara Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-houston",
+      "name": "NRG Stadium",
+      "fifa_name": "Houston Stadium",
+      "host_city_id": "host-city-houston",
+      "country_code": "US",
+      "capacity": 72220,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?NRG%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "NRG Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Houston Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "NRG Stadium 2026 World Cup stadium",
+        "summary": "NRG Stadium (Houston Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "NRG Stadium",
+          "Houston Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "NRG Stadium (Houston Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-kansas-city",
+      "name": "Arrowhead Stadium",
+      "fifa_name": "Kansas City Stadium",
+      "host_city_id": "host-city-kansas-city",
+      "country_code": "US",
+      "capacity": 76416,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Arrowhead%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Arrowhead Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Kansas City Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Arrowhead Stadium 2026 World Cup stadium",
+        "summary": "Arrowhead Stadium (Kansas City Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Arrowhead Stadium",
+          "Kansas City Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Arrowhead Stadium (Kansas City Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-los-angeles",
+      "name": "SoFi Stadium",
+      "fifa_name": "Los Angeles Stadium",
+      "host_city_id": "host-city-los-angeles",
+      "country_code": "US",
+      "capacity": 70240,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?SoFi%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "SoFi Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Los Angeles Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "SoFi Stadium 2026 World Cup stadium",
+        "summary": "SoFi Stadium (Los Angeles Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "SoFi Stadium",
+          "Los Angeles Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "SoFi Stadium (Los Angeles Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-mexico-city",
+      "name": "Estadio Azteca",
+      "fifa_name": "Mexico City Stadium",
+      "host_city_id": "host-city-mexico-city",
+      "country_code": "MX",
+      "capacity": 87523,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Estadio%20Azteca%20stadium",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Estadio Azteca is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Mexico City Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Estadio Azteca 2026 World Cup stadium",
+        "summary": "Estadio Azteca (Mexico City Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Estadio Azteca",
+          "Mexico City Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Estadio Azteca (Mexico City Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-miami",
+      "name": "Hard Rock Stadium",
+      "fifa_name": "Miami Stadium",
+      "host_city_id": "host-city-miami",
+      "country_code": "US",
+      "capacity": 64767,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Hard%20Rock%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Hard Rock Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Miami Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Hard Rock Stadium 2026 World Cup stadium",
+        "summary": "Hard Rock Stadium (Miami Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Hard Rock Stadium",
+          "Miami Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Hard Rock Stadium (Miami Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-monterrey",
+      "name": "Estadio BBVA",
+      "fifa_name": "Monterrey Stadium",
+      "host_city_id": "host-city-monterrey",
+      "country_code": "MX",
+      "capacity": 53500,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Estadio%20BBVA%20stadium",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Estadio BBVA is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Monterrey Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Estadio BBVA 2026 World Cup stadium",
+        "summary": "Estadio BBVA (Monterrey Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Estadio BBVA",
+          "Monterrey Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Estadio BBVA (Monterrey Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-new-york-new-jersey",
+      "name": "MetLife Stadium",
+      "fifa_name": "New York New Jersey Stadium",
+      "host_city_id": "host-city-new-york-new-jersey",
+      "country_code": "US",
+      "capacity": 82500,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?MetLife%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "MetLife Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use New York New Jersey Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "MetLife Stadium 2026 World Cup stadium",
+        "summary": "MetLife Stadium (New York New Jersey Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "MetLife Stadium",
+          "New York New Jersey Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "MetLife Stadium (New York New Jersey Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-philadelphia",
+      "name": "Lincoln Financial Field",
+      "fifa_name": "Philadelphia Stadium",
+      "host_city_id": "host-city-philadelphia",
+      "country_code": "US",
+      "capacity": 67594,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Lincoln%20Financial%20Field%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Lincoln Financial Field is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Philadelphia Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Lincoln Financial Field 2026 World Cup stadium",
+        "summary": "Lincoln Financial Field (Philadelphia Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Lincoln Financial Field",
+          "Philadelphia Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Lincoln Financial Field (Philadelphia Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-san-francisco-bay-area",
+      "name": "Levi's Stadium",
+      "fifa_name": "San Francisco Bay Area Stadium",
+      "host_city_id": "host-city-san-francisco-bay-area",
+      "country_code": "US",
+      "capacity": 68500,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Levi's%20Stadium%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Levi's Stadium is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use San Francisco Bay Area Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Levi's Stadium 2026 World Cup stadium",
+        "summary": "Levi's Stadium (San Francisco Bay Area Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Levi's Stadium",
+          "San Francisco Bay Area Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Levi's Stadium (San Francisco Bay Area Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-seattle",
+      "name": "Lumen Field",
+      "fifa_name": "Seattle Stadium",
+      "host_city_id": "host-city-seattle",
+      "country_code": "US",
+      "capacity": 68740,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?Lumen%20Field%20stadium",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Lumen Field is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Seattle Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Lumen Field 2026 World Cup stadium",
+        "summary": "Lumen Field (Seattle Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "Lumen Field",
+          "Seattle Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "Lumen Field (Seattle Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-toronto",
+      "name": "BMO Field",
+      "fifa_name": "Toronto Stadium",
+      "host_city_id": "host-city-toronto",
+      "country_code": "CA",
+      "capacity": 30000,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?BMO%20Field%20stadium",
+      "flag_url": "https://flagcdn.com/w320/ca.png",
+      "introduction": "BMO Field is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Toronto Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "BMO Field 2026 World Cup stadium",
+        "summary": "BMO Field (Toronto Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "BMO Field",
+          "Toronto Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "BMO Field (Toronto Stadium) is a 2026 FIFA World Cup venue."
+      }
+    },
+    {
+      "id": "stadium-vancouver",
+      "name": "BC Place",
+      "fifa_name": "Vancouver Stadium",
+      "host_city_id": "host-city-vancouver",
+      "country_code": "CA",
+      "capacity": 54500,
+      "latitude": null,
+      "longitude": null,
+      "image_url": "https://source.unsplash.com/1200x800/?BC%20Place%20stadium",
+      "flag_url": "https://flagcdn.com/w320/ca.png",
+      "introduction": "BC Place is listed as a host venue for the 2026 FIFA World Cup. FIFA venue naming may use Vancouver Stadium.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "BC Place 2026 World Cup stadium",
+        "summary": "BC Place (Vancouver Stadium) is a 2026 FIFA World Cup venue.",
+        "keywords": [
+          "stadium",
+          "BC Place",
+          "Vancouver Stadium",
+          "2026 FIFA World Cup"
+        ],
+        "content": "BC Place (Vancouver Stadium) is a 2026 FIFA World Cup venue."
+      }
+    }
+  ]
+}

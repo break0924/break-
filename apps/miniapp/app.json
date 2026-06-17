@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/matches/index",
+    "pages/match-detail/index",
+    "pages/simulator/index",
+    "pages/calculator/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "世界杯竞彩助手",
+    "navigationBarBackgroundColor": "#0f172a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8fafc"
+  },
+  "tabBar": {
+    "color": "#64748b",
+    "selectedColor": "#0f766e",
+    "list": [
+      {
+        "pagePath": "pages/matches/index",
+        "text": "赛程"
+      },
+      {
+        "pagePath": "pages/calculator/index",
+        "text": "计算器"
+      },
+      {
+        "pagePath": "pages/simulator/index",
+        "text": "模拟"
+      }
+    ]
+  }
+}

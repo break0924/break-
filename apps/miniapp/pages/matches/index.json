@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "match-card": "../../components/match-card/index",
+    "risk-notice": "../../components/risk-notice/index"
+  },
+  "navigationBarTitleText": "赛程列表"
+}

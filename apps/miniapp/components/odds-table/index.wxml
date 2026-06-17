@@ -1,0 +1,12 @@
+<view class="table">
+  <view class="row head">
+    <text>玩法</text>
+    <text>选项</text>
+    <text>赔率</text>
+  </view>
+  <view class="row" wx:for="{{ odds }}" wx:key="id">
+    <text>{{ item.market }}</text>
+    <text>{{ item.selection }}</text>
+    <text>{{ item.odds }}</text>
+  </view>
+</view>

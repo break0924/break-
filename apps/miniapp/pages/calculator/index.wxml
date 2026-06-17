@@ -1,0 +1,12 @@
+<view class="page">
+  <risk-notice text="理论奖金计算器只做公式演算，不代表真实可兑奖金额。" />
+  <view class="section-title">理论奖金计算器</view>
+  <view class="form">
+    <label>模拟投入</label>
+    <input value="{{ stake }}" type="digit" bindinput="onStakeInput" />
+    <label>赔率</label>
+    <input value="{{ odds }}" type="digit" bindinput="onOddsInput" />
+    <button bindtap="calculate">计算</button>
+  </view>
+  <view class="result" wx:if="{{ result }}">理论奖金：{{ result }}</view>
+</view>

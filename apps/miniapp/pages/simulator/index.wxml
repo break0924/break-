@@ -1,0 +1,23 @@
+<view class="page">
+  <risk-notice text="模拟方案仅保存演算参数，不是投注订单，不支持购买、充值或兑奖。" />
+  <view class="section-title">模拟方案</view>
+  <view class="form">
+    <label>比赛</label>
+    <picker mode="selector" range="{{ matches }}" range-key="label" bindchange="onMatchChange">
+      <view class="picker" wx:if="{{ matches.length }}">
+        {{ matches[selectedMatchIndex].label }}
+      </view>
+      <view class="picker muted" wx:else>暂无赛程</view>
+    </picker>
+    <label>选择</label>
+    <picker mode="selector" range="{{ selectionLabels }}" bindchange="onSelectionChange">
+      <view class="picker">{{ selectionLabels[selectedSelectionIndex] }}</view>
+    </picker>
+    <label>模拟投入</label>
+    <input value="{{ stake }}" type="digit" bindinput="onStakeInput" />
+    <label>赔率</label>
+    <input value="{{ odds }}" type="digit" bindinput="onOddsInput" />
+    <button bindtap="createPlan">生成模拟方案</button>
+  </view>
+  <view class="result" wx:if="{{ result }}">理论奖金：{{ result }}</view>
+</view>

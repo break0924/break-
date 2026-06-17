@@ -1,0 +1,1 @@
+<view class="team">{{ team.name }}</view>

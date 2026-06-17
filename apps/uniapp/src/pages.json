@@ -1,0 +1,64 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "赛程"
+      }
+    },
+    {
+      "path": "pages/match-detail/index",
+      "style": {
+        "navigationBarTitleText": "比赛详情"
+      }
+    },
+    {
+      "path": "pages/simulator/index",
+      "style": {
+        "navigationBarTitleText": "模拟方案"
+      }
+    },
+    {
+      "path": "pages/calculator/index",
+      "style": {
+        "navigationBarTitleText": "奖金计算器"
+      }
+    },
+    {
+      "path": "pages/favorites/index",
+      "style": {
+        "navigationBarTitleText": "我的收藏"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "世界杯竞彩助手",
+    "navigationBarBackgroundColor": "#0f172a",
+    "backgroundColor": "#f8fafc"
+  },
+  "tabBar": {
+    "color": "#64748b",
+    "selectedColor": "#0f766e",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "赛程"
+      },
+      {
+        "pagePath": "pages/simulator/index",
+        "text": "模拟"
+      },
+      {
+        "pagePath": "pages/calculator/index",
+        "text": "计算器"
+      },
+      {
+        "pagePath": "pages/favorites/index",
+        "text": "收藏"
+      }
+    ]
+  }
+}

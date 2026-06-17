@@ -1,0 +1,460 @@
+{
+  "metadata": {
+    "entity": "host_cities",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "host-city-atlanta",
+      "name": "Atlanta",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Georgia",
+      "timezone": "America/New_York",
+      "latitude": 33.749,
+      "longitude": -84.388,
+      "image_url": "https://source.unsplash.com/1200x800/?Atlanta%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Atlanta is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Atlanta host city",
+        "summary": "Atlanta will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Atlanta",
+          "United States",
+          "host city"
+        ],
+        "content": "Atlanta will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-boston",
+      "name": "Boston",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Massachusetts",
+      "timezone": "America/New_York",
+      "latitude": 42.3601,
+      "longitude": -71.0589,
+      "image_url": "https://source.unsplash.com/1200x800/?Boston%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Boston is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Boston host city",
+        "summary": "Boston will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Boston",
+          "United States",
+          "host city"
+        ],
+        "content": "Boston will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-dallas",
+      "name": "Dallas",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Texas",
+      "timezone": "America/Chicago",
+      "latitude": 32.7767,
+      "longitude": -96.797,
+      "image_url": "https://source.unsplash.com/1200x800/?Dallas%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Dallas is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Dallas host city",
+        "summary": "Dallas will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Dallas",
+          "United States",
+          "host city"
+        ],
+        "content": "Dallas will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-guadalajara",
+      "name": "Guadalajara",
+      "country": "Mexico",
+      "country_code": "MX",
+      "region": "Jalisco",
+      "timezone": "America/Mexico_City",
+      "latitude": 20.6597,
+      "longitude": -103.3496,
+      "image_url": "https://source.unsplash.com/1200x800/?Guadalajara%20skyline",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Guadalajara is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Guadalajara host city",
+        "summary": "Guadalajara will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Guadalajara",
+          "Mexico",
+          "host city"
+        ],
+        "content": "Guadalajara will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-houston",
+      "name": "Houston",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Texas",
+      "timezone": "America/Chicago",
+      "latitude": 29.7604,
+      "longitude": -95.3698,
+      "image_url": "https://source.unsplash.com/1200x800/?Houston%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Houston is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Houston host city",
+        "summary": "Houston will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Houston",
+          "United States",
+          "host city"
+        ],
+        "content": "Houston will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-kansas-city",
+      "name": "Kansas City",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Missouri",
+      "timezone": "America/Chicago",
+      "latitude": 39.0997,
+      "longitude": -94.5786,
+      "image_url": "https://source.unsplash.com/1200x800/?Kansas%20City%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Kansas City is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Kansas City host city",
+        "summary": "Kansas City will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Kansas City",
+          "United States",
+          "host city"
+        ],
+        "content": "Kansas City will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-los-angeles",
+      "name": "Los Angeles",
+      "country": "United States",
+      "country_code": "US",
+      "region": "California",
+      "timezone": "America/Los_Angeles",
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "image_url": "https://source.unsplash.com/1200x800/?Los%20Angeles%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Los Angeles is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Los Angeles host city",
+        "summary": "Los Angeles will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Los Angeles",
+          "United States",
+          "host city"
+        ],
+        "content": "Los Angeles will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-mexico-city",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "country_code": "MX",
+      "region": "Ciudad de Mexico",
+      "timezone": "America/Mexico_City",
+      "latitude": 19.4326,
+      "longitude": -99.1332,
+      "image_url": "https://source.unsplash.com/1200x800/?Mexico%20City%20skyline",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Mexico City is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Mexico City host city",
+        "summary": "Mexico City will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Mexico City",
+          "Mexico",
+          "host city"
+        ],
+        "content": "Mexico City will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-miami",
+      "name": "Miami",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Florida",
+      "timezone": "America/New_York",
+      "latitude": 25.7617,
+      "longitude": -80.1918,
+      "image_url": "https://source.unsplash.com/1200x800/?Miami%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Miami is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Miami host city",
+        "summary": "Miami will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Miami",
+          "United States",
+          "host city"
+        ],
+        "content": "Miami will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-monterrey",
+      "name": "Monterrey",
+      "country": "Mexico",
+      "country_code": "MX",
+      "region": "Nuevo Leon",
+      "timezone": "America/Monterrey",
+      "latitude": 25.6866,
+      "longitude": -100.3161,
+      "image_url": "https://source.unsplash.com/1200x800/?Monterrey%20skyline",
+      "flag_url": "https://flagcdn.com/w320/mx.png",
+      "introduction": "Monterrey is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Monterrey host city",
+        "summary": "Monterrey will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Monterrey",
+          "Mexico",
+          "host city"
+        ],
+        "content": "Monterrey will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-new-york-new-jersey",
+      "name": "New York New Jersey",
+      "country": "United States",
+      "country_code": "US",
+      "region": "New York / New Jersey",
+      "timezone": "America/New_York",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "image_url": "https://source.unsplash.com/1200x800/?New%20York%20New%20Jersey%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "New York New Jersey is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "New York New Jersey host city",
+        "summary": "New York New Jersey will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "New York New Jersey",
+          "United States",
+          "host city"
+        ],
+        "content": "New York New Jersey will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-philadelphia",
+      "name": "Philadelphia",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Pennsylvania",
+      "timezone": "America/New_York",
+      "latitude": 39.9526,
+      "longitude": -75.1652,
+      "image_url": "https://source.unsplash.com/1200x800/?Philadelphia%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Philadelphia is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Philadelphia host city",
+        "summary": "Philadelphia will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Philadelphia",
+          "United States",
+          "host city"
+        ],
+        "content": "Philadelphia will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-san-francisco-bay-area",
+      "name": "San Francisco Bay Area",
+      "country": "United States",
+      "country_code": "US",
+      "region": "California",
+      "timezone": "America/Los_Angeles",
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "image_url": "https://source.unsplash.com/1200x800/?San%20Francisco%20Bay%20Area%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "San Francisco Bay Area is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "San Francisco Bay Area host city",
+        "summary": "San Francisco Bay Area will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "San Francisco Bay Area",
+          "United States",
+          "host city"
+        ],
+        "content": "San Francisco Bay Area will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-seattle",
+      "name": "Seattle",
+      "country": "United States",
+      "country_code": "US",
+      "region": "Washington",
+      "timezone": "America/Los_Angeles",
+      "latitude": 47.6062,
+      "longitude": -122.3321,
+      "image_url": "https://source.unsplash.com/1200x800/?Seattle%20skyline",
+      "flag_url": "https://flagcdn.com/w320/us.png",
+      "introduction": "Seattle is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Seattle host city",
+        "summary": "Seattle will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Seattle",
+          "United States",
+          "host city"
+        ],
+        "content": "Seattle will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-toronto",
+      "name": "Toronto",
+      "country": "Canada",
+      "country_code": "CA",
+      "region": "Ontario",
+      "timezone": "America/Toronto",
+      "latitude": 43.6532,
+      "longitude": -79.3832,
+      "image_url": "https://source.unsplash.com/1200x800/?Toronto%20skyline",
+      "flag_url": "https://flagcdn.com/w320/ca.png",
+      "introduction": "Toronto is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Toronto host city",
+        "summary": "Toronto will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Toronto",
+          "Canada",
+          "host city"
+        ],
+        "content": "Toronto will host 2026 FIFA World Cup matches."
+      }
+    },
+    {
+      "id": "host-city-vancouver",
+      "name": "Vancouver",
+      "country": "Canada",
+      "country_code": "CA",
+      "region": "British Columbia",
+      "timezone": "America/Vancouver",
+      "latitude": 49.2827,
+      "longitude": -123.1207,
+      "image_url": "https://source.unsplash.com/1200x800/?Vancouver%20skyline",
+      "flag_url": "https://flagcdn.com/w320/ca.png",
+      "introduction": "Vancouver is one of the 16 host city areas for the 2026 FIFA World Cup across Canada, Mexico and the United States.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026",
+      "is_official": true,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "Vancouver host city",
+        "summary": "Vancouver will host 2026 FIFA World Cup matches.",
+        "keywords": [
+          "2026 FIFA World Cup",
+          "Vancouver",
+          "Canada",
+          "host city"
+        ],
+        "content": "Vancouver will host 2026 FIFA World Cup matches."
+      }
+    }
+  ]
+}

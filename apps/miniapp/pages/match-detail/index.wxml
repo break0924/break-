@@ -1,0 +1,20 @@
+<view class="page">
+  <risk-notice />
+  <view wx:if="{{ loading }}" class="muted">加载中...</view>
+  <block wx:if="{{ !loading && match }}">
+    <view class="detail-head">
+      <team-badge team="{{ match.homeTeam }}" />
+      <text class="vs">VS</text>
+      <team-badge team="{{ match.awayTeam }}" />
+    </view>
+    <view class="info">{{ match.matchNo }} · {{ match.stage }} · {{ match.status }}</view>
+    <view class="section-title">赔率快照</view>
+    <odds-table odds="{{ match.oddsSnapshots }}" />
+    <view class="section-title">AI 分析</view>
+    <view class="analysis" wx:if="{{ match.aiAnalyses && match.aiAnalyses.length }}">
+      <view class="title">{{ match.aiAnalyses[0].title }}</view>
+      <view>{{ match.aiAnalyses[0].summary }}</view>
+    </view>
+    <view class="muted" wx:else>暂无已发布分析</view>
+  </block>
+</view>

@@ -1,0 +1,29 @@
+.form {
+  display: grid;
+  gap: 16rpx;
+}
+
+.picker,
+input {
+  min-height: 76rpx;
+  padding: 18rpx;
+  background: #ffffff;
+  border: 1rpx solid #cbd5e1;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 8rpx;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.result {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  font-weight: 700;
+}

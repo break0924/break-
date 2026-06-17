@@ -1,0 +1,606 @@
+{
+  "metadata": {
+    "entity": "world_cup_history",
+    "tournament": "2026 FIFA World Cup",
+    "version": "0.1.0",
+    "generated_at": "2026-06-11T00:00:00.000+08:00",
+    "source_policy": "Official FIFA source preferred; placeholder records are explicitly marked is_official=false.",
+    "note": "Standardized knowledge-base data for Prisma import and RAG retrieval."
+  },
+  "items": [
+    {
+      "id": "world-cup-1930",
+      "year": 1930,
+      "host": "Uruguay",
+      "champion": "Uruguay",
+      "runner_up": "Argentina",
+      "third_place": "United States",
+      "teams_count": 13,
+      "image_url": "https://source.unsplash.com/1200x800/?1930%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1930 FIFA World Cup was hosted by Uruguay; Uruguay won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1930 FIFA World Cup",
+        "summary": "Uruguay won the 1930 FIFA World Cup hosted by Uruguay.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1930",
+          "Uruguay",
+          "Uruguay"
+        ],
+        "content": "Uruguay won the 1930 FIFA World Cup hosted by Uruguay."
+      }
+    },
+    {
+      "id": "world-cup-1934",
+      "year": 1934,
+      "host": "Italy",
+      "champion": "Italy",
+      "runner_up": "Czechoslovakia",
+      "third_place": "Germany",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1934%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1934 FIFA World Cup was hosted by Italy; Italy won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1934 FIFA World Cup",
+        "summary": "Italy won the 1934 FIFA World Cup hosted by Italy.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1934",
+          "Italy",
+          "Italy"
+        ],
+        "content": "Italy won the 1934 FIFA World Cup hosted by Italy."
+      }
+    },
+    {
+      "id": "world-cup-1938",
+      "year": 1938,
+      "host": "France",
+      "champion": "Italy",
+      "runner_up": "Hungary",
+      "third_place": "Brazil",
+      "teams_count": 15,
+      "image_url": "https://source.unsplash.com/1200x800/?1938%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1938 FIFA World Cup was hosted by France; Italy won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1938 FIFA World Cup",
+        "summary": "Italy won the 1938 FIFA World Cup hosted by France.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1938",
+          "Italy",
+          "France"
+        ],
+        "content": "Italy won the 1938 FIFA World Cup hosted by France."
+      }
+    },
+    {
+      "id": "world-cup-1950",
+      "year": 1950,
+      "host": "Brazil",
+      "champion": "Uruguay",
+      "runner_up": "Brazil",
+      "third_place": "Sweden",
+      "teams_count": 13,
+      "image_url": "https://source.unsplash.com/1200x800/?1950%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1950 FIFA World Cup was hosted by Brazil; Uruguay won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1950 FIFA World Cup",
+        "summary": "Uruguay won the 1950 FIFA World Cup hosted by Brazil.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1950",
+          "Uruguay",
+          "Brazil"
+        ],
+        "content": "Uruguay won the 1950 FIFA World Cup hosted by Brazil."
+      }
+    },
+    {
+      "id": "world-cup-1954",
+      "year": 1954,
+      "host": "Switzerland",
+      "champion": "West Germany",
+      "runner_up": "Hungary",
+      "third_place": "Austria",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1954%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1954 FIFA World Cup was hosted by Switzerland; West Germany won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1954 FIFA World Cup",
+        "summary": "West Germany won the 1954 FIFA World Cup hosted by Switzerland.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1954",
+          "West Germany",
+          "Switzerland"
+        ],
+        "content": "West Germany won the 1954 FIFA World Cup hosted by Switzerland."
+      }
+    },
+    {
+      "id": "world-cup-1958",
+      "year": 1958,
+      "host": "Sweden",
+      "champion": "Brazil",
+      "runner_up": "Sweden",
+      "third_place": "France",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1958%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1958 FIFA World Cup was hosted by Sweden; Brazil won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1958 FIFA World Cup",
+        "summary": "Brazil won the 1958 FIFA World Cup hosted by Sweden.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1958",
+          "Brazil",
+          "Sweden"
+        ],
+        "content": "Brazil won the 1958 FIFA World Cup hosted by Sweden."
+      }
+    },
+    {
+      "id": "world-cup-1962",
+      "year": 1962,
+      "host": "Chile",
+      "champion": "Brazil",
+      "runner_up": "Czechoslovakia",
+      "third_place": "Chile",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1962%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1962 FIFA World Cup was hosted by Chile; Brazil won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1962 FIFA World Cup",
+        "summary": "Brazil won the 1962 FIFA World Cup hosted by Chile.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1962",
+          "Brazil",
+          "Chile"
+        ],
+        "content": "Brazil won the 1962 FIFA World Cup hosted by Chile."
+      }
+    },
+    {
+      "id": "world-cup-1966",
+      "year": 1966,
+      "host": "England",
+      "champion": "England",
+      "runner_up": "West Germany",
+      "third_place": "Portugal",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1966%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1966 FIFA World Cup was hosted by England; England won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1966 FIFA World Cup",
+        "summary": "England won the 1966 FIFA World Cup hosted by England.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1966",
+          "England",
+          "England"
+        ],
+        "content": "England won the 1966 FIFA World Cup hosted by England."
+      }
+    },
+    {
+      "id": "world-cup-1970",
+      "year": 1970,
+      "host": "Mexico",
+      "champion": "Brazil",
+      "runner_up": "Italy",
+      "third_place": "West Germany",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1970%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1970 FIFA World Cup was hosted by Mexico; Brazil won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1970 FIFA World Cup",
+        "summary": "Brazil won the 1970 FIFA World Cup hosted by Mexico.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1970",
+          "Brazil",
+          "Mexico"
+        ],
+        "content": "Brazil won the 1970 FIFA World Cup hosted by Mexico."
+      }
+    },
+    {
+      "id": "world-cup-1974",
+      "year": 1974,
+      "host": "West Germany",
+      "champion": "West Germany",
+      "runner_up": "Netherlands",
+      "third_place": "Poland",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1974%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1974 FIFA World Cup was hosted by West Germany; West Germany won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1974 FIFA World Cup",
+        "summary": "West Germany won the 1974 FIFA World Cup hosted by West Germany.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1974",
+          "West Germany",
+          "West Germany"
+        ],
+        "content": "West Germany won the 1974 FIFA World Cup hosted by West Germany."
+      }
+    },
+    {
+      "id": "world-cup-1978",
+      "year": 1978,
+      "host": "Argentina",
+      "champion": "Argentina",
+      "runner_up": "Netherlands",
+      "third_place": "Brazil",
+      "teams_count": 16,
+      "image_url": "https://source.unsplash.com/1200x800/?1978%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1978 FIFA World Cup was hosted by Argentina; Argentina won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1978 FIFA World Cup",
+        "summary": "Argentina won the 1978 FIFA World Cup hosted by Argentina.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1978",
+          "Argentina",
+          "Argentina"
+        ],
+        "content": "Argentina won the 1978 FIFA World Cup hosted by Argentina."
+      }
+    },
+    {
+      "id": "world-cup-1982",
+      "year": 1982,
+      "host": "Spain",
+      "champion": "Italy",
+      "runner_up": "West Germany",
+      "third_place": "Poland",
+      "teams_count": 24,
+      "image_url": "https://source.unsplash.com/1200x800/?1982%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1982 FIFA World Cup was hosted by Spain; Italy won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1982 FIFA World Cup",
+        "summary": "Italy won the 1982 FIFA World Cup hosted by Spain.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1982",
+          "Italy",
+          "Spain"
+        ],
+        "content": "Italy won the 1982 FIFA World Cup hosted by Spain."
+      }
+    },
+    {
+      "id": "world-cup-1986",
+      "year": 1986,
+      "host": "Mexico",
+      "champion": "Argentina",
+      "runner_up": "West Germany",
+      "third_place": "France",
+      "teams_count": 24,
+      "image_url": "https://source.unsplash.com/1200x800/?1986%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1986 FIFA World Cup was hosted by Mexico; Argentina won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1986 FIFA World Cup",
+        "summary": "Argentina won the 1986 FIFA World Cup hosted by Mexico.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1986",
+          "Argentina",
+          "Mexico"
+        ],
+        "content": "Argentina won the 1986 FIFA World Cup hosted by Mexico."
+      }
+    },
+    {
+      "id": "world-cup-1990",
+      "year": 1990,
+      "host": "Italy",
+      "champion": "West Germany",
+      "runner_up": "Argentina",
+      "third_place": "Italy",
+      "teams_count": 24,
+      "image_url": "https://source.unsplash.com/1200x800/?1990%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1990 FIFA World Cup was hosted by Italy; West Germany won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1990 FIFA World Cup",
+        "summary": "West Germany won the 1990 FIFA World Cup hosted by Italy.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1990",
+          "West Germany",
+          "Italy"
+        ],
+        "content": "West Germany won the 1990 FIFA World Cup hosted by Italy."
+      }
+    },
+    {
+      "id": "world-cup-1994",
+      "year": 1994,
+      "host": "United States",
+      "champion": "Brazil",
+      "runner_up": "Italy",
+      "third_place": "Sweden",
+      "teams_count": 24,
+      "image_url": "https://source.unsplash.com/1200x800/?1994%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1994 FIFA World Cup was hosted by United States; Brazil won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1994 FIFA World Cup",
+        "summary": "Brazil won the 1994 FIFA World Cup hosted by United States.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1994",
+          "Brazil",
+          "United States"
+        ],
+        "content": "Brazil won the 1994 FIFA World Cup hosted by United States."
+      }
+    },
+    {
+      "id": "world-cup-1998",
+      "year": 1998,
+      "host": "France",
+      "champion": "France",
+      "runner_up": "Brazil",
+      "third_place": "Croatia",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?1998%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "1998 FIFA World Cup was hosted by France; France won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "1998 FIFA World Cup",
+        "summary": "France won the 1998 FIFA World Cup hosted by France.",
+        "keywords": [
+          "FIFA World Cup history",
+          "1998",
+          "France",
+          "France"
+        ],
+        "content": "France won the 1998 FIFA World Cup hosted by France."
+      }
+    },
+    {
+      "id": "world-cup-2002",
+      "year": 2002,
+      "host": "South Korea and Japan",
+      "champion": "Brazil",
+      "runner_up": "Germany",
+      "third_place": "Turkey",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2002%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2002 FIFA World Cup was hosted by South Korea and Japan; Brazil won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2002 FIFA World Cup",
+        "summary": "Brazil won the 2002 FIFA World Cup hosted by South Korea and Japan.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2002",
+          "Brazil",
+          "South Korea and Japan"
+        ],
+        "content": "Brazil won the 2002 FIFA World Cup hosted by South Korea and Japan."
+      }
+    },
+    {
+      "id": "world-cup-2006",
+      "year": 2006,
+      "host": "Germany",
+      "champion": "Italy",
+      "runner_up": "France",
+      "third_place": "Germany",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2006%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2006 FIFA World Cup was hosted by Germany; Italy won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2006 FIFA World Cup",
+        "summary": "Italy won the 2006 FIFA World Cup hosted by Germany.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2006",
+          "Italy",
+          "Germany"
+        ],
+        "content": "Italy won the 2006 FIFA World Cup hosted by Germany."
+      }
+    },
+    {
+      "id": "world-cup-2010",
+      "year": 2010,
+      "host": "South Africa",
+      "champion": "Spain",
+      "runner_up": "Netherlands",
+      "third_place": "Germany",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2010%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2010 FIFA World Cup was hosted by South Africa; Spain won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2010 FIFA World Cup",
+        "summary": "Spain won the 2010 FIFA World Cup hosted by South Africa.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2010",
+          "Spain",
+          "South Africa"
+        ],
+        "content": "Spain won the 2010 FIFA World Cup hosted by South Africa."
+      }
+    },
+    {
+      "id": "world-cup-2014",
+      "year": 2014,
+      "host": "Brazil",
+      "champion": "Germany",
+      "runner_up": "Argentina",
+      "third_place": "Netherlands",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2014%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2014 FIFA World Cup was hosted by Brazil; Germany won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2014 FIFA World Cup",
+        "summary": "Germany won the 2014 FIFA World Cup hosted by Brazil.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2014",
+          "Germany",
+          "Brazil"
+        ],
+        "content": "Germany won the 2014 FIFA World Cup hosted by Brazil."
+      }
+    },
+    {
+      "id": "world-cup-2018",
+      "year": 2018,
+      "host": "Russia",
+      "champion": "France",
+      "runner_up": "Croatia",
+      "third_place": "Belgium",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2018%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2018 FIFA World Cup was hosted by Russia; France won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2018 FIFA World Cup",
+        "summary": "France won the 2018 FIFA World Cup hosted by Russia.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2018",
+          "France",
+          "Russia"
+        ],
+        "content": "France won the 2018 FIFA World Cup hosted by Russia."
+      }
+    },
+    {
+      "id": "world-cup-2022",
+      "year": 2022,
+      "host": "Qatar",
+      "champion": "Argentina",
+      "runner_up": "France",
+      "third_place": "Croatia",
+      "teams_count": 32,
+      "image_url": "https://source.unsplash.com/1200x800/?2022%20FIFA%20World%20Cup",
+      "flag_url": null,
+      "introduction": "2022 FIFA World Cup was hosted by Qatar; Argentina won the tournament.",
+      "source_url": "https://www.fifa.com/en/tournaments/mens/worldcup",
+      "is_official": false,
+      "last_verified_at": "2026-06-11T00:00:00.000+08:00",
+      "raw": {},
+      "rag": {
+        "title": "2022 FIFA World Cup",
+        "summary": "Argentina won the 2022 FIFA World Cup hosted by Qatar.",
+        "keywords": [
+          "FIFA World Cup history",
+          "2022",
+          "Argentina",
+          "Qatar"
+        ],
+        "content": "Argentina won the 2022 FIFA World Cup hosted by Qatar."
+      }
+    }
+  ]
+}

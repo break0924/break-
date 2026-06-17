@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wc_assistant_postgres
+    environment:
+      POSTGRES_USER: wc_assistant
+      POSTGRES_PASSWORD: wc_assistant
+      POSTGRES_DB: wc_assistant
+    ports:
+      - "5432:5432"
+    volumes:
+      - wc_assistant_pgdata:/var/lib/postgresql/data
+
+volumes:
+  wc_assistant_pgdata:

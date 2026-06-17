@@ -1,0 +1,25 @@
+.table {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120rpx;
+  gap: 12rpx;
+  padding: 18rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+  font-size: 24rpx;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.head {
+  color: #475569;
+  background: #f1f5f9;
+  font-weight: 700;
+}
