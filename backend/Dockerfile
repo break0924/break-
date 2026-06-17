@@ -7,6 +7,7 @@ RUN npm ci
 FROM node:20-alpine AS builder
 
 WORKDIR /app
+ENV DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 COPY --from=deps /app/node_modules ./node_modules
 COPY package*.json ./
 COPY nest-cli.json tsconfig*.json ./
