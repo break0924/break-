@@ -15,7 +15,6 @@ COPY prisma ./prisma
 COPY src ./src
 RUN npm run prisma:generate
 RUN npm run build
-RUN printf "require('./src/main.js');\n" > dist/main.js
 
 FROM node:20-alpine AS runner
 
@@ -27,4 +26,4 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 COPY package*.json ./
 EXPOSE 3000
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
+CMD ["node", "dist/src/main.js"]
