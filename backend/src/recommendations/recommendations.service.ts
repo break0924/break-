@@ -1,8 +1,12 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
-import { AiJobStatus, PredictionArchiveStatus, Prisma } from "@prisma/client";
+import {
+  AiJobStatus,
+  PredictionArchiveStatus,
+  PredictionDirection,
+  Prisma,
+} from "@prisma/client";
 import { AiService } from "../ai/ai.service";
-import { demoReports, demoScheduleMatches } from "../demo/demo-data";
 import {
   predictionGenerateCron,
   predictionTimeZone,
@@ -62,15 +66,24 @@ export class RecommendationsService {
       .catch(() => null);
 
     if (!recommendation) {
-      return this.getDemoRecommendation(userId);
+      return this.getScheduleRecommendation(userId, day);
     }
 
     const isMember = userId ? await this.isMember(userId) : false;
+    const { start, end } = this.beijingDayRange(day);
+    const validMatches = recommendation.matches.filter((item) => {
+      const kickoffAt = item.match.kickoffAt?.getTime();
+      return kickoffAt >= start.getTime() && kickoffAt < end.getTime();
+    });
+
+    if (validMatches.length === 0) {
+      return this.getScheduleRecommendation(userId, day);
+    }
 
     return {
       ...recommendation,
       isMember,
-      matches: recommendation.matches.map((item) => {
+      matches: validMatches.map((item) => {
         const latestArchive = item.match.predictionArchives?.[0];
         const scoreModel = this.scoreModelFromArchive(latestArchive);
 
@@ -201,8 +214,7 @@ export class RecommendationsService {
   }
 
   private async findCandidateMatches(day: Date) {
-    const start = new Date(day);
-    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+    const { start, end } = this.beijingDayRange(day);
 
     const matches = await this.prisma.match.findMany({
       where: {
@@ -227,7 +239,7 @@ export class RecommendationsService {
       where: {
         kickoffAt: {
           gte: start,
-          lt: new Date(start.getTime() + 48 * 60 * 60 * 1000),
+          lt: new Date(end.getTime() + 24 * 60 * 60 * 1000),
         },
       },
       orderBy: { kickoffAt: "asc" },
@@ -237,6 +249,165 @@ export class RecommendationsService {
         awayTeam: true,
       },
     });
+  }
+
+  private async getScheduleRecommendation(userId: string | undefined, day: Date) {
+    const isMember = userId ? await this.isMember(userId) : false;
+    const { start, end } = this.beijingDayRange(day);
+    let title = "今日AI精选";
+    let intro = "暂无今日比赛";
+    let matches = await this.findMatchesInRange(start, end, 4);
+
+    if (matches.length === 0) {
+      matches = await this.findMatchesInRange(end, undefined, 4);
+      if (matches.length > 0) {
+        title = "下一场推荐";
+        intro = `暂无今日比赛，已展示接下来 ${matches.length} 场可推荐比赛`;
+      }
+    } else {
+      intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
+    }
+
+    return {
+      id: `daily_${this.beijingDateKey(day)}_schedule`,
+      date: day,
+      title,
+      intro,
+      status: AiJobStatus.SUCCEEDED,
+      promptVersion: "schedule-fallback-v1",
+      model: "schedule-fallback",
+      generatedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isMember,
+      matches: matches.map((match, index) => {
+        const latestArchive = match.predictionArchives?.[0];
+        const pick = this.pickFromArchiveOrMatch(match, latestArchive, index);
+        const scoreModel = this.scoreModelFromArchive(latestArchive);
+
+        return {
+          id: `daily_pick_${match.id}`,
+          dailyRecommendationId: `daily_${this.beijingDateKey(day)}_schedule`,
+          matchId: match.id,
+          recommendationDirection: pick.recommendationDirection,
+          predictedHome: pick.predictedHome,
+          predictedAway: pick.predictedAway,
+          homeWinProb: pick.homeWinProb,
+          drawProb: pick.drawProb,
+          awayWinProb: pick.awayWinProb,
+          riskIndex: pick.riskIndex,
+          confidenceIndex: pick.confidenceIndex,
+          scoreCandidates: scoreModel.scoreCandidates,
+          totalGoalsRange: scoreModel.totalGoalsRange,
+          overUnderLean: scoreModel.overUnderLean,
+          totalGoalsDistribution: scoreModel.totalGoalsDistribution,
+          freeReason: pick.freeReason,
+          memberReason: isMember ? pick.memberReason : undefined,
+          sortOrder: index + 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          locked: !isMember,
+          unlockHint: isMember ? null : "会员可查看完整推荐理由",
+          match,
+        };
+      }),
+    };
+  }
+
+  private findMatchesInRange(start: Date, end: Date | undefined, take: number) {
+    return this.prisma.match.findMany({
+      where: {
+        kickoffAt: end
+          ? {
+              gte: start,
+              lt: end,
+            }
+          : {
+              gte: start,
+            },
+      },
+      orderBy: { kickoffAt: "asc" },
+      take,
+      include: {
+        homeTeam: true,
+        awayTeam: true,
+        predictionArchives: {
+          where: {
+            status: PredictionArchiveStatus.PUBLISHED,
+            isPublic: true,
+          },
+          orderBy: [{ publishedAt: "desc" }, { generatedAt: "desc" }],
+          take: 1,
+          include: {
+            featureSnapshot: true,
+          },
+        },
+      },
+    });
+  }
+
+  private pickFromArchiveOrMatch(
+    match: {
+      homeTeam: { name: string };
+      awayTeam: { name: string };
+    },
+    archive:
+      | {
+          recommendationDirection: PredictionDirection;
+          predictedHome: number;
+          predictedAway: number;
+          homeWinProb: Prisma.Decimal | number | string;
+          drawProb: Prisma.Decimal | number | string;
+          awayWinProb: Prisma.Decimal | number | string;
+          riskIndex: number;
+          confidenceIndex: number;
+          recommendationReason: string;
+          fullAnalysis?: string | null;
+          shortAnalysis?: string | null;
+        }
+      | undefined,
+    index: number,
+  ) {
+    if (archive) {
+      return {
+        recommendationDirection: archive.recommendationDirection,
+        predictedHome: archive.predictedHome,
+        predictedAway: archive.predictedAway,
+        homeWinProb: archive.homeWinProb,
+        drawProb: archive.drawProb,
+        awayWinProb: archive.awayWinProb,
+        riskIndex: archive.riskIndex,
+        confidenceIndex: archive.confidenceIndex,
+        freeReason: archive.shortAnalysis || archive.recommendationReason,
+        memberReason: archive.fullAnalysis || archive.recommendationReason,
+      };
+    }
+
+    const fallbackDirections = [
+      PredictionDirection.HOME_WIN,
+      PredictionDirection.DRAW,
+      PredictionDirection.AWAY_WIN,
+    ];
+    const recommendationDirection =
+      fallbackDirections[index % fallbackDirections.length];
+    const predictedHome = recommendationDirection === PredictionDirection.AWAY_WIN ? 1 : 2;
+    const predictedAway = recommendationDirection === PredictionDirection.HOME_WIN ? 1 : 2;
+
+    return {
+      recommendationDirection,
+      predictedHome,
+      predictedAway,
+      homeWinProb:
+        recommendationDirection === PredictionDirection.HOME_WIN ? "46.00" : "32.00",
+      drawProb:
+        recommendationDirection === PredictionDirection.DRAW ? "36.00" : "28.00",
+      awayWinProb:
+        recommendationDirection === PredictionDirection.AWAY_WIN ? "46.00" : "26.00",
+      riskIndex: 55 + index * 3,
+      confidenceIndex: 64 - index * 2,
+      freeReason: `${match.homeTeam.name} vs ${match.awayTeam.name}：赛前数据已载入，建议关注阵容、节奏和临场变化。风险提示：足球比赛存在不确定性，本内容仅供数据分析参考。`,
+      memberReason: `${match.homeTeam.name}与${match.awayTeam.name}的比赛已进入赛前推荐池，综合赛程、分组和基础实力差异生成参考方向。请结合临场名单、伤停、天气和战术安排阅读。`,
+    };
   }
 
   private async isMember(userId: string) {
@@ -256,62 +427,6 @@ export class RecommendationsService {
           user.membershipExpireAt,
         )
       : false;
-  }
-
-  private async getDemoRecommendation(userId?: string) {
-    const isMember = userId ? await this.isMember(userId) : false;
-
-    return {
-      id: "daily_20260612_demo",
-      date: new Date(Date.UTC(2026, 5, 12)),
-      title: "今日AI精选",
-      intro: "已载入2026-06-12两场A组比赛，并完成AI赛前预测与赛果更新。",
-      status: AiJobStatus.SUCCEEDED,
-      promptVersion: "demo-20260612-v1",
-      model: "local-demo",
-      generatedAt: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isMember,
-      matches: demoScheduleMatches.slice(0, 2).map((match, index) => {
-        const report = demoReports.get(match.id)!;
-        return {
-          id: `daily_pick_${match.id}`,
-          dailyRecommendationId: "daily_20260612_demo",
-          matchId: match.id,
-          recommendationDirection: report.recommendationDirection,
-          predictedHome: report.predictedHome,
-          predictedAway: report.predictedAway,
-          homeWinProb: report.homeWinProb,
-          drawProb: report.drawProb,
-          awayWinProb: report.awayWinProb,
-          riskIndex: report.riskIndex,
-          confidenceIndex: report.confidenceIndex,
-          freeReason: `${report.summary} 风险提示：临场信息可能影响判断。`,
-          memberReason: isMember
-            ? `${report.fullContent}\n\n综合方向：${this.directionText(report.recommendationDirection)}。`
-            : undefined,
-          sortOrder: index + 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          locked: !isMember,
-          unlockHint: isMember ? null : "会员可查看完整推荐理由",
-          match,
-        };
-      }),
-    };
-  }
-
-  private directionText(direction: string) {
-    if (direction === "HOME_WIN") {
-      return "主队方向";
-    }
-
-    if (direction === "AWAY_WIN") {
-      return "客队方向";
-    }
-
-    return "平局方向";
   }
 
   private scoreModelFromArchive(
@@ -361,6 +476,24 @@ export class RecommendationsService {
         beijingTime.getUTCDate(),
       ),
     );
+  }
+
+  private beijingDayRange(day: Date) {
+    const key = this.beijingDateKey(day);
+    const start = new Date(`${key}T00:00:00.000+08:00`);
+
+    return {
+      start,
+      end: new Date(start.getTime() + 24 * 60 * 60 * 1000),
+    };
+  }
+
+  private beijingDateKey(day: Date) {
+    const beijingTime = new Date(day.getTime() + 8 * 60 * 60 * 1000);
+
+    return `${beijingTime.getUTCFullYear()}-${String(
+      beijingTime.getUTCMonth() + 1,
+    ).padStart(2, "0")}-${String(beijingTime.getUTCDate()).padStart(2, "0")}`;
   }
 
   private addBeijingDays(value: Date, days: number) {

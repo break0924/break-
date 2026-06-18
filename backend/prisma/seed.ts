@@ -272,6 +272,7 @@ async function main() {
   });
 
   await seedWorldCupKnowledgeBase(prisma);
+  await seedDailyRecommendationForDate("2026-06-18", "seed-20260618-v1");
 }
 
 function buildReport(
@@ -302,6 +303,80 @@ function buildReport(
     promptVersion: "seed-demo-v1",
     model: "seed",
   };
+}
+
+async function seedDailyRecommendationForDate(dateKey: string, promptVersion: string) {
+  const start = new Date(`${dateKey}T00:00:00.000+08:00`);
+  const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+  const matches = await prisma.match.findMany({
+    where: {
+      kickoffAt: {
+        gte: start,
+        lt: end,
+      },
+    },
+    orderBy: { kickoffAt: "asc" },
+    take: 4,
+    include: {
+      homeTeam: true,
+      awayTeam: true,
+    },
+  });
+
+  if (matches.length === 0) {
+    return;
+  }
+
+  const dailyRecommendation = await prisma.dailyRecommendation.upsert({
+    where: { date: new Date(`${dateKey}T00:00:00.000Z`) },
+    update: {
+      title: "AI每日精选",
+      intro: `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`,
+      status: AiJobStatus.SUCCEEDED,
+      promptVersion,
+      model: "seed",
+      generatedAt: new Date(),
+      matches: {
+        deleteMany: {},
+      },
+    },
+    create: {
+      date: new Date(`${dateKey}T00:00:00.000Z`),
+      title: "AI每日精选",
+      intro: `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`,
+      status: AiJobStatus.SUCCEEDED,
+      promptVersion,
+      model: "seed",
+      generatedAt: new Date(),
+    },
+  });
+
+  for (const [index, match] of matches.entries()) {
+    const direction =
+      index % 3 === 1
+        ? PredictionDirection.DRAW
+        : index % 3 === 2
+          ? PredictionDirection.AWAY_WIN
+          : PredictionDirection.HOME_WIN;
+
+    await prisma.dailyRecommendationMatch.create({
+      data: {
+        dailyRecommendationId: dailyRecommendation.id,
+        matchId: match.id,
+        recommendationDirection: direction,
+        predictedHome: direction === PredictionDirection.AWAY_WIN ? 1 : 2,
+        predictedAway: direction === PredictionDirection.HOME_WIN ? 1 : 2,
+        homeWinProb: direction === PredictionDirection.HOME_WIN ? "46.00" : "32.00",
+        drawProb: direction === PredictionDirection.DRAW ? "36.00" : "28.00",
+        awayWinProb: direction === PredictionDirection.AWAY_WIN ? "46.00" : "26.00",
+        riskIndex: 55 + index * 3,
+        confidenceIndex: 64 - index * 2,
+        freeReason: `${match.homeTeam.name} vs ${match.awayTeam.name}：赛前数据已载入，建议关注阵容、节奏和临场变化。风险提示：足球比赛存在不确定性，本内容仅供数据分析参考。`,
+        memberReason: `${match.homeTeam.name}与${match.awayTeam.name}的比赛已进入赛前推荐池，综合赛程、分组和基础实力差异生成参考方向。请结合临场名单、伤停、天气和战术安排阅读。`,
+        sortOrder: index + 1,
+      },
+    });
+  }
 }
 
 main()
