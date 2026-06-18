@@ -113,6 +113,21 @@ function applyQuery(query?: Record<string, unknown>) {
   planKind.value = type === 'week' ? 'week' : 'pass';
 }
 
+function parseQueryString(queryString: string) {
+  return queryString
+    .split('&')
+    .filter(Boolean)
+    .reduce<Record<string, string>>((query, pair) => {
+      const [rawKey, rawValue = ''] = pair.split('=');
+      if (!rawKey) {
+        return query;
+      }
+
+      query[decodeURIComponent(rawKey)] = decodeURIComponent(rawValue);
+      return query;
+    }, {});
+}
+
 function readCurrentQuery() {
   const pages = getCurrentPages();
   const current = pages[pages.length - 1] as unknown as {
@@ -124,10 +139,7 @@ function readCurrentQuery() {
   // #ifdef H5
   const hashQuery: Record<string, string> = {};
   if (typeof window !== 'undefined') {
-    const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
-    params.forEach((value, key) => {
-      hashQuery[key] = value;
-    });
+    Object.assign(hashQuery, parseQueryString(window.location.hash.split('?')[1] || ''));
   }
   return { ...options, ...hashQuery };
   // #endif

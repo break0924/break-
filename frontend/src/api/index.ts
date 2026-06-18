@@ -50,10 +50,21 @@ function compact<T extends Record<string, unknown>>(value: T) {
   );
 }
 
+function isDemoFallbackEnabled() {
+  return import.meta.env.DEV || import.meta.env.VITE_DEMO_MODE === 'true';
+}
+
+function demoFallback<T>(error: unknown, fallback: () => T): T {
+  if (!isDemoFallbackEnabled()) {
+    throw error;
+  }
+  return fallback();
+}
+
 export const api = {
   homeData(date?: string) {
     if (isCloudbaseEnabled()) {
-      return callCloudFunction<CloudHomeData>('homeData', compact({ date })).catch(() => {
+      return callCloudFunction<CloudHomeData>('homeData', compact({ date })).catch((error) => demoFallback(error, () => {
         const today = date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4);
         const matches = date ? demoMatches({ date: today.date }) : demoUpcomingMatches(4);
         return {
@@ -65,12 +76,12 @@ export const api = {
           membership: DEMO_MEMBERSHIP_STATUS,
           invite: DEMO_INVITE_STATUS,
         };
-      });
+      }));
     }
 
     return Promise.all([
-      date ? api.predictionToday(date) : Promise.resolve(demoUpcomingPredictionToday(4)),
-      date ? api.matches({ date }) : Promise.resolve(demoUpcomingMatches(4)),
+      api.predictionToday(date),
+      api.matches(date ? { date } : undefined),
       api.predictionStats(),
       api.membershipStatus(),
       api.inviteStatus(),
@@ -85,7 +96,7 @@ export const api = {
     }));
   },
   login(payload: {
-    openId: string;
+    code: string;
     nickname?: string;
     avatarUrl?: string;
   }) {
@@ -103,47 +114,34 @@ export const api = {
       return callCloudFunction<Match[]>('matches', {
         action: 'list',
         params: params || {},
-      }).catch(() => demoMatches(params));
-    }
-
-    const query = new URLSearchParams();
-    if (params?.date) {
-      query.set('date', params.date);
-    }
-    if (params?.groupName) {
-      query.set('groupName', params.groupName);
-    }
-    if (params?.stage) {
-      query.set('stage', params.stage);
-    }
-    if (params?.status) {
-      query.set('status', params.status);
+      }).catch((error) => demoFallback(error, () => demoMatches(params)));
     }
 
     return request<Match[]>({
-      url: `/matches${query.toString() ? `?${query.toString()}` : ''}`,
+      url: '/matches',
       method: 'GET',
-    }).catch(() => demoMatches(params));
+      params,
+    }).catch((error) => demoFallback(error, () => demoMatches(params)));
   },
   matchFilters() {
     return request<MatchFilterOptions>({
       url: '/matches/filters',
       method: 'GET',
-    }).catch(() => ({
+    }).catch((error) => demoFallback(error, () => ({
       dates: Array.from(new Set(demoMatches().map((item) => item.matchDate || ''))).filter(Boolean),
       groups: Array.from(new Set(demoMatches().map((item) => item.groupName || ''))).filter(Boolean),
       stages: ['GROUP'],
-    }));
+    })));
   },
   teams() {
-    return request<Team[]>({ url: '/teams', method: 'GET' }).catch(() => DEMO_TEAMS);
+    return request<Team[]>({ url: '/teams', method: 'GET' }).catch((error) => demoFallback(error, () => DEMO_TEAMS));
   },
   matchDetail(id: string) {
-    return request<Match>({ url: `/matches/${id}`, method: 'GET' }).catch(() => {
+    return request<Match>({ url: `/matches/${id}`, method: 'GET' }).catch((error) => demoFallback(error, () => {
       const match = demoMatches().find((item) => item.id === id);
       if (!match) throw new Error('比赛不存在');
       return match;
-    });
+    }));
   },
   aiReport(matchId: string) {
     return request<AiReport>({
@@ -155,25 +153,25 @@ export const api = {
     return request<DailyRecommendation>({
       url: '/recommendations/today',
       method: 'GET',
-    }).catch(() => demoUpcomingRecommendation(4));
+    }).catch((error) => demoFallback(error, () => demoUpcomingRecommendation(4)));
   },
   membershipStatus() {
     if (isCloudbaseEnabled()) {
       return callCloudFunction<MembershipStatus>('member', {
         action: 'status',
-      }).catch(() => DEMO_MEMBERSHIP_STATUS);
+      }).catch((error) => demoFallback(error, () => DEMO_MEMBERSHIP_STATUS));
     }
 
     return request<MembershipStatus>({
       url: '/membership/status',
       method: 'GET',
-    }).catch(() => DEMO_MEMBERSHIP_STATUS);
+    }).catch((error) => demoFallback(error, () => DEMO_MEMBERSHIP_STATUS));
   },
   membershipPlans() {
     return request<MembershipPlan[]>({
       url: '/membership/plans',
       method: 'GET',
-    }).catch(() => DEMO_MEMBERSHIP_PLANS);
+    }).catch((error) => demoFallback(error, () => DEMO_MEMBERSHIP_PLANS));
   },
   createMembershipOrder(planId: string) {
     return request<MembershipPaymentOrder>({
@@ -189,13 +187,13 @@ export const api = {
     });
   },
   challengeHome() {
-    return request<ChallengeHome>({ url: '/challenge', method: 'GET' }).catch(() => DEMO_CHALLENGE_HOME);
+    return request<ChallengeHome>({ url: '/challenge', method: 'GET' }).catch((error) => demoFallback(error, () => DEMO_CHALLENGE_HOME));
   },
   myChallengeScore(seasonId?: string) {
     return request<MyChallengeScore>({
       url: `/challenge/my-score${seasonId ? `?seasonId=${seasonId}` : ''}`,
       method: 'GET',
-    }).catch(() => DEMO_MY_CHALLENGE_SCORE);
+    }).catch((error) => demoFallback(error, () => DEMO_MY_CHALLENGE_SCORE));
   },
   submitMatchPrediction(data: {
     matchId: string;
@@ -225,65 +223,60 @@ export const api = {
     return request<LeaderboardItem[]>({
       url: `/challenge/leaderboard${seasonId ? `?seasonId=${seasonId}` : ''}`,
       method: 'GET',
-    }).catch(() => DEMO_LEADERBOARD);
+    }).catch((error) => demoFallback(error, () => DEMO_LEADERBOARD));
   },
   predictionToday(date?: string) {
     if (isCloudbaseEnabled()) {
       return callCloudFunction<PredictionArchiveResponse>('predictions', compact({
         action: 'today',
         date,
-      })).catch(() => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4)));
+      })).catch((error) => demoFallback(error, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
     }
 
     return request<PredictionArchiveResponse>({
       url: `/predictions/today${date ? `?date=${encodeURIComponent(date)}` : ''}`,
       method: 'GET',
-    }).catch(() => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4)));
+    }).catch((error) => demoFallback(error, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
   },
   matchPrediction(matchId: string) {
     return request<PredictionArchive>({
       url: `/predictions/by-match/${matchId}`,
       method: 'GET',
-    }).catch(() => {
+    }).catch((error) => demoFallback(error, () => {
       const prediction = demoPredictionArchive().predictions.find((item) => item.matchId === matchId);
       if (!prediction) throw new Error('AI预测生成中');
       return prediction;
-    });
+    }));
   },
   predictionArchive(params?: { date?: string; hit?: 'hit' | 'miss' | 'pending' }) {
-    const query = new URLSearchParams();
-    if (params?.date) {
-      query.set('date', params.date);
-    }
-    if (params?.hit) {
-      query.set('hit', params.hit);
-    }
-
     return request<PredictionArchiveResponse>({
-      url: `/predictions/archive${query.toString() ? `?${query.toString()}` : ''}`,
+      url: '/predictions/archive',
       method: 'GET',
-    }).catch(() => demoPredictionArchive(params));
+      params,
+    }).catch((error) => demoFallback(error, () => demoPredictionArchive(params)));
   },
   predictionStats() {
     if (isCloudbaseEnabled()) {
       return callCloudFunction<PredictionStats>('predictions', {
         action: 'stats',
-      }).catch(() => DEMO_PREDICTION_STATS);
+      }).catch((error) => demoFallback(error, () => DEMO_PREDICTION_STATS));
     }
 
     return request<PredictionStats>({
       url: '/predictions/stats',
       method: 'GET',
-    }).catch(() => DEMO_PREDICTION_STATS);
+    }).catch((error) => demoFallback(error, () => DEMO_PREDICTION_STATS));
   },
   inviteStatus(): Promise<InviteStatus> {
     if (isCloudbaseEnabled()) {
       return callCloudFunction<InviteStatus>('invite', {
         action: 'status',
-      }).catch(() => DEMO_INVITE_STATUS);
+      }).catch((error) => demoFallback(error, () => DEMO_INVITE_STATUS));
     }
 
-    return Promise.resolve(DEMO_INVITE_STATUS);
+    return isDemoFallbackEnabled()
+      ? Promise.resolve(DEMO_INVITE_STATUS)
+      : request<InviteStatus>({ url: '/invite/status', method: 'GET' });
   },
   checkMissingPrediction(matchId: string) {
     return request<MissingPredictionCheckResult>({
