@@ -18,7 +18,7 @@ import {
 import { createHash } from 'crypto';
 import { AiService } from '../ai/ai.service';
 import { AiMatchContext } from '../ai/ai.types';
-import { demoPredictionArchives } from '../demo/demo-data';
+import { demoPredictionArchives, demoScheduleMatches } from '../demo/demo-data';
 import { FormEngineService } from '../form-engine';
 import { HeadToHeadEngineService } from '../head-to-head-engine';
 import {
@@ -368,12 +368,14 @@ export class PredictionsService {
       .catch(() => []);
 
     if (archives.length === 0) {
+      const fallbackPredictions = this.fallbackDemoArchivesForDate(
+        window.businessDate,
+      );
       return {
-        date: window.businessDate,
+        date: fallbackPredictions.date,
+        nextAvailableDate: fallbackPredictions.nextAvailableDate,
         source: 'demo',
-        predictions: this.filterDemoArchives({
-          date: window.businessDate,
-        }),
+        predictions: fallbackPredictions.predictions,
       };
     }
 
@@ -2785,7 +2787,18 @@ export class PredictionsService {
     date?: string;
     hit?: 'hit' | 'miss' | 'pending';
   }) {
-    return demoPredictionArchives
+    const generated = query.date
+      ? this.fallbackDemoArchivesForDate(query.date).predictions
+      : this.generatedDemoArchives(demoScheduleMatches.slice(0, 24));
+    const legacyIds = new Set(generated.map((item) => item.id));
+    const archives = [
+      ...generated,
+      ...demoPredictionArchives
+        .map((item) => this.presentArchive(item))
+        .filter((item) => !legacyIds.has(item.id)),
+    ];
+
+    return archives
       .filter((item) => {
         if (query.date && this.toBeijingDateString(item.kickoffAt) !== query.date) {
           return false;
@@ -2804,8 +2817,102 @@ export class PredictionsService {
         }
 
         return true;
-      })
-      .map((item) => this.presentArchive(item));
+      });
+  }
+
+  private fallbackDemoArchivesForDate(date: string) {
+    const sameDay = demoScheduleMatches.filter(
+      (match) => this.toBeijingDateString(match.kickoffAt) === date,
+    );
+    const matches =
+      sameDay.length > 0
+        ? sameDay
+        : demoScheduleMatches.filter(
+            (match) => this.toBeijingDateString(match.kickoffAt) > date,
+          );
+    const selected = matches.slice(0, 4);
+
+    return {
+      date: selected[0] ? this.toBeijingDateString(selected[0].kickoffAt) : date,
+      nextAvailableDate: selected[0]
+        ? this.toBeijingDateString(selected[0].kickoffAt)
+        : null,
+      predictions: this.generatedDemoArchives(selected),
+    };
+  }
+
+  private generatedDemoArchives(matches: typeof demoScheduleMatches) {
+    return matches.map((match, index) => {
+      const direction = [
+        PredictionDirection.HOME_WIN,
+        PredictionDirection.DRAW,
+        PredictionDirection.AWAY_WIN,
+      ][index % 3];
+      const predictedHome =
+        direction === PredictionDirection.AWAY_WIN ? 1 : 2;
+      const predictedAway =
+        direction === PredictionDirection.HOME_WIN ? 1 : 2;
+      const generatedAt = new Date(match.kickoffAt.getTime() - 6 * 60 * 60 * 1000);
+
+      return this.presentArchive({
+        id: `fallback_archive_${match.id}`,
+        matchId: match.id,
+        status: 'PUBLISHED',
+        predictionStage: 'PUBLISHED',
+        homeTeamName: match.homeTeam.name,
+        awayTeamName: match.awayTeam.name,
+        kickoffAt: match.kickoffAt,
+        publishedAt: generatedAt,
+        generatedAt,
+        recommendationDirection: direction,
+        homeWinProb: direction === PredictionDirection.HOME_WIN ? '46.00' : '32.00',
+        drawProb: direction === PredictionDirection.DRAW ? '36.00' : '28.00',
+        awayWinProb: direction === PredictionDirection.AWAY_WIN ? '46.00' : '26.00',
+        predictedHome,
+        predictedAway,
+        totalGoalsPrediction: predictedHome + predictedAway,
+        confidenceIndex: 64 - index * 2,
+        riskIndex: 55 + index * 3,
+        recommendationReason: `${match.homeTeam.name} vs ${match.awayTeam.name}：赛前基础数据已载入，建议关注阵容、节奏和临场变化。`,
+        riskTip:
+          '风险提示：足球比赛存在临场状态、阵容调整和早段进球等不确定性，本内容仅供足球数据分析参考。',
+        model: 'fallback-schedule',
+        promptVersion: 'fallback-schedule-v1',
+        engineModelVersion: 'fallback-schedule-v1',
+        modelVersion: 'fallback-schedule-v1',
+        isMemberContent: false,
+        isPublic: true,
+        originalContent: {
+          source: 'fallback-schedule',
+          predictionEngine: {
+            scoreCandidates: [
+              {
+                text: `${predictedHome}-${predictedAway}`,
+                home: predictedHome,
+                away: predictedAway,
+                probability: 0.28,
+              },
+              {
+                text: `${Math.max(0, predictedHome - 1)}-${predictedAway}`,
+                home: Math.max(0, predictedHome - 1),
+                away: predictedAway,
+                probability: 0.18,
+              },
+            ],
+            totalGoalsRange:
+              predictedHome + predictedAway >= 4 ? '4+' : '2-3',
+            overUnderLean: '均衡',
+            totalGoalsDistribution: null,
+          },
+        },
+        contentHash: `fallback-${match.externalId}`,
+        createdAt: generatedAt,
+        updatedAt: generatedAt,
+        match,
+        settlement: null,
+        corrections: [],
+      });
+    });
   }
 
   private demoStats() {

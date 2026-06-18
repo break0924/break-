@@ -76,6 +76,9 @@ export class MatchesService {
         orderBy: { kickoffAt: 'asc' },
         include: this.matchInclude(),
       })
+      .then((matches) =>
+        matches.length > 0 ? matches : this.filterDemoMatches(query),
+      )
       .catch(() => this.filterDemoMatches(query));
   }
 
@@ -91,12 +94,13 @@ export class MatchesService {
         },
       })
       .catch(() => demoScheduleMatches);
+    const sourceRows = rows.length > 0 ? rows : demoScheduleMatches;
 
     const dates = new Set<string>();
     const groups = new Set<string>();
     const stages = new Set<string>();
 
-    for (const row of rows) {
+    for (const row of sourceRows) {
       const date =
         'matchDate' in row && row.matchDate
           ? this.toDateOnly(row.matchDate)

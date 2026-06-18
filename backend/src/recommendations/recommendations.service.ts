@@ -7,6 +7,7 @@ import {
   Prisma,
 } from "@prisma/client";
 import { AiService } from "../ai/ai.service";
+import { demoScheduleMatches } from "../demo/demo-data";
 import {
   predictionGenerateCron,
   predictionTimeZone,
@@ -256,7 +257,7 @@ export class RecommendationsService {
     const { start, end } = this.beijingDayRange(day);
     let title = "今日AI精选";
     let intro = "暂无今日比赛";
-    let matches = await this.findMatchesInRange(start, end, 4);
+    let matches: Array<any> = await this.findMatchesInRange(start, end, 4);
 
     if (matches.length === 0) {
       matches = await this.findMatchesInRange(end, undefined, 4);
@@ -267,10 +268,29 @@ export class RecommendationsService {
     } else {
       intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
     }
+    let nextAvailableDate: string | null = null;
+
+    if (matches.length === 0) {
+      matches = this.findDemoMatchesInRange(start, end, 4);
+    }
+
+    if (matches.length === 0) {
+      matches = this.findDemoMatchesInRange(end, undefined, 4);
+      nextAvailableDate = matches[0]
+        ? this.beijingDateKey(matches[0].kickoffAt)
+        : null;
+      if (matches.length > 0) {
+        title = "下一场推荐";
+        intro = `暂无今日比赛，已展示接下来 ${matches.length} 场可推荐比赛`;
+      }
+    } else if (!nextAvailableDate) {
+      nextAvailableDate = this.beijingDateKey(matches[0].kickoffAt);
+    }
 
     return {
       id: `daily_${this.beijingDateKey(day)}_schedule`,
       date: day,
+      nextAvailableDate,
       title,
       intro,
       status: AiJobStatus.SUCCEEDED,
@@ -344,6 +364,16 @@ export class RecommendationsService {
         },
       },
     });
+  }
+
+  private findDemoMatchesInRange(start: Date, end: Date | undefined, take: number) {
+    return demoScheduleMatches
+      .filter((match) => {
+        const kickoffAt = match.kickoffAt.getTime();
+        return kickoffAt >= start.getTime() && (!end || kickoffAt < end.getTime());
+      })
+      .slice(0, take)
+      .map((match) => ({ ...match, predictionArchives: [] }));
   }
 
   private pickFromArchiveOrMatch(
