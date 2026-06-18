@@ -319,8 +319,9 @@ async function load() {
   try {
     match.value = await api.matchDetail(matchId.value);
     prediction.value = match.value.aiPrediction || null;
+    const resolvedMatchId = match.value.id || matchId.value;
     try {
-      prediction.value = await api.matchPrediction(matchId.value);
+      prediction.value = await api.matchPrediction(resolvedMatchId);
     } catch {
       prediction.value = match.value.aiPrediction || null;
     }
@@ -328,7 +329,7 @@ async function load() {
       await checkMissingPrediction();
     }
     try {
-      report.value = await api.aiReport(matchId.value);
+      report.value = await api.aiReport(resolvedMatchId);
     } catch {
       report.value = null;
     }
@@ -343,11 +344,12 @@ async function load() {
 
 async function checkMissingPrediction() {
   missingPredictionText.value = 'AI预测生成中';
+  const resolvedMatchId = match.value?.id || matchId.value;
   try {
-    const result = await api.checkMissingPrediction(matchId.value);
+    const result = await api.checkMissingPrediction(resolvedMatchId);
     const item = result.results?.[0];
     if (item?.status === 'GENERATED' || item?.status === 'EXISTS') {
-      prediction.value = item.prediction || (await api.matchPrediction(matchId.value));
+      prediction.value = item.prediction || (await api.matchPrediction(resolvedMatchId));
       return;
     }
 
@@ -360,7 +362,7 @@ async function checkMissingPrediction() {
 }
 
 function goPredict() {
-  uni.navigateTo({ url: `/pages/prediction-submit/index?matchId=${matchId.value}` });
+  uni.navigateTo({ url: `/pages/prediction-submit/index?matchId=${match.value?.id || matchId.value}` });
 }
 
 function goArchive() {

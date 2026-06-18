@@ -1,4 +1,4 @@
-import { request } from './http';
+import { ApiRequestError, request } from './http';
 import { callCloudFunction, isCloudbaseEnabled } from '../utils/cloudbase';
 import {
   DEMO_CHALLENGE_HOME,
@@ -59,6 +59,16 @@ function demoFallback<T>(error: unknown, fallback: () => T): T {
     throw error;
   }
   return fallback();
+}
+
+function guestMembershipStatus(): MembershipStatus {
+  return {
+    userId: '',
+    membershipStatus: 'NONE',
+    membershipExpireAt: null,
+    isMember: false,
+    benefits: [],
+  };
 }
 
 export const api = {
@@ -165,7 +175,12 @@ export const api = {
     return request<MembershipStatus>({
       url: '/membership/status',
       method: 'GET',
-    }).catch((error) => demoFallback(error, () => DEMO_MEMBERSHIP_STATUS));
+    }).catch((error) => {
+      if (error instanceof ApiRequestError && error.statusCode === 401) {
+        return guestMembershipStatus();
+      }
+      return demoFallback(error, () => DEMO_MEMBERSHIP_STATUS);
+    });
   },
   membershipPlans() {
     return request<MembershipPlan[]>({
@@ -274,9 +289,9 @@ export const api = {
       }).catch((error) => demoFallback(error, () => DEMO_INVITE_STATUS));
     }
 
-    return isDemoFallbackEnabled()
-      ? Promise.resolve(DEMO_INVITE_STATUS)
-      : request<InviteStatus>({ url: '/invite/status', method: 'GET' });
+    return request<InviteStatus>({ url: '/invite/status', method: 'GET' }).catch((error) =>
+      demoFallback(error, () => DEMO_INVITE_STATUS),
+    );
   },
   checkMissingPrediction(matchId: string) {
     return request<MissingPredictionCheckResult>({

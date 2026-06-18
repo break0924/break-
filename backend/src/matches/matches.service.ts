@@ -119,9 +119,27 @@ export class MatchesService {
   }
 
   async getMatch(id: string) {
+    const legacyMatch = this.parseLegacyMatchId(id);
     const match = await this.prisma.match
-      .findUnique({
-        where: { id },
+      .findFirst({
+        where: {
+          OR: [
+            { id },
+            { externalId: id },
+            ...(legacyMatch
+              ? [
+                  {
+                    kickoffAt: {
+                      gte: legacyMatch.start,
+                      lt: legacyMatch.end,
+                    },
+                    homeTeam: { fifaCode: legacyMatch.homeFifaCode },
+                    awayTeam: { fifaCode: legacyMatch.awayFifaCode },
+                  },
+                ]
+              : []),
+          ],
+        },
         include: this.matchInclude(),
       })
       .catch(() => null);
@@ -136,6 +154,26 @@ export class MatchesService {
     }
 
     return this.attachAiPrediction(match);
+  }
+
+  private parseLegacyMatchId(id: string) {
+    const matched = /^match_(\d{4})(\d{2})(\d{2})_([a-z0-9]+)_([a-z0-9]+)$/i.exec(
+      id,
+    );
+    if (!matched) {
+      return null;
+    }
+
+    const [, year, month, day, homeCode, awayCode] = matched;
+    const dateKey = `${year}-${month}-${day}`;
+    const start = new Date(`${dateKey}T00:00:00.000+08:00`);
+
+    return {
+      start,
+      end: new Date(start.getTime() + 24 * 60 * 60 * 1000),
+      homeFifaCode: homeCode.toUpperCase(),
+      awayFifaCode: awayCode.toUpperCase(),
+    };
   }
 
   async updateResult(id: string, dto: UpdateMatchResultDto) {

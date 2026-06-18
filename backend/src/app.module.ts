@@ -5,6 +5,7 @@ import { AiModule } from './ai/ai.module';
 import { AdminAiModule } from './admin-ai/admin-ai.module';
 import { AuthModule } from './auth/auth.module';
 import { ChallengeModule } from './challenge/challenge.module';
+import { CompatModule } from './compat/compat.module';
 import { EloModule } from './elo';
 import { FootballDataModule } from './football-data/football-data.module';
 import { FormEngineModule } from './form-engine';
@@ -35,6 +36,7 @@ import { UsersModule } from './users/users.module';
     MatchesModule,
     MembershipModule,
     ChallengeModule,
+    CompatModule,
     EloModule,
     FormEngineModule,
     HeadToHeadEngineModule,

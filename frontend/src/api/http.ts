@@ -8,6 +8,16 @@ type RequestOptions = UniApp.RequestOptions & {
   params?: Record<string, unknown>;
 };
 
+export class ApiRequestError extends Error {
+  constructor(
+    message: string,
+    readonly statusCode: number,
+  ) {
+    super(message);
+    this.name = 'ApiRequestError';
+  }
+}
+
 export function buildQueryString(params?: Record<string, unknown>) {
   if (!params) {
     return '';
@@ -83,7 +93,7 @@ export async function request<T>(options: RequestOptions): Promise<T> {
           uni.removeStorageSync('userProfile');
         }
 
-        reject(new Error(message));
+        reject(new ApiRequestError(message, res.statusCode));
       },
       fail: (error) => reject(new Error(error.errMsg || '网络异常')),
     });
