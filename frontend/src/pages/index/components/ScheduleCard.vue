@@ -6,12 +6,16 @@
     </view>
     <view class="schedule-match">
       <view class="side">
-        <AppImage :src="schedule.homeFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
+        <view class="flag-frame">
+          <AppImage :src="schedule.homeFlag" :fallback="DEFAULT_FLAG" mode="aspectFill" />
+        </view>
         <text>{{ schedule.homeTeam }}</text>
       </view>
       <text class="vs">VS</text>
       <view class="side away">
-        <AppImage :src="schedule.awayFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
+        <view class="flag-frame">
+          <AppImage :src="schedule.awayFlag" :fallback="DEFAULT_FLAG" mode="aspectFill" />
+        </view>
         <text>{{ schedule.awayTeam }}</text>
       </view>
     </view>
@@ -87,9 +91,11 @@ defineProps<{
   text-align: right;
 }
 
-:deep(.flag) {
+.flag-frame {
   width: 52rpx;
   height: 36rpx;
+  flex-shrink: 0;
+  overflow: hidden;
   border-radius: 8rpx;
 }
 

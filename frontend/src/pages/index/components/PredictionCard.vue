@@ -10,12 +10,16 @@
 
     <view class="teams">
       <view class="team">
-        <AppImage :src="prediction.homeFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
+        <view class="flag-frame">
+          <AppImage :src="prediction.homeFlag" :fallback="DEFAULT_FLAG" mode="aspectFill" />
+        </view>
         <text>{{ prediction.homeTeam }}</text>
       </view>
       <view class="versus">VS</view>
       <view class="team right">
-        <AppImage :src="prediction.awayFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
+        <view class="flag-frame">
+          <AppImage :src="prediction.awayFlag" :fallback="DEFAULT_FLAG" mode="aspectFill" />
+        </view>
         <text>{{ prediction.awayTeam }}</text>
       </view>
     </view>
@@ -233,15 +237,16 @@ const candidateScoreText = computed(() => {
   text-align: right;
 }
 
-:deep(.flag) {
+.flag-frame {
   width: 68rpx;
   height: 48rpx;
+  flex-shrink: 0;
   overflow: hidden;
   border: 1rpx solid rgba(255, 255, 255, 0.16);
   border-radius: 10rpx;
 }
 
-.featured :deep(.flag) {
+.featured .flag-frame {
   width: 96rpx;
   height: 66rpx;
   border-radius: 14rpx;
