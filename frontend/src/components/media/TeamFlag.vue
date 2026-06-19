@@ -11,12 +11,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { DEFAULT_FLAG, flagSrcForTeam } from '../../utils/assets';
+import { DEFAULT_FLAG, getTeamFlag } from '../../utils/assets';
 import AppImage from './AppImage.vue';
 
 const props = defineProps<{
   team?: {
     flagUrl?: string | null;
+    flag?: string | null;
     countryCode?: string | null;
     fifaCode?: string | null;
     flagCode?: string | null;
@@ -25,7 +26,7 @@ const props = defineProps<{
   } | null;
 }>();
 
-const src = computed(() => flagSrcForTeam(props.team || undefined));
+const src = computed(() => getTeamFlag(props.team || undefined));
 </script>
 
 <style scoped>

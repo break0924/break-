@@ -65,9 +65,82 @@ const TEAM_COUNTRY_CODE: Record<string, string> = {
   PAN: 'PA',
 };
 
+const AVAILABLE_FLAG_CODES = new Set([
+  'AR',
+  'AT',
+  'AU',
+  'BA',
+  'BE',
+  'BR',
+  'CA',
+  'CD',
+  'CH',
+  'CI',
+  'CO',
+  'CV',
+  'CW',
+  'CZ',
+  'DE',
+  'DZ',
+  'EC',
+  'EG',
+  'ES',
+  'FR',
+  'GB-ENG',
+  'GB-SCT',
+  'GH',
+  'HR',
+  'HT',
+  'IQ',
+  'IR',
+  'JO',
+  'JP',
+  'KR',
+  'MA',
+  'MX',
+  'NL',
+  'NO',
+  'NZ',
+  'PA',
+  'PT',
+  'PY',
+  'QA',
+  'SA',
+  'SE',
+  'SN',
+  'TN',
+  'TR',
+  'US',
+  'UY',
+  'UZ',
+  'ZA',
+]);
+
+const FLAG_CODE_ALIASES: Record<string, string> = {
+  SCT: 'GB-SCT',
+  SCO: 'GB-SCT',
+  SCOTLAND: 'GB-SCT',
+  ENG: 'GB-ENG',
+  ENGLAND: 'GB-ENG',
+  UK: 'GB-ENG',
+  GB: 'GB-ENG',
+  USA: 'US',
+};
+
+export type TeamFlagSource = {
+  flagUrl?: string | null;
+  flag?: string | null;
+  countryCode?: string | null;
+  flagCode?: string | null;
+  fifaCode?: string | null;
+  code?: string | null;
+  name?: string | null;
+};
+
 export function countryCodeFromTeam(team?: {
   countryCode?: string | null;
   fifaCode?: string | null;
+  flag?: string | null;
   flagCode?: string | null;
   code?: string | null;
   name?: string | null;
@@ -76,14 +149,14 @@ export function countryCodeFromTeam(team?: {
     return '';
   }
 
-  const countryCode = normalizeFlagCode(team.countryCode || team.flagCode);
+  const countryCode = resolveFlagCode(team.countryCode || team.flagCode || team.flag);
   if (countryCode) {
     return countryCode;
   }
 
-  const fifaCode = normalizeFlagCode(team.fifaCode || team.code);
-  if (fifaCode && TEAM_COUNTRY_CODE[fifaCode]) {
-    return TEAM_COUNTRY_CODE[fifaCode];
+  const fifaCode = resolveFlagCode(team.fifaCode || team.code);
+  if (fifaCode) {
+    return fifaCode;
   }
 
   return team.name ? TEAM_NAME_COUNTRY_CODE[team.name] || '' : '';
@@ -93,19 +166,54 @@ export function flagSrc(countryCode?: string | null) {
   return countryCode ? `/static/flags/${countryCode}.svg` : DEFAULT_FLAG;
 }
 
-export function flagSrcForTeam(team?: {
-  flagUrl?: string | null;
-  countryCode?: string | null;
-  fifaCode?: string | null;
-  flagCode?: string | null;
-  code?: string | null;
-  name?: string | null;
-}) {
-  if (team?.flagUrl) {
-    return team.flagUrl;
+export function getTeamFlag(team?: TeamFlagSource | null) {
+  if (!team) {
+    return DEFAULT_FLAG;
+  }
+
+  const explicitFlag = normalizeExplicitFlag(team.flagUrl || team.flag);
+  if (explicitFlag) {
+    return explicitFlag;
   }
 
   return flagSrc(countryCodeFromTeam(team));
+}
+
+export const flagSrcForTeam = getTeamFlag;
+
+function normalizeExplicitFlag(flag?: string | null) {
+  if (!flag) {
+    return '';
+  }
+
+  const value = flag.trim();
+  if (!value) {
+    return '';
+  }
+  if (value.startsWith('/') || value.startsWith('http://') || value.startsWith('https://')) {
+    return value;
+  }
+
+  const code = resolveFlagCode(value.replace(/^flags\//, '').replace(/\.svg$/i, ''));
+  return code ? flagSrc(code) : '';
+}
+
+function resolveFlagCode(code?: string | null) {
+  const normalized = normalizeFlagCode(code);
+  if (!normalized) {
+    return '';
+  }
+  if (AVAILABLE_FLAG_CODES.has(normalized)) {
+    return normalized;
+  }
+  if (FLAG_CODE_ALIASES[normalized]) {
+    return FLAG_CODE_ALIASES[normalized];
+  }
+  const mapped = TEAM_COUNTRY_CODE[normalized];
+  if (mapped && AVAILABLE_FLAG_CODES.has(mapped)) {
+    return mapped;
+  }
+  return '';
 }
 
 function normalizeFlagCode(code?: string | null) {

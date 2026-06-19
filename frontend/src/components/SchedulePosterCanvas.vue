@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance, nextTick, ref, watch } from 'vue';
 import type { Match } from '../api/types';
-import { DEFAULT_FLAG, flagSrcForTeam } from '../utils/assets';
+import { DEFAULT_FLAG, getTeamFlag } from '../utils/assets';
 
 type PosterMode = 'today' | 'date' | 'group-overview';
 
@@ -390,7 +390,7 @@ async function drawFlag(
   width = 40,
   height = 28,
 ) {
-  const src = team.flagUrl || flagSrcForTeam(team) || DEFAULT_FLAG;
+  const src = getTeamFlag(team) || DEFAULT_FLAG;
   try {
     const image = await getImageInfo(src);
     ctx.drawImage(image.path, x, y, width, height);
