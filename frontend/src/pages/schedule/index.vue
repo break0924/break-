@@ -558,8 +558,9 @@ function isFutureKickoff(match: Match) {
 }
 
 function isPendingResult(match: Match) {
-  return normalizeMatchStatus(match.status) === 'SCHEDULED' &&
-    !isFutureKickoff(match) &&
+  const kickoffAt = new Date(match.kickoffAt).getTime();
+  return Number.isFinite(kickoffAt) &&
+    Date.now() >= kickoffAt + 120 * 60 * 1000 &&
     !hasResult(match);
 }
 </script>

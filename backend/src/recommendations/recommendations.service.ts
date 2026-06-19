@@ -262,12 +262,18 @@ export class RecommendationsService {
     const requestedDate = this.beijingDateKey(day);
     let title = "今日推荐";
     let intro = "暂无今日比赛";
-    let matches: Array<any> = await this.findMatchesInRange(start, end, 4);
+    let matches: Array<any> = this.recommendableMatches(
+      await this.findMatchesInRange(start, end, 8),
+      4,
+    );
     let source: "database" | "demo" = "database";
     let displayDate = requestedDate;
 
     if (matches.length === 0) {
-      matches = await this.findMatchesInRange(end, undefined, 4);
+      matches = this.recommendableMatches(
+        await this.findMatchesInRange(end, undefined, 8),
+        4,
+      );
       if (matches.length > 0) {
         displayDate = this.beijingDateKey(matches[0].kickoffAt);
         title = "下一比赛日推荐";
@@ -384,7 +390,10 @@ export class RecommendationsService {
 
   private findDemoMatchesInRange(start: Date, end: Date | undefined, take: number) {
     if (end) {
-      return this.dynamicDemoMatchesForDate(this.beijingDateKey(start), take);
+      return this.recommendableMatches(
+        this.dynamicDemoMatchesForDate(this.beijingDateKey(start), take * 2),
+        take,
+      );
     }
 
     const fixedMatches = demoScheduleMatches
@@ -392,11 +401,15 @@ export class RecommendationsService {
         const kickoffAt = match.kickoffAt.getTime();
         return kickoffAt >= start.getTime();
       })
-      .slice(0, take)
       .map((match) => ({ ...match, predictionArchives: [] }));
 
-    return fixedMatches.length > 0
-      ? fixedMatches
+    const recommendableFixedMatches = this.recommendableMatches(
+      fixedMatches,
+      take,
+    );
+
+    return recommendableFixedMatches.length > 0
+      ? recommendableFixedMatches
       : this.dynamicDemoMatchesForDate(this.beijingDateKey(start), take);
   }
 
@@ -421,7 +434,7 @@ export class RecommendationsService {
         kickoffAt,
         kickoffTime,
         lockAt: kickoffAt,
-        status: MatchStatus.SCHEDULED,
+        status: this.displayStatus({ ...match, kickoffAt, homeScore: null, awayScore: null }),
         homeScore: null,
         awayScore: null,
         winnerTeamId: null,
@@ -438,6 +451,58 @@ export class RecommendationsService {
       : 0;
 
     return ((dayNumber % poolSize) + poolSize) % poolSize;
+  }
+
+  private recommendableMatches(matches: Array<any>, take: number) {
+    return matches
+      .map((match) => ({
+        ...match,
+        status: this.displayStatus(match),
+      }))
+      .filter((match) => {
+        const status = this.displayStatus(match);
+        return status === MatchStatus.SCHEDULED || status === MatchStatus.LIVE;
+      })
+      .slice(0, take);
+  }
+
+  private displayStatus(match: {
+    kickoffAt: Date | string;
+    status?: MatchStatus | string | null;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }) {
+    if (
+      match.status === MatchStatus.POSTPONED ||
+      match.status === MatchStatus.CANCELLED
+    ) {
+      return match.status;
+    }
+
+    if (
+      match.homeScore !== null &&
+      match.homeScore !== undefined &&
+      match.awayScore !== null &&
+      match.awayScore !== undefined
+    ) {
+      return MatchStatus.FINISHED;
+    }
+
+    const kickoffAt = new Date(match.kickoffAt).getTime();
+    if (!Number.isFinite(kickoffAt)) {
+      return MatchStatus.SCHEDULED;
+    }
+
+    const now = Date.now();
+    if (now < kickoffAt) {
+      return MatchStatus.SCHEDULED;
+    }
+
+    if (now < kickoffAt + 120 * 60 * 1000) {
+      return MatchStatus.LIVE;
+    }
+
+    return MatchStatus.FINISHED;
   }
 
   private pickFromArchiveOrMatch(

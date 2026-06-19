@@ -77,9 +77,12 @@ export class MatchesService {
         include: this.matchInclude(),
       })
       .then((matches) =>
-        matches.length > 0 ? matches : this.filterDemoMatches(query),
+        this.presentMatches(
+          matches.length > 0 ? matches : this.filterDemoMatches(query),
+          query,
+        ),
       )
-      .catch(() => this.filterDemoMatches(query));
+      .catch(() => this.presentMatches(this.filterDemoMatches(query), query));
   }
 
   async listMatchFilters() {
@@ -151,13 +154,13 @@ export class MatchesService {
     if (!match) {
       const demoMatch = demoScheduleMatches.find((item) => item.id === id);
       if (demoMatch) {
-        return demoMatch;
+        return this.presentMatch(demoMatch);
       }
 
       throw new NotFoundException('Match not found');
     }
 
-    return this.attachAiPrediction(match);
+    return this.attachAiPrediction(this.presentMatch(match));
   }
 
   private parseLegacyMatchId(id: string) {
@@ -572,10 +575,6 @@ export class MatchesService {
       where.stage = query.stage;
     }
 
-    if (query.status) {
-      where.status = query.status;
-    }
-
     if (query.date) {
       const start = new Date(`${query.date}T00:00:00.000+08:00`);
       const end = new Date(start);
@@ -607,10 +606,6 @@ export class MatchesService {
           return false;
         }
 
-        if (query.status && match.status !== query.status) {
-          return false;
-        }
-
         if (query.date && this.toDateOnly(match.matchDate) !== query.date) {
           return false;
         }
@@ -618,6 +613,66 @@ export class MatchesService {
         return true;
       })
       .sort((a, b) => a.kickoffAt.getTime() - b.kickoffAt.getTime());
+  }
+
+  private presentMatches<T extends Array<any>>(
+    matches: T,
+    query: ListMatchesQueryDto = {},
+  ) {
+    const rows = matches.map((match) => this.presentMatch(match));
+
+    if (!query.status) {
+      return rows;
+    }
+
+    return rows.filter((match) => match.status === query.status);
+  }
+
+  private presentMatch<T extends {
+    kickoffAt: Date | string;
+    status?: MatchStatus | string | null;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }>(match: T) {
+    return {
+      ...match,
+      status: this.displayStatus(match),
+    };
+  }
+
+  private displayStatus(match: {
+    kickoffAt: Date | string;
+    status?: MatchStatus | string | null;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }) {
+    if (
+      match.status === MatchStatus.POSTPONED ||
+      match.status === MatchStatus.CANCELLED
+    ) {
+      return match.status;
+    }
+
+    if (match.homeScore !== null && match.homeScore !== undefined &&
+      match.awayScore !== null && match.awayScore !== undefined) {
+      return MatchStatus.FINISHED;
+    }
+
+    const kickoffAt = new Date(match.kickoffAt).getTime();
+    if (!Number.isFinite(kickoffAt)) {
+      return match.status || MatchStatus.SCHEDULED;
+    }
+
+    const now = Date.now();
+    if (now < kickoffAt) {
+      return MatchStatus.SCHEDULED;
+    }
+
+    if (now < kickoffAt + 120 * 60 * 1000) {
+      return MatchStatus.LIVE;
+    }
+
+    return MatchStatus.FINISHED;
   }
 
   private toShanghaiDate(value: Date) {

@@ -2824,11 +2824,24 @@ export class PredictionsService {
   }
 
   private fallbackDemoArchivesForDate(date: string) {
-    const selected = this.dynamicDemoMatchesForDate(date, 4);
+    const todayMatches = this.recommendableMatches(
+      this.dynamicDemoMatchesForDate(date, 8),
+      4,
+    );
+    const selected =
+      todayMatches.length > 0
+        ? todayMatches
+        : this.dynamicDemoMatchesForDate(
+            this.addBeijingDays(new Date(`${date}T00:00:00.000+08:00`), 1),
+            4,
+          );
+    const displayDate = selected[0]
+      ? this.toBeijingDateString(selected[0].kickoffAt)
+      : date;
 
     return {
-      date,
-      displayDate: date,
+      date: displayDate,
+      displayDate,
       nextAvailableDate: selected[0]
         ? this.toBeijingDateString(selected[0].kickoffAt)
         : date,
@@ -2861,7 +2874,12 @@ export class PredictionsService {
         kickoffAt,
         kickoffTime,
         lockAt: kickoffAt,
-        status: MatchStatus.SCHEDULED,
+        status: this.displayStatus({
+          ...match,
+          kickoffAt,
+          homeScore: null,
+          awayScore: null,
+        }),
         homeScore: null,
         awayScore: null,
         winnerTeamId: null,
@@ -2877,6 +2895,58 @@ export class PredictionsService {
       : 0;
 
     return ((dayNumber % poolSize) + poolSize) % poolSize;
+  }
+
+  private recommendableMatches(matches: Array<any>, take: number) {
+    return matches
+      .map((match) => ({
+        ...match,
+        status: this.displayStatus(match),
+      }))
+      .filter((match) => {
+        const status = this.displayStatus(match);
+        return status === MatchStatus.SCHEDULED || status === MatchStatus.LIVE;
+      })
+      .slice(0, take);
+  }
+
+  private displayStatus(match: {
+    kickoffAt: Date | string;
+    status?: MatchStatus | string | null;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }) {
+    if (
+      match.status === MatchStatus.POSTPONED ||
+      match.status === MatchStatus.CANCELLED
+    ) {
+      return match.status;
+    }
+
+    if (
+      match.homeScore !== null &&
+      match.homeScore !== undefined &&
+      match.awayScore !== null &&
+      match.awayScore !== undefined
+    ) {
+      return MatchStatus.FINISHED;
+    }
+
+    const kickoffAt = new Date(match.kickoffAt).getTime();
+    if (!Number.isFinite(kickoffAt)) {
+      return MatchStatus.SCHEDULED;
+    }
+
+    const now = Date.now();
+    if (now < kickoffAt) {
+      return MatchStatus.SCHEDULED;
+    }
+
+    if (now < kickoffAt + 120 * 60 * 1000) {
+      return MatchStatus.LIVE;
+    }
+
+    return MatchStatus.FINISHED;
   }
 
   private generatedDemoArchives(matches: Array<any>) {
