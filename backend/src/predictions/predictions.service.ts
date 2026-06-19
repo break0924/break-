@@ -375,7 +375,7 @@ export class PredictionsService {
         nextAvailableDate: window.businessDate,
         source: 'database',
         predictions: recommendableArchives.map((item) =>
-          this.presentArchive(item),
+          this.presentTodayPrediction(item),
         ),
       };
     }
@@ -407,7 +407,7 @@ export class PredictionsService {
         nextAvailableDate: displayDate,
         source: 'database',
         predictions: futureRecommendableArchives.map((item) =>
-          this.presentArchive(item),
+          this.presentTodayPrediction(item),
         ),
       };
     }
@@ -420,6 +420,7 @@ export class PredictionsService {
       displayDate: fallbackPredictions.displayDate,
       nextAvailableDate: fallbackPredictions.nextAvailableDate,
       source: 'demo',
+      emptyReason: fallbackPredictions.emptyReason,
       predictions: fallbackPredictions.predictions,
     };
   }
@@ -2859,17 +2860,26 @@ export class PredictionsService {
   }
 
   private fallbackDemoArchivesForDate(date: string) {
-    const todayMatches = this.recommendableMatches(
-      this.dynamicDemoMatchesForDate(date, 8),
-      4,
-    );
-    const selected =
-      todayMatches.length > 0
-        ? todayMatches
-        : this.dynamicDemoMatchesForDate(
-            this.addBeijingDays(new Date(`${date}T00:00:00.000+08:00`), 1),
-            4,
-          );
+    let selected: Array<any> = [];
+
+    for (let offset = 0; offset <= 14; offset += 1) {
+      const targetDate =
+        offset === 0
+          ? date
+          : this.addBeijingDays(
+              new Date(`${date}T00:00:00.000+08:00`),
+              offset,
+            );
+      selected = this.recommendableMatches(
+        this.dynamicDemoMatchesForDate(targetDate, 8),
+        4,
+      );
+
+      if (selected.length > 0) {
+        break;
+      }
+    }
+
     const displayDate = selected[0]
       ? this.toBeijingDateString(selected[0].kickoffAt)
       : date;
@@ -2879,8 +2889,11 @@ export class PredictionsService {
       displayDate,
       nextAvailableDate: selected[0]
         ? this.toBeijingDateString(selected[0].kickoffAt)
-        : date,
-      predictions: this.generatedDemoArchives(selected),
+        : null,
+      emptyReason: selected.length === 0 ? 'NO_ACTIVE_PREDICTIONS' : undefined,
+      predictions: this.generatedDemoArchives(selected).map((item) =>
+        this.normalizeTodayPrediction(item),
+      ),
     };
   }
 
@@ -2954,8 +2967,18 @@ export class PredictionsService {
     return archives
       .filter((archive: any) => {
         const stage = String(archive.predictionStage || '').toUpperCase();
+        const status = String(archive.status || '').toUpperCase();
         const matchStatus = String(archive.match?.status || '').toUpperCase();
-        if (blockedStages.has(stage) || blockedStages.has(matchStatus)) {
+        const resultStatus = String(archive.resultStatus || '').toUpperCase();
+        const archiveLabel = String(archive.archiveLabel || '');
+        if (
+          archiveLabel.includes('归档') ||
+          blockedStages.has(stage) ||
+          blockedStages.has(status) ||
+          blockedStages.has(matchStatus) ||
+          blockedStages.has(resultStatus) ||
+          archive.settlement
+        ) {
           return false;
         }
 
@@ -2972,6 +2995,21 @@ export class PredictionsService {
         );
       })
       .slice(0, take);
+  }
+
+  private presentTodayPrediction<T extends { settlement?: unknown; corrections?: unknown[] }>(
+    archive: T,
+  ) {
+    return this.normalizeTodayPrediction(this.presentArchive(archive));
+  }
+
+  private normalizeTodayPrediction<T extends { archiveLabel?: string }>(
+    prediction: T,
+  ) {
+    return {
+      ...prediction,
+      archiveLabel: '赛前预测',
+    };
   }
 
   private displayStatus(match: {
