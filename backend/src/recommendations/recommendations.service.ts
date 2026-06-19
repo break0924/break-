@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
 import {
   AiJobStatus,
+  MatchStatus,
   PredictionArchiveStatus,
   PredictionDirection,
   Prisma,
@@ -83,6 +84,9 @@ export class RecommendationsService {
 
     return {
       ...recommendation,
+      displayDate: this.beijingDateKey(day),
+      nextAvailableDate: this.beijingDateKey(day),
+      source: "database",
       isMember,
       matches: validMatches.map((item) => {
         const latestArchive = item.match.predictionArchives?.[0];
@@ -255,42 +259,54 @@ export class RecommendationsService {
   private async getScheduleRecommendation(userId: string | undefined, day: Date) {
     const isMember = userId ? await this.isMember(userId) : false;
     const { start, end } = this.beijingDayRange(day);
-    let title = "今日AI精选";
+    const requestedDate = this.beijingDateKey(day);
+    let title = "今日推荐";
     let intro = "暂无今日比赛";
     let matches: Array<any> = await this.findMatchesInRange(start, end, 4);
+    let source: "database" | "demo" = "database";
+    let displayDate = requestedDate;
 
     if (matches.length === 0) {
       matches = await this.findMatchesInRange(end, undefined, 4);
       if (matches.length > 0) {
-        title = "下一场推荐";
-        intro = `暂无今日比赛，已展示接下来 ${matches.length} 场可推荐比赛`;
+        displayDate = this.beijingDateKey(matches[0].kickoffAt);
+        title = "下一比赛日推荐";
+        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
       }
     } else {
       intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
     }
-    let nextAvailableDate: string | null = null;
 
     if (matches.length === 0) {
+      source = "demo";
       matches = this.findDemoMatchesInRange(start, end, 4);
     }
 
     if (matches.length === 0) {
+      source = "demo";
       matches = this.findDemoMatchesInRange(end, undefined, 4);
-      nextAvailableDate = matches[0]
-        ? this.beijingDateKey(matches[0].kickoffAt)
-        : null;
       if (matches.length > 0) {
-        title = "下一场推荐";
-        intro = `暂无今日比赛，已展示接下来 ${matches.length} 场可推荐比赛`;
+        displayDate = this.beijingDateKey(matches[0].kickoffAt);
+        title = "下一比赛日推荐";
+        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
       }
-    } else if (!nextAvailableDate) {
-      nextAvailableDate = this.beijingDateKey(matches[0].kickoffAt);
+    } else if (source === "demo") {
+      displayDate = this.beijingDateKey(matches[0].kickoffAt);
+      if (displayDate === requestedDate) {
+        title = "今日推荐";
+        intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
+      } else {
+        title = "下一比赛日推荐";
+        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
+      }
     }
 
     return {
-      id: `daily_${this.beijingDateKey(day)}_schedule`,
+      id: `daily_${requestedDate}_schedule`,
       date: day,
-      nextAvailableDate,
+      displayDate,
+      nextAvailableDate: displayDate,
+      source,
       title,
       intro,
       status: AiJobStatus.SUCCEEDED,
@@ -307,7 +323,7 @@ export class RecommendationsService {
 
         return {
           id: `daily_pick_${match.id}`,
-          dailyRecommendationId: `daily_${this.beijingDateKey(day)}_schedule`,
+          dailyRecommendationId: `daily_${requestedDate}_schedule`,
           matchId: match.id,
           recommendationDirection: pick.recommendationDirection,
           predictedHome: pick.predictedHome,
@@ -367,13 +383,61 @@ export class RecommendationsService {
   }
 
   private findDemoMatchesInRange(start: Date, end: Date | undefined, take: number) {
-    return demoScheduleMatches
+    if (end) {
+      return this.dynamicDemoMatchesForDate(this.beijingDateKey(start), take);
+    }
+
+    const fixedMatches = demoScheduleMatches
       .filter((match) => {
         const kickoffAt = match.kickoffAt.getTime();
-        return kickoffAt >= start.getTime() && (!end || kickoffAt < end.getTime());
+        return kickoffAt >= start.getTime();
       })
       .slice(0, take)
       .map((match) => ({ ...match, predictionArchives: [] }));
+
+    return fixedMatches.length > 0
+      ? fixedMatches
+      : this.dynamicDemoMatchesForDate(this.beijingDateKey(start), take);
+  }
+
+  private dynamicDemoMatchesForDate(date: string, take: number) {
+    const pool = demoScheduleMatches.filter(
+      (match) => match.status !== MatchStatus.FINISHED,
+    );
+    const sourceMatches = pool.length > 0 ? pool : demoScheduleMatches;
+    const startIndex = this.demoRotationIndex(date, sourceMatches.length);
+    const selected = Array.from(
+      { length: Math.min(take, sourceMatches.length) },
+      (_, index) => sourceMatches[(startIndex + index) % sourceMatches.length],
+    );
+
+    return selected.map((match, index) => {
+      const kickoffTime = match.kickoffTime || ["01:00", "04:00", "07:00", "10:00"][index % 4];
+      const kickoffAt = new Date(`${date}T${kickoffTime}:00+08:00`);
+
+      return {
+        ...match,
+        matchDate: new Date(`${date}T00:00:00.000Z`),
+        kickoffAt,
+        kickoffTime,
+        lockAt: kickoffAt,
+        status: MatchStatus.SCHEDULED,
+        homeScore: null,
+        awayScore: null,
+        winnerTeamId: null,
+        predictionArchives: [],
+      };
+    });
+  }
+
+  private demoRotationIndex(date: string, poolSize: number) {
+    if (poolSize <= 0) return 0;
+    const day = Date.parse(`${date}T00:00:00.000+08:00`);
+    const dayNumber = Number.isFinite(day)
+      ? Math.floor(day / (24 * 60 * 60 * 1000))
+      : 0;
+
+    return ((dayNumber % poolSize) + poolSize) % poolSize;
   }
 
   private pickFromArchiveOrMatch(

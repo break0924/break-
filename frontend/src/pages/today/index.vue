@@ -9,8 +9,8 @@
 
     <view class="hero today-hero">
       <view class="eyebrow">Daily Match Intelligence</view>
-      <view class="h1">今日推荐</view>
-      <view class="sub">今日共 {{ matchCount }} 场比赛，已更新 {{ updatedCount }} 场赛前分析</view>
+      <view class="h1">{{ recommendationTitle }}</view>
+      <view class="sub">{{ recommendationIntro }}</view>
       <view class="hero-tags">
         <view>公开归档</view>
         <view>会员可看完整理由</view>
@@ -173,6 +173,12 @@ const tabs: Array<{ label: string; value: FilterTab }> = [
 
 const matchCount = computed(() => data.value?.matches.length || 0);
 const updatedCount = computed(() => data.value?.matches.length || 0);
+const recommendationTitle = computed(() => data.value?.title || '今日推荐');
+const recommendationIntro = computed(() => {
+  if (data.value?.intro) return data.value.intro;
+
+  return `今日共 ${matchCount.value} 场比赛，已更新 ${updatedCount.value} 场赛前分析`;
+});
 const publishTime = computed(() => formatPublishTime(data.value?.generatedAt));
 const normalizedMatches = computed(() => {
   const isMember = Boolean(data.value?.isMember);

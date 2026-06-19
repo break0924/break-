@@ -373,6 +373,7 @@ export class PredictionsService {
       );
       return {
         date: fallbackPredictions.date,
+        displayDate: fallbackPredictions.displayDate,
         nextAvailableDate: fallbackPredictions.nextAvailableDate,
         source: 'demo',
         predictions: fallbackPredictions.predictions,
@@ -381,6 +382,8 @@ export class PredictionsService {
 
     return {
       date: window.businessDate,
+      displayDate: window.businessDate,
+      nextAvailableDate: window.businessDate,
       source: 'database',
       predictions: archives.map((item) => this.presentArchive(item)),
     };
@@ -2821,27 +2824,62 @@ export class PredictionsService {
   }
 
   private fallbackDemoArchivesForDate(date: string) {
-    const sameDay = demoScheduleMatches.filter(
-      (match) => this.toBeijingDateString(match.kickoffAt) === date,
-    );
-    const matches =
-      sameDay.length > 0
-        ? sameDay
-        : demoScheduleMatches.filter(
-            (match) => this.toBeijingDateString(match.kickoffAt) > date,
-          );
-    const selected = matches.slice(0, 4);
+    const selected = this.dynamicDemoMatchesForDate(date, 4);
 
     return {
-      date: selected[0] ? this.toBeijingDateString(selected[0].kickoffAt) : date,
+      date,
+      displayDate: date,
       nextAvailableDate: selected[0]
         ? this.toBeijingDateString(selected[0].kickoffAt)
-        : null,
+        : date,
       predictions: this.generatedDemoArchives(selected),
     };
   }
 
-  private generatedDemoArchives(matches: typeof demoScheduleMatches) {
+  private dynamicDemoMatchesForDate(
+    date: string,
+    take: number,
+  ): Array<any> {
+    const pool = demoScheduleMatches.filter(
+      (match) => match.status !== MatchStatus.FINISHED,
+    );
+    const sourceMatches = pool.length > 0 ? pool : demoScheduleMatches;
+    const startIndex = this.demoRotationIndex(date, sourceMatches.length);
+    const selected = Array.from(
+      { length: Math.min(take, sourceMatches.length) },
+      (_, index) => sourceMatches[(startIndex + index) % sourceMatches.length],
+    );
+
+    return selected.map((match, index) => {
+      const kickoffTime =
+        match.kickoffTime || ['01:00', '04:00', '07:00', '10:00'][index % 4];
+      const kickoffAt = new Date(`${date}T${kickoffTime}:00+08:00`);
+
+      return {
+        ...match,
+        matchDate: new Date(`${date}T00:00:00.000Z`),
+        kickoffAt,
+        kickoffTime,
+        lockAt: kickoffAt,
+        status: MatchStatus.SCHEDULED,
+        homeScore: null,
+        awayScore: null,
+        winnerTeamId: null,
+      };
+    });
+  }
+
+  private demoRotationIndex(date: string, poolSize: number) {
+    if (poolSize <= 0) return 0;
+    const day = Date.parse(`${date}T00:00:00.000+08:00`);
+    const dayNumber = Number.isFinite(day)
+      ? Math.floor(day / (24 * 60 * 60 * 1000))
+      : 0;
+
+    return ((dayNumber % poolSize) + poolSize) % poolSize;
+  }
+
+  private generatedDemoArchives(matches: Array<any>) {
     return matches.map((match, index) => {
       const direction = [
         PredictionDirection.HOME_WIN,

@@ -98,6 +98,10 @@ export type AiReport = {
 
 export type DailyRecommendation = {
   id: string;
+  date?: string | null;
+  displayDate?: string | null;
+  nextAvailableDate?: string | null;
+  source?: 'database' | 'demo' | string;
   title: string;
   intro?: string | null;
   generatedAt?: string | null;
