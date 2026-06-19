@@ -98,7 +98,7 @@
 
       <ChallengeBanner @join="go('/pages/challenge/index')" />
 
-      <section class="home-section">
+      <section class="home-section benefits-section">
         <view class="section-heading">
           <view>
             <view class="section-title">会员权益</view>

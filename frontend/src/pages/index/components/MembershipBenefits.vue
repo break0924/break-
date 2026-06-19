@@ -29,8 +29,10 @@ defineProps<{
 }
 
 .benefit-card {
-  min-height: 218rpx;
+  min-height: 292rpx;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   padding: 24rpx;
   border: 1rpx solid rgba(255, 216, 130, 0.14);
   border-radius: 26rpx;
@@ -38,6 +40,7 @@ defineProps<{
     radial-gradient(circle at 88% 0%, rgba(255, 216, 130, 0.12), transparent 34%),
     radial-gradient(circle at 0% 100%, rgba(64, 134, 255, 0.12), transparent 36%),
     rgba(10, 20, 42, 0.78);
+  overflow: visible;
 }
 
 :deep(.benefit-icon) {
