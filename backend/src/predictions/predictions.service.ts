@@ -366,26 +366,61 @@ export class PredictionsService {
         include: this.archiveInclude(),
       })
       .catch(() => []);
+    const recommendableArchives = this.recommendableArchives(archives, 4);
 
-    if (archives.length === 0) {
-      const fallbackPredictions = this.fallbackDemoArchivesForDate(
-        window.businessDate,
-      );
+    if (recommendableArchives.length > 0) {
       return {
-        date: fallbackPredictions.date,
-        displayDate: fallbackPredictions.displayDate,
-        nextAvailableDate: fallbackPredictions.nextAvailableDate,
-        source: 'demo',
-        predictions: fallbackPredictions.predictions,
+        date: window.businessDate,
+        displayDate: window.businessDate,
+        nextAvailableDate: window.businessDate,
+        source: 'database',
+        predictions: recommendableArchives.map((item) =>
+          this.presentArchive(item),
+        ),
       };
     }
 
+    const futureArchives = await this.prisma.predictionArchive
+      .findMany({
+        where: {
+          status: PredictionArchiveStatus.PUBLISHED,
+          isPublic: true,
+          kickoffAt: { gt: new Date() },
+        },
+        orderBy: { kickoffAt: 'asc' },
+        take: 8,
+        include: this.archiveInclude(),
+      })
+      .catch(() => []);
+    const futureRecommendableArchives = this.recommendableArchives(
+      futureArchives,
+      4,
+    );
+
+    if (futureRecommendableArchives.length > 0) {
+      const displayDate = this.toBeijingDateString(
+        futureRecommendableArchives[0].kickoffAt,
+      );
+      return {
+        date: displayDate,
+        displayDate,
+        nextAvailableDate: displayDate,
+        source: 'database',
+        predictions: futureRecommendableArchives.map((item) =>
+          this.presentArchive(item),
+        ),
+      };
+    }
+
+    const fallbackPredictions = this.fallbackDemoArchivesForDate(
+      window.businessDate,
+    );
     return {
-      date: window.businessDate,
-      displayDate: window.businessDate,
-      nextAvailableDate: window.businessDate,
-      source: 'database',
-      predictions: archives.map((item) => this.presentArchive(item)),
+      date: fallbackPredictions.date,
+      displayDate: fallbackPredictions.displayDate,
+      nextAvailableDate: fallbackPredictions.nextAvailableDate,
+      source: 'demo',
+      predictions: fallbackPredictions.predictions,
     };
   }
 
@@ -2906,6 +2941,35 @@ export class PredictionsService {
       .filter((match) => {
         const status = this.displayStatus(match);
         return status === MatchStatus.SCHEDULED || status === MatchStatus.LIVE;
+      })
+      .slice(0, take);
+  }
+
+  private recommendableArchives<T extends { kickoffAt: Date | string }>(
+    archives: T[],
+    take: number,
+  ) {
+    const blockedStages = new Set(['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED']);
+
+    return archives
+      .filter((archive: any) => {
+        const stage = String(archive.predictionStage || '').toUpperCase();
+        const matchStatus = String(archive.match?.status || '').toUpperCase();
+        if (blockedStages.has(stage) || blockedStages.has(matchStatus)) {
+          return false;
+        }
+
+        const displayStatus = this.displayStatus({
+          kickoffAt: archive.kickoffAt,
+          status: archive.match?.status,
+          homeScore: archive.match?.homeScore,
+          awayScore: archive.match?.awayScore,
+        });
+
+        return (
+          displayStatus === MatchStatus.SCHEDULED ||
+          displayStatus === MatchStatus.LIVE
+        );
       })
       .slice(0, take);
   }
