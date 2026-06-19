@@ -10,12 +10,12 @@
 
     <view class="teams">
       <view class="team">
-        <AppImage :src="prediction.homeFlag" custom-class="flag" mode="aspectFill" />
+        <AppImage :src="prediction.homeFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
         <text>{{ prediction.homeTeam }}</text>
       </view>
       <view class="versus">VS</view>
       <view class="team right">
-        <AppImage :src="prediction.awayFlag" custom-class="flag" mode="aspectFill" />
+        <AppImage :src="prediction.awayFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
         <text>{{ prediction.awayTeam }}</text>
       </view>
     </view>
@@ -96,6 +96,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import AppImage from '../../../components/media/AppImage.vue';
+import { DEFAULT_FLAG } from '../../../utils/assets';
 import type { PredictionMock } from '../mock';
 
 const props = defineProps<{

@@ -16,8 +16,12 @@ import AppImage from './AppImage.vue';
 
 const props = defineProps<{
   team?: {
+    flagUrl?: string | null;
     countryCode?: string | null;
     fifaCode?: string | null;
+    flagCode?: string | null;
+    code?: string | null;
+    name?: string | null;
   } | null;
 }>();
 

@@ -6,12 +6,12 @@
     </view>
     <view class="schedule-match">
       <view class="side">
-        <AppImage :src="schedule.homeFlag" custom-class="flag" mode="aspectFill" />
+        <AppImage :src="schedule.homeFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
         <text>{{ schedule.homeTeam }}</text>
       </view>
       <text class="vs">VS</text>
       <view class="side away">
-        <AppImage :src="schedule.awayFlag" custom-class="flag" mode="aspectFill" />
+        <AppImage :src="schedule.awayFlag" :fallback="DEFAULT_FLAG" custom-class="flag" mode="aspectFill" />
         <text>{{ schedule.awayTeam }}</text>
       </view>
     </view>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import AppImage from '../../../components/media/AppImage.vue';
+import { DEFAULT_FLAG } from '../../../utils/assets';
 import type { ScheduleMock } from '../mock';
 
 defineProps<{

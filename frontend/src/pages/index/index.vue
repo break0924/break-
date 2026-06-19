@@ -129,6 +129,7 @@ import MembershipBenefits from './components/MembershipBenefits.vue';
 import PredictionCard from './components/PredictionCard.vue';
 import ScheduleCard from './components/ScheduleCard.vue';
 import StatsCard from './components/StatsCard.vue';
+import { flagSrcForTeam } from '../../utils/assets';
 import { normalizeMatchStatus } from '../../utils/format';
 import { consumeMembershipActivationTip } from '../../utils/membershipTips';
 import {
@@ -302,11 +303,13 @@ function mapStats(source: CloudHomeData['stats']): StatMock[] {
   ];
 }
 
-function teamFlag(team?: { flagUrl?: string | null; countryCode?: string | null } | null) {
-  if (team?.flagUrl) {
-    return team.flagUrl;
-  }
-  return team?.countryCode ? `/static/flags/${team.countryCode}.svg` : '/static/flags/default.svg';
+function teamFlag(team?: {
+  flagUrl?: string | null;
+  countryCode?: string | null;
+  fifaCode?: string | null;
+  name?: string | null;
+} | null) {
+  return flagSrcForTeam(team || undefined);
 }
 
 function directionText(value: string) {

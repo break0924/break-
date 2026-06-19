@@ -68,12 +68,25 @@ const TEAM_COUNTRY_CODE: Record<string, string> = {
 export function countryCodeFromTeam(team?: {
   countryCode?: string | null;
   fifaCode?: string | null;
+  flagCode?: string | null;
+  code?: string | null;
+  name?: string | null;
 }) {
   if (!team) {
     return '';
   }
 
-  return team.countryCode || TEAM_COUNTRY_CODE[team.fifaCode || ''] || '';
+  const countryCode = normalizeFlagCode(team.countryCode || team.flagCode);
+  if (countryCode) {
+    return countryCode;
+  }
+
+  const fifaCode = normalizeFlagCode(team.fifaCode || team.code);
+  if (fifaCode && TEAM_COUNTRY_CODE[fifaCode]) {
+    return TEAM_COUNTRY_CODE[fifaCode];
+  }
+
+  return team.name ? TEAM_NAME_COUNTRY_CODE[team.name] || '' : '';
 }
 
 export function flagSrc(countryCode?: string | null) {
@@ -81,10 +94,22 @@ export function flagSrc(countryCode?: string | null) {
 }
 
 export function flagSrcForTeam(team?: {
+  flagUrl?: string | null;
   countryCode?: string | null;
   fifaCode?: string | null;
+  flagCode?: string | null;
+  code?: string | null;
+  name?: string | null;
 }) {
+  if (team?.flagUrl) {
+    return team.flagUrl;
+  }
+
   return flagSrc(countryCodeFromTeam(team));
+}
+
+function normalizeFlagCode(code?: string | null) {
+  return code ? code.trim().toUpperCase() : '';
 }
 
 export const IMAGE_ASSETS = {
@@ -154,6 +179,14 @@ export const FLAG_MAPPING = [
   { fifaCode: 'GHA', countryCode: 'GH', name: '加纳' },
   { fifaCode: 'PAN', countryCode: 'PA', name: '巴拿马' },
 ];
+
+const TEAM_NAME_COUNTRY_CODE = FLAG_MAPPING.reduce<Record<string, string>>(
+  (map, item) => {
+    map[item.name] = item.countryCode;
+    return map;
+  },
+  {},
+);
 
 export const IMAGE_RESOURCE_LIST: StaticAssetMeta[] = [
   {
