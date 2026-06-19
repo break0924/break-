@@ -220,7 +220,7 @@ function applyHomeData(data: CloudHomeData) {
 
   predictionItems.value = upcomingPredictions.length
     ? upcomingPredictions.map(mapPrediction)
-    : [];
+    : fallbackPredictions;
   scheduleItems.value = (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).length
     ? (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).map(mapSchedule)
     : fallbackSchedules;

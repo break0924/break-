@@ -24,52 +24,9 @@ function normalizeTeam(team) {
   };
 }
 
-function displayStatus(match) {
-  if (match.status === 'POSTPONED' || match.status === 'CANCELLED') {
-    return match.status;
-  }
-
-  if (match.homeScore !== null && match.homeScore !== undefined &&
-    match.awayScore !== null && match.awayScore !== undefined) {
-    return 'FINISHED';
-  }
-
-  const kickoffAt = new Date(match.kickoffAt || `${match.matchDate}T${match.kickoffTime || '00:00'}:00+08:00`).getTime();
-  if (!Number.isFinite(kickoffAt)) {
-    return match.status || 'SCHEDULED';
-  }
-
-  const now = Date.now();
-  if (now < kickoffAt) {
-    return 'SCHEDULED';
-  }
-
-  if (now < kickoffAt + 120 * 60 * 1000) {
-    return 'LIVE';
-  }
-
-  return 'FINISHED';
-}
-
-function isRecommendable(match) {
-  const status = displayStatus(match || {});
-  return status === 'SCHEDULED' || status === 'LIVE';
-}
-
-function addShanghaiDays(date, days) {
-  const value = new Date(`${date}T00:00:00.000+08:00`);
-  value.setUTCDate(value.getUTCDate() + days);
-  const shanghai = new Date(value.getTime() + 8 * 60 * 60 * 1000);
-  const year = shanghai.getUTCFullYear();
-  const month = String(shanghai.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(shanghai.getUTCDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
 function normalizeMatch(match, teamsById, prediction) {
   const homeTeam = normalizeTeam(teamsById[match.homeTeamId] || match.homeTeam);
   const awayTeam = normalizeTeam(teamsById[match.awayTeamId] || match.awayTeam);
-  const kickoffAt = match.kickoffAt || `${match.matchDate}T${match.kickoffTime || '00:00'}:00+08:00`;
   return {
     id: match._id || match.id,
     stage: match.stage || 'GROUP',
@@ -77,11 +34,11 @@ function normalizeMatch(match, teamsById, prediction) {
     matchDate: match.matchDate || '',
     kickoffTime: match.kickoffTime || '',
     timezone: match.timezone || 'Asia/Shanghai',
-    kickoffAt,
+    kickoffAt: match.kickoffAt || `${match.matchDate}T${match.kickoffTime || '00:00'}:00+08:00`,
     venue: match.venue || '',
     city: match.city || '',
     roundName: match.roundName || '',
-    status: displayStatus({ ...match, kickoffAt }),
+    status: match.status || 'SCHEDULED',
     homeScore: match.homeScore ?? null,
     awayScore: match.awayScore ?? null,
     winnerTeamId: match.winnerTeamId || null,
@@ -95,11 +52,6 @@ function normalizePrediction(item, match) {
   const predictedHome = item.predictedHome ?? Number(String(item.predictedScore || '0-0').split('-')[0] || 0);
   const predictedAway = item.predictedAway ?? Number(String(item.predictedScore || '0-0').split('-')[1] || 0);
   const scoreCandidates = normalizeScoreCandidates(item.scoreCandidates || item.candidateScores || item.scoreModel?.scoreCandidates);
-  const totalGoalsRange =
-    item.totalGoalsRange ||
-    item.scoreModel?.totalGoalsRange ||
-    item.predictionEngine?.totalGoalsRange ||
-    null;
 
   return {
     id: item._id || item.id,
@@ -123,7 +75,6 @@ function normalizePrediction(item, match) {
     predictedAway,
     predictedScore: item.predictedScore || `${predictedHome}-${predictedAway}`,
     scoreCandidates,
-    totalGoalsRange,
     totalGoalsPrediction: item.totalGoalsPrediction ?? predictedHome + predictedAway,
     predictedTotalGoals: item.predictedTotalGoals ?? predictedHome + predictedAway,
     confidenceIndex: item.confidenceIndex ?? 60,
@@ -198,68 +149,8 @@ function isScoreReferenceHit(item) {
   return Boolean(item.settlement?.hitScore) || isCandidateScoreHit(item);
 }
 
-function isTotalGoalsRangeHit(item) {
-  if (item.settlement?.hitTotalGoalsRange !== undefined) {
-    return Boolean(item.settlement.hitTotalGoalsRange);
-  }
-
-  const homeScore = Number(item.settlement?.homeScore);
-  const awayScore = Number(item.settlement?.awayScore);
-  if (!Number.isFinite(homeScore) || !Number.isFinite(awayScore)) {
-    return false;
-  }
-
-  const totalGoals = homeScore + awayScore;
-  if (item.totalGoalsRange === '0-1球') {
-    return totalGoals <= 1;
-  }
-  if (item.totalGoalsRange === '2-3球') {
-    return totalGoals >= 2 && totalGoals <= 3;
-  }
-  if (item.totalGoalsRange === '4球以上') {
-    return totalGoals >= 4;
-  }
-  return false;
-}
-
-function currentStreak(items) {
-  let streak = 0;
-  for (const item of items) {
-    if (!item.settlement?.hitResult) {
-      break;
-    }
-    streak += 1;
-  }
-  return streak;
-}
-
-function bestStreak(items) {
-  let best = 0;
-  let current = 0;
-  for (const item of [...items].reverse()) {
-    if (item.settlement?.hitResult) {
-      current += 1;
-      best = Math.max(best, current);
-    } else {
-      current = 0;
-    }
-  }
-  return best;
-}
-
 function buildStats(predictions) {
   const settled = predictions.filter((item) => item.settlement);
-  const settledByLatest = [...settled].sort((a, b) => {
-    const left = new Date(a.settlement?.settledAt || a.kickoffAt || 0).getTime();
-    const right = new Date(b.settlement?.settledAt || b.kickoffAt || 0).getTime();
-    return right - left;
-  });
-  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-  const last7Settled = settledByLatest.filter((item) => {
-    const settledAt = new Date(item.settlement?.settledAt || item.kickoffAt || 0).getTime();
-    return Number.isFinite(settledAt) && settledAt >= sevenDaysAgo;
-  });
-  const last30Settled = settledByLatest.slice(0, 30);
   const resultHits = settled.filter((item) => item.settlement?.hitResult).length;
   const scoreHits = settled.filter((item) => item.settlement?.hitScore).length;
   const scoreCandidateHits = settled.filter((item) => isCandidateScoreHit(item)).length;
@@ -269,7 +160,6 @@ function buildStats(predictions) {
   ));
   const highConfidenceHits = highConfidenceSettled.filter((item) => item.settlement?.hitResult).length;
   const totalGoalsHits = settled.filter((item) => item.settlement?.hitTotalGoals).length;
-  const totalGoalsRangeHits = settled.filter((item) => isTotalGoalsRangeHit(item)).length;
   const count = settled.length || 1;
   const highConfidenceCount = highConfidenceSettled.length || 1;
 
@@ -278,8 +168,8 @@ function buildStats(predictions) {
     totalPredictions: predictions.length,
     settledPredictions: settled.length,
     archivedMatchCount: settled.length,
-    last7DaysHitRate: Math.round((last7Settled.filter((item) => item.settlement?.hitResult).length / (last7Settled.length || 1)) * 100),
-    last30MatchesHitRate: Math.round((last30Settled.filter((item) => item.settlement?.hitResult).length / (last30Settled.length || 1)) * 100),
+    last7DaysHitRate: Math.round((resultHits / count) * 100),
+    last30MatchesHitRate: Math.round((resultHits / count) * 100),
     resultHitRate: Math.round((resultHits / count) * 100),
     scoreHitRate: Math.round((scoreHits / count) * 100),
     scoreCandidateHitRate: Math.round((scoreCandidateHits / count) * 100),
@@ -287,9 +177,8 @@ function buildStats(predictions) {
     highConfidenceHitRate: Math.round((highConfidenceHits / highConfidenceCount) * 100),
     highConfidenceSettledCount: highConfidenceSettled.length,
     totalGoalsHitRate: Math.round((totalGoalsHits / count) * 100),
-    totalGoalsRangeHitRate: Math.round((totalGoalsRangeHits / count) * 100),
-    currentHitStreak: currentStreak(settledByLatest),
-    bestHitStreak: bestStreak(settledByLatest),
+    currentHitStreak: resultHits,
+    bestHitStreak: resultHits,
     highConfidenceStats: {
       count: highConfidenceSettled.length,
       resultHitRate: Math.round((highConfidenceHits / highConfidenceCount) * 100),
@@ -301,45 +190,12 @@ function buildStats(predictions) {
 }
 
 async function loadHomeData(options = {}) {
-  const requestedDate = options.date || todayInShanghai();
+  const date = options.date || todayInShanghai();
   const openid = await getOpenId();
   const user = await ensureUser(openid);
   const membership = await getMembership(user);
   const invite = await getInviteStatus(user);
-  let date = requestedDate;
-  let homeData = await loadHomeMatchesForDate(date);
 
-  if (!options.date && !homeData.predictions.some((item) => isRecommendable(item.match))) {
-    for (let offset = 1; offset <= 14; offset += 1) {
-      const candidateDate = addShanghaiDays(requestedDate, offset);
-      const candidateData = await loadHomeMatchesForDate(candidateDate);
-      if (
-        candidateData.predictions.some((item) => isRecommendable(item.match)) ||
-        candidateData.matchesWithPrediction.some(isRecommendable)
-      ) {
-        date = candidateDate;
-        homeData = candidateData;
-        break;
-      }
-    }
-  }
-
-  const predictions = homeData.predictions.filter((item) => isRecommendable(item.match));
-
-  return {
-    date,
-    requestedDate,
-    displayDate: date,
-    isMember: membership.isMember,
-    predictions,
-    matches: homeData.matchesWithPrediction,
-    stats: buildStats(homeData.predictions),
-    membership,
-    invite,
-  };
-}
-
-async function loadHomeMatchesForDate(date) {
   const matchesResult = await db.collection('matches').where({ matchDate: date }).orderBy('kickoffTime', 'asc').get();
   const matchesRaw = matchesResult.data || [];
   const teamIds = Array.from(new Set(matchesRaw.flatMap((item) => [item.homeTeamId, item.awayTeamId]).filter(Boolean)));
@@ -372,8 +228,13 @@ async function loadHomeMatchesForDate(date) {
   }));
 
   return {
+    date,
+    isMember: membership.isMember,
     predictions,
-    matchesWithPrediction,
+    matches: matchesWithPrediction,
+    stats: buildStats(predictions),
+    membership,
+    invite,
   };
 }
 
