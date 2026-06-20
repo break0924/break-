@@ -1,3 +1,5 @@
+import { callCloudContainer, canCallCloudContainer } from '../utils/cloudbase';
+
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.API_BASE_URL ||
@@ -41,6 +43,11 @@ function appendQuery(url: string, params?: Record<string, unknown>) {
   return `${url}${url.includes('?') ? '&' : '?'}${query}`;
 }
 
+function toContainerPath(url: string, params?: Record<string, unknown>) {
+  const path = appendQuery(url.startsWith('/api/') ? url : `/api${url}`, params);
+  return path.replace(/\/{2,}/g, '/');
+}
+
 export function getApiBaseUrl() {
   const storedUrl = uni.getStorageSync('apiBaseUrl') || '';
   const url = storedUrl || API_BASE_URL;
@@ -70,6 +77,31 @@ export async function request<T>(options: RequestOptions): Promise<T> {
 
   if (token) {
     header.Authorization = `Bearer ${token}`;
+  }
+
+  if (canCallCloudContainer()) {
+    const res = await callCloudContainer<T>({
+      path: toContainerPath(options.url, options.params),
+      method: String(options.method || 'GET'),
+      header,
+      data: options.data,
+    });
+
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return res.data as T;
+    }
+
+    const message =
+      typeof res.data === 'object' && res.data && 'message' in res.data
+        ? String((res.data as { message: unknown }).message)
+        : '请求失败';
+
+    if (res.statusCode === 401) {
+      uni.removeStorageSync('accessToken');
+      uni.removeStorageSync('userProfile');
+    }
+
+    throw new ApiRequestError(message, res.statusCode);
   }
 
   return new Promise<T>((resolve, reject) => {

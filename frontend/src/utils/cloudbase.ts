@@ -10,6 +10,15 @@ type CloudFunctionResult<T> = {
 declare const wx: {
   cloud?: {
     init(options: { env?: string; traceUser?: boolean }): void;
+    callContainer<T = unknown>(options: {
+      config: { env?: string };
+      path: string;
+      method?: string;
+      header?: Record<string, string>;
+      data?: unknown;
+      success?: (res: { statusCode?: number; data: T }) => void;
+      fail?: (error: { errMsg?: string }) => void;
+    }): void;
     callFunction<T = unknown>(options: {
       name: string;
       data?: Record<string, unknown>;
@@ -19,10 +28,14 @@ declare const wx: {
   };
 };
 
-const CLOUDBASE_ENV =
+export const CLOUDBASE_ENV =
   import.meta.env.VITE_CLOUDBASE_ENV ||
   import.meta.env.CLOUDBASE_ENV ||
   '';
+
+export const CLOUD_CONTAINER_SERVICE =
+  import.meta.env.VITE_CLOUD_CONTAINER_SERVICE ||
+  'worldcup-api';
 
 let initialized = false;
 
@@ -31,6 +44,9 @@ export function isCloudbaseEnabled() {
     import.meta.env.VITE_DATA_SOURCE ||
     import.meta.env.DATA_SOURCE ||
     '';
+  if (import.meta.env.PROD && source === 'cloudbase' && !CLOUDBASE_ENV) {
+    throw new Error('VITE_CLOUDBASE_ENV is required when CloudBase is enabled');
+  }
   return source === 'cloudbase';
 }
 
@@ -71,6 +87,51 @@ export async function callCloudFunction<T>(
       },
       fail: (error) => {
         reject(new Error(error.errMsg || '云函数请求失败'));
+      },
+    });
+  });
+}
+
+export function canCallCloudContainer() {
+  return typeof wx !== 'undefined' && Boolean(wx.cloud?.callContainer);
+}
+
+export async function callCloudContainer<T>(options: {
+  path: string;
+  method?: string;
+  header?: Record<string, string>;
+  data?: unknown;
+}): Promise<{ statusCode: number; data: T }> {
+  initCloudbase();
+
+  if (!canCallCloudContainer()) {
+    throw new Error('云托管调用环境不可用');
+  }
+
+  if (import.meta.env.PROD && !CLOUDBASE_ENV) {
+    throw new Error('VITE_CLOUDBASE_ENV is required for CloudBase container calls');
+  }
+
+  return new Promise((resolve, reject) => {
+    wx.cloud?.callContainer<T>({
+      config: {
+        env: CLOUDBASE_ENV || undefined,
+      },
+      path: options.path,
+      method: options.method || 'GET',
+      header: {
+        'X-WX-SERVICE': CLOUD_CONTAINER_SERVICE,
+        ...(options.header || {}),
+      },
+      data: options.data,
+      success: (res) => {
+        resolve({
+          statusCode: res.statusCode || 200,
+          data: res.data,
+        });
+      },
+      fail: (error) => {
+        reject(new Error(error.errMsg || '云托管请求失败'));
       },
     });
   });
