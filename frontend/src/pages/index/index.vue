@@ -353,12 +353,7 @@ function riskText(value?: string | number | null) {
 function selectUpcomingPredictions(items: PredictionArchive[]) {
   const now = Date.now();
   return [...items]
-    .filter((item) => {
-      if (!isFutureKickoff(item.kickoffAt, now)) {
-        return false;
-      }
-      return isUpcomingStatus(item.match?.status);
-    })
+    .filter((item) => isActivePrediction(item, now))
     .sort((a, b) => new Date(a.kickoffAt).getTime() - new Date(b.kickoffAt).getTime())
     .slice(0, 4);
 }
@@ -366,22 +361,42 @@ function selectUpcomingPredictions(items: PredictionArchive[]) {
 function selectUpcomingMatches(items: Match[]) {
   const now = Date.now();
   return [...items]
-    .filter((item) => isUpcomingStatus(item.status) && isFutureKickoff(item.kickoffAt, now))
+    .filter((item) => isActiveMatch(item, now))
     .sort((a, b) => new Date(a.kickoffAt).getTime() - new Date(b.kickoffAt).getTime())
     .slice(0, 4);
 }
 
-function isUpcomingStatus(status?: string | null) {
-  return normalizeMatchStatus(status) === 'SCHEDULED';
+function isActivePrediction(item: PredictionArchive, now = Date.now()) {
+  const archiveLabel = String(item.archiveLabel || '');
+  const resultStatus = String(item.resultStatus || '').toUpperCase();
+  const stage = String(item.predictionStage || '').toUpperCase();
+  if (
+    archiveLabel.includes('归档') ||
+    ['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED'].includes(stage) ||
+    ['SETTLED', 'RESULTED'].includes(resultStatus)
+  ) {
+    return false;
+  }
+
+  return isActiveKickoff(item.kickoffAt, now) && isActiveMatchStatus(item.match?.status);
 }
 
-function isFutureKickoff(kickoffAt?: string | null, now = Date.now()) {
+function isActiveMatch(item: Match, now = Date.now()) {
+  return isActiveKickoff(item.kickoffAt, now) && isActiveMatchStatus(item.status);
+}
+
+function isActiveMatchStatus(status?: string | null) {
+  const normalized = normalizeMatchStatus(status);
+  return normalized === 'SCHEDULED' || normalized === 'LIVE';
+}
+
+function isActiveKickoff(kickoffAt?: string | null, now = Date.now()) {
   if (!kickoffAt) {
     return false;
   }
 
   const kickoffTime = new Date(kickoffAt).getTime();
-  return Number.isFinite(kickoffTime) && kickoffTime > now;
+  return Number.isFinite(kickoffTime) && now < kickoffTime + 120 * 60 * 1000;
 }
 
 function clockText(value?: string) {

@@ -8,6 +8,7 @@ import {
 } from '@prisma/client';
 import { AiService } from '../ai/ai.service';
 import {
+  demoResultByExternalId,
   demoReports,
   demoScheduleMatches,
   demoTeams,
@@ -629,15 +630,59 @@ export class MatchesService {
   }
 
   private presentMatch<T extends {
+    externalId?: string | null;
     kickoffAt: Date | string;
     status?: MatchStatus | string | null;
     homeScore?: number | null;
     awayScore?: number | null;
   }>(match: T) {
+    const withFallbackResult = this.withFallbackResult(match);
+    return {
+      ...withFallbackResult,
+      status: this.displayStatus(withFallbackResult),
+      resultStatus: this.resultStatus(withFallbackResult),
+    };
+  }
+
+  private withFallbackResult<T extends {
+    externalId?: string | null;
+    kickoffAt: Date | string;
+    status?: MatchStatus | string | null;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }>(match: T) {
+    if (this.hasResult(match) || !this.isPastResultWindow(match.kickoffAt)) {
+      return match;
+    }
+
+    const fallback = match.externalId
+      ? demoResultByExternalId[match.externalId]
+      : null;
+    if (!fallback) {
+      return match;
+    }
+
     return {
       ...match,
-      status: this.displayStatus(match),
+      status: MatchStatus.FINISHED,
+      homeScore: fallback.homeScore,
+      awayScore: fallback.awayScore,
+      winnerTeamId: fallback.winnerTeamId,
     };
+  }
+
+  private resultStatus(match: {
+    kickoffAt: Date | string;
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }) {
+    if (this.hasResult(match)) {
+      return 'RESULTED';
+    }
+    if (this.isPastResultWindow(match.kickoffAt)) {
+      return 'PENDING_RESULT';
+    }
+    return 'PENDING';
   }
 
   private displayStatus(match: {
@@ -673,6 +718,26 @@ export class MatchesService {
     }
 
     return MatchStatus.FINISHED;
+  }
+
+  private hasResult(match: {
+    homeScore?: number | null;
+    awayScore?: number | null;
+  }) {
+    return (
+      match.homeScore !== null &&
+      match.homeScore !== undefined &&
+      match.awayScore !== null &&
+      match.awayScore !== undefined
+    );
+  }
+
+  private isPastResultWindow(kickoffAt: Date | string) {
+    const kickoffTime = new Date(kickoffAt).getTime();
+    return (
+      Number.isFinite(kickoffTime) &&
+      Date.now() >= kickoffTime + 120 * 60 * 1000
+    );
   }
 
   private toShanghaiDate(value: Date) {

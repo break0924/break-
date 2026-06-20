@@ -89,7 +89,7 @@ export const demoTeams = [
 const teamById = new Map(demoTeams.map((team) => [team.id, team]));
 const teamByName = new Map(demoTeams.map((team) => [team.name, team]));
 
-const demoResultByExternalId: Record<
+export const demoResultByExternalId: Record<
   string,
   { homeScore: number; awayScore: number; winnerTeamId: string }
 > = {
@@ -187,6 +187,61 @@ const demoResultByExternalId: Record<
     homeScore: 3,
     awayScore: 0,
     winnerTeamId: "team_arg",
+  },
+  "WC2026-GS-20260617-04": {
+    homeScore: 1,
+    awayScore: 1,
+    winnerTeamId: "",
+  },
+  "WC2026-GS-20260618-01": {
+    homeScore: 2,
+    awayScore: 1,
+    winnerTeamId: "team_por",
+  },
+  "WC2026-GS-20260618-02": {
+    homeScore: 1,
+    awayScore: 0,
+    winnerTeamId: "team_eng",
+  },
+  "WC2026-GS-20260618-03": {
+    homeScore: 2,
+    awayScore: 2,
+    winnerTeamId: "",
+  },
+  "WC2026-GS-20260618-04": {
+    homeScore: 0,
+    awayScore: 1,
+    winnerTeamId: "team_col",
+  },
+  "WC2026-GS-20260619-01": {
+    homeScore: 1,
+    awayScore: 1,
+    winnerTeamId: "",
+  },
+  "WC2026-GS-20260619-02": {
+    homeScore: 2,
+    awayScore: 1,
+    winnerTeamId: "team_sui",
+  },
+  "WC2026-GS-20260619-03": {
+    homeScore: 1,
+    awayScore: 0,
+    winnerTeamId: "team_can",
+  },
+  "WC2026-GS-20260619-04": {
+    homeScore: 2,
+    awayScore: 1,
+    winnerTeamId: "team_mex",
+  },
+  "WC2026-GS-20260620-01": {
+    homeScore: 1,
+    awayScore: 1,
+    winnerTeamId: "",
+  },
+  "WC2026-GS-20260620-02": {
+    homeScore: 0,
+    awayScore: 2,
+    winnerTeamId: "team_mar",
   },
 };
 
