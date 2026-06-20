@@ -73,6 +73,7 @@ export class RecommendationsService {
 
     const isMember = userId ? await this.isMember(userId) : false;
     const { start, end } = this.beijingDayRange(day);
+    const todayScheduleCount = await this.countMatchesInRange(start, end);
     const validMatches = recommendation.matches.filter((item) => {
       const kickoffAt = item.match.kickoffAt?.getTime();
       return kickoffAt >= start.getTime() && kickoffAt < end.getTime();
@@ -87,6 +88,8 @@ export class RecommendationsService {
       displayDate: this.beijingDateKey(day),
       nextAvailableDate: this.beijingDateKey(day),
       source: "database",
+      title: recommendation.title || "今日推荐",
+      intro: `今日推荐 ${validMatches.length} 场，已更新 ${validMatches.length} 场赛前分析。今日赛程共 ${todayScheduleCount} 场。`,
       isMember,
       matches: validMatches.map((item) => {
         const latestArchive = item.match.predictionArchives?.[0];
@@ -94,6 +97,10 @@ export class RecommendationsService {
 
         return {
           ...item,
+          match: {
+            ...item.match,
+            status: this.displayStatus(item.match),
+          },
           scoreCandidates: scoreModel.scoreCandidates,
           totalGoalsRange: scoreModel.totalGoalsRange,
           overUnderLean: scoreModel.overUnderLean,
@@ -260,6 +267,7 @@ export class RecommendationsService {
     const isMember = userId ? await this.isMember(userId) : false;
     const { start, end } = this.beijingDayRange(day);
     const requestedDate = this.beijingDateKey(day);
+    const todayScheduleCount = await this.countMatchesInRange(start, end);
     let title = "今日推荐";
     let intro = "暂无今日比赛";
     let matches: Array<any> = this.recommendableMatches(
@@ -277,10 +285,10 @@ export class RecommendationsService {
       if (matches.length > 0) {
         displayDate = this.beijingDateKey(matches[0].kickoffAt);
         title = "下一比赛日推荐";
-        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
+        intro = `今日暂无待推荐比赛，展示 ${displayDate} 最近可推荐 ${matches.length} 场。今日赛程共 ${todayScheduleCount} 场。`;
       }
     } else {
-      intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
+      intro = `今日推荐 ${matches.length} 场，已更新 ${matches.length} 场赛前分析。今日赛程共 ${todayScheduleCount} 场。`;
     }
 
     if (matches.length === 0) {
@@ -294,16 +302,16 @@ export class RecommendationsService {
       if (matches.length > 0) {
         displayDate = this.beijingDateKey(matches[0].kickoffAt);
         title = "下一比赛日推荐";
-        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
+        intro = `今日暂无待推荐比赛，展示 ${displayDate} 最近可推荐 ${matches.length} 场。今日赛程共 ${todayScheduleCount} 场。`;
       }
     } else if (source === "demo") {
       displayDate = this.beijingDateKey(matches[0].kickoffAt);
       if (displayDate === requestedDate) {
         title = "今日推荐";
-        intro = `今日共 ${matches.length} 场比赛，已更新 ${matches.length} 场赛前分析。`;
+        intro = `今日推荐 ${matches.length} 场，已更新 ${matches.length} 场赛前分析。今日赛程共 ${todayScheduleCount} 场。`;
       } else {
         title = "下一比赛日推荐";
-        intro = `暂无今日比赛，展示 ${displayDate} 最近可推荐比赛`;
+        intro = `今日暂无待推荐比赛，展示 ${displayDate} 最近可推荐 ${matches.length} 场。今日赛程共 ${todayScheduleCount} 场。`;
       }
     }
 
@@ -386,6 +394,25 @@ export class RecommendationsService {
         },
       },
     });
+  }
+
+  private async countMatchesInRange(start: Date, end: Date) {
+    const count = await this.prisma.match
+      .count({
+        where: {
+          kickoffAt: {
+            gte: start,
+            lt: end,
+          },
+        },
+      })
+      .catch(() => 0);
+
+    if (count > 0) {
+      return count;
+    }
+
+    return this.dynamicDemoMatchesForDate(this.beijingDateKey(start), 8).length;
   }
 
   private findDemoMatchesInRange(start: Date, end: Date | undefined, take: number) {

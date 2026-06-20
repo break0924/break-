@@ -492,6 +492,24 @@ export class PredictionsService {
         return this.presentArchive(demo);
       }
 
+      const match = await this.prisma.match
+        .findFirst({
+          where: {
+            OR: [{ id: matchId }, { externalId: matchId }],
+          },
+          include: { homeTeam: true, awayTeam: true },
+        })
+        .catch(() => null);
+      const fallbackMatch =
+        match ||
+        demoScheduleMatches.find(
+          (item) => item.id === matchId || item.externalId === matchId,
+        );
+
+      if (fallbackMatch) {
+        return this.generatedDemoArchives([fallbackMatch])[0];
+      }
+
       throw new NotFoundException('Prediction archive not found');
     }
 
@@ -500,7 +518,7 @@ export class PredictionsService {
 
   async getStats() {
     try {
-      const [totalPredictions, settled, recentArchives] = await Promise.all([
+      const [totalPredictions, settledRows, archiveRows] = await Promise.all([
         this.prisma.predictionArchive.count({
           where: {
             status: PredictionArchiveStatus.PUBLISHED,
@@ -533,10 +551,13 @@ export class PredictionsService {
             isPublic: true,
           },
           orderBy: [{ publishedAt: 'desc' }, { kickoffAt: 'desc' }],
-          take: 10,
+          take: 200,
           include: this.archiveInclude(),
         }),
       ]);
+
+      const settled = this.mergeVirtualSettlements(settledRows, archiveRows);
+      const recentArchives = archiveRows.slice(0, 10);
 
       if (totalPredictions === 0 && settled.length === 0) {
         return this.emptyStats();
@@ -552,17 +573,22 @@ export class PredictionsService {
       return {
         totalPredictions,
         settledPredictions: settled.length,
+        archivedMatchCount: settled.length,
         last7DaysHitRate: this.rate(last7Settled, 'hitResult'),
         last30MatchesHitRate: this.rate(last30Settled, 'hitResult'),
         resultHitRate: this.rate(settled, 'hitResult'),
         scoreHitRate: this.rate(settled, 'hitScore'),
         scoreCandidateHitRate: this.scoreCandidateHitRate(settled),
+        scoreReferenceHitRate: this.scoreReferenceHitRate(settled),
         totalGoalsHitRate: this.rate(settled, 'hitTotalGoals'),
         totalGoalsRangeHitRate: this.totalGoalsRangeHitRate(settled),
+        unbeatenHitRate: this.unbeatenHitRate(settled),
         currentHitStreak: this.currentStreak(settled),
         bestHitStreak: this.bestStreak(settled),
         backtest,
         highConfidenceStats: backtest.highConfidence,
+        highConfidenceHitRate: backtest.highConfidence.resultHitRate,
+        highConfidenceSettledCount: backtest.highConfidence.count,
         cautiousStats: backtest.cautious,
         recentPredictions: recentArchives.map((item) =>
           this.presentArchive(item),
@@ -888,6 +914,21 @@ export class PredictionsService {
 
     const settlements = [];
     for (const archive of archives) {
+      const hitScore =
+        archive.predictedHome === match.homeScore &&
+        archive.predictedAway === match.awayScore;
+      const scoreCandidateSettlement = this.scoreCandidateSettlementFromArchive(
+        archive,
+        match.homeScore,
+        match.awayScore,
+        hitScore,
+      );
+      const hitTotalGoalsRange = this.totalGoalsRangeHitFromArchive(
+        archive,
+        match.homeScore,
+        match.awayScore,
+      );
+
       settlements.push(
         await this.prisma.predictionSettlement.upsert({
           where: { predictionArchiveId: archive.id },
@@ -896,11 +937,11 @@ export class PredictionsService {
             awayScore: match.awayScore,
             resultDirection,
             hitResult: archive.recommendationDirection === resultDirection,
-            hitScore:
-              archive.predictedHome === match.homeScore &&
-              archive.predictedAway === match.awayScore,
+            hitScore,
+            ...scoreCandidateSettlement,
             hitTotalGoals:
               archive.totalGoalsPrediction === match.homeScore + match.awayScore,
+            hitTotalGoalsRange,
             settledAt: new Date(),
             settledByUserId,
           },
@@ -911,11 +952,11 @@ export class PredictionsService {
             awayScore: match.awayScore,
             resultDirection,
             hitResult: archive.recommendationDirection === resultDirection,
-            hitScore:
-              archive.predictedHome === match.homeScore &&
-              archive.predictedAway === match.awayScore,
+            hitScore,
+            ...scoreCandidateSettlement,
             hitTotalGoals:
               archive.totalGoalsPrediction === match.homeScore + match.awayScore,
+            hitTotalGoalsRange,
             settledByUserId,
           },
           include: {
@@ -2709,6 +2750,10 @@ export class PredictionsService {
         featureInputs?: unknown;
         modelOutput?: unknown;
       } | null;
+      match?: {
+        homeScore?: number | null;
+        awayScore?: number | null;
+      } | null;
     };
     const stage = item.lockedAt
       ? 'LOCKED'
@@ -2724,13 +2769,15 @@ export class PredictionsService {
     });
     const scoreModel = this.scoreModelOutputFromArchive(item);
     const oddsSnapshot = this.oddsSnapshotOutputFromArchive(item);
+    const settlement = archive.settlement || this.virtualSettlementFromArchive(item);
 
     return {
       ...archive,
+      settlement,
       predictionStage: stage,
       archiveLabel: stage === 'FINAL' ? '最终版预测' : '预测已归档',
-      resultStatus: archive.settlement ? 'SETTLED' : 'PENDING_RESULT',
-      resultText: archive.settlement ? undefined : '待赛果',
+      resultStatus: settlement ? 'SETTLED' : 'PENDING_RESULT',
+      resultText: settlement ? undefined : '待赛果',
       modelVersion: item.modelVersion || item.engineModelVersion,
       homeWinProbability: item.homeWinProb,
       drawProbability: item.drawProb,
@@ -2764,6 +2811,91 @@ export class PredictionsService {
         [item.recommendationReason, item.riskTip].filter(Boolean).join('\n\n'),
       disclaimer: item.disclaimer || item.riskTip,
     };
+  }
+
+  private virtualSettlementFromArchive(archive: any) {
+    const match = archive.match;
+    if (
+      !match ||
+      match.homeScore === null ||
+      match.homeScore === undefined ||
+      match.awayScore === null ||
+      match.awayScore === undefined
+    ) {
+      return null;
+    }
+
+    const homeScore = Number(match.homeScore);
+    const awayScore = Number(match.awayScore);
+    const resultDirection = this.directionFromScore(homeScore, awayScore);
+    const hitScore =
+      Number(archive.predictedHome) === homeScore &&
+      Number(archive.predictedAway) === awayScore;
+    const scoreCandidateSettlement = this.scoreCandidateSettlementFromArchive(
+      archive,
+      homeScore,
+      awayScore,
+      hitScore,
+    );
+
+    return {
+      id: `virtual_settlement_${archive.id}`,
+      predictionArchiveId: archive.id,
+      matchId: archive.matchId,
+      homeScore,
+      awayScore,
+      resultDirection,
+      hitResult: archive.recommendationDirection === resultDirection,
+      hitScore,
+      ...scoreCandidateSettlement,
+      hitTotalGoals:
+        Number(archive.totalGoalsPrediction) === homeScore + awayScore,
+      hitTotalGoalsRange: this.totalGoalsRangeHitFromArchive(
+        archive,
+        homeScore,
+        awayScore,
+      ),
+      hitUnbeaten: this.isUnbeatenDirectionHit(
+        archive.recommendationDirection,
+        resultDirection,
+      ),
+      settledAt: match.updatedAt || new Date(),
+      settledByUserId: null,
+      createdAt: match.updatedAt || new Date(),
+      updatedAt: match.updatedAt || new Date(),
+      predictionArchive: archive,
+    };
+  }
+
+  private mergeVirtualSettlements(
+    settledRows: Array<any>,
+    archives: Array<any>,
+  ) {
+    const settledArchiveIds = new Set(
+      settledRows.map((item) => item.predictionArchiveId),
+    );
+    const virtualRows = archives
+      .filter((archive) => !settledArchiveIds.has(archive.id))
+      .map((archive) => this.virtualSettlementFromArchive(archive))
+      .filter(Boolean);
+
+    return [...settledRows, ...virtualRows].sort(
+      (a, b) =>
+        new Date(b.settledAt).getTime() - new Date(a.settledAt).getTime(),
+    );
+  }
+
+  private isUnbeatenDirectionHit(
+    predicted: PredictionDirection,
+    actual: PredictionDirection,
+  ) {
+    if (predicted === PredictionDirection.HOME_WIN) {
+      return actual === PredictionDirection.HOME_WIN || actual === PredictionDirection.DRAW;
+    }
+    if (predicted === PredictionDirection.AWAY_WIN) {
+      return actual === PredictionDirection.AWAY_WIN || actual === PredictionDirection.DRAW;
+    }
+    return actual === PredictionDirection.DRAW;
   }
 
   private scoreModelOutputFromArchive(item: {
@@ -3187,11 +3319,14 @@ export class PredictionsService {
       source: 'demo',
       totalPredictions: demoPredictionArchives.length,
       settledPredictions: settled.length,
+      archivedMatchCount: settled.length,
       last7DaysHitRate: this.rate(settled, 'hitResult'),
       last30MatchesHitRate: this.rate(settled, 'hitResult'),
       resultHitRate: this.rate(settled, 'hitResult'),
+      unbeatenHitRate: 0,
       scoreHitRate: this.rate(settled, 'hitScore'),
       scoreCandidateHitRate: 0,
+      scoreReferenceHitRate: this.rate(settled, 'hitScore'),
       totalGoalsHitRate: this.rate(settled, 'hitTotalGoals'),
       totalGoalsRangeHitRate: 0,
       currentHitStreak: this.currentStreak(settled),
@@ -3201,6 +3336,8 @@ export class PredictionsService {
         resultHitRate: 0,
         scoreHitRate: 0,
       },
+      highConfidenceHitRate: 0,
+      highConfidenceSettledCount: 0,
       cautiousStats: {
         count: 0,
         resultHitRate: 0,
@@ -3540,6 +3677,7 @@ export class PredictionsService {
     settlements: Array<{
       homeScore: number;
       awayScore: number;
+      hitScoreCandidate?: boolean | null;
       predictionArchive: {
         originalContent?: unknown;
         featureSnapshot?: { modelOutput?: unknown } | null;
@@ -3551,6 +3689,9 @@ export class PredictionsService {
     }
 
     const hits = settlements.filter((item) => {
+      if (item.hitScoreCandidate !== undefined && item.hitScoreCandidate !== null) {
+        return item.hitScoreCandidate;
+      }
       const scoreModel = this.scoreModelOutputFromArchive(item.predictionArchive);
       return scoreModel.scoreCandidates.some((candidate: any) => {
         return (
@@ -3567,6 +3708,7 @@ export class PredictionsService {
     settlements: Array<{
       homeScore: number;
       awayScore: number;
+      hitTotalGoalsRange?: boolean | null;
       predictionArchive: {
         originalContent?: unknown;
         featureSnapshot?: { modelOutput?: unknown } | null;
@@ -3578,24 +3720,130 @@ export class PredictionsService {
     }
 
     const hits = settlements.filter((item) => {
-      const totalGoals = item.homeScore + item.awayScore;
-      const range = this.scoreModelOutputFromArchive(
+      if (item.hitTotalGoalsRange !== undefined && item.hitTotalGoalsRange !== null) {
+        return item.hitTotalGoalsRange;
+      }
+      return this.totalGoalsRangeHitFromArchive(
         item.predictionArchive,
-      ).totalGoalsRange;
-
-      if (range === '0-1球') {
-        return totalGoals <= 1;
-      }
-      if (range === '2-3球') {
-        return totalGoals >= 2 && totalGoals <= 3;
-      }
-      if (range === '4球以上') {
-        return totalGoals >= 4;
-      }
-      return false;
+        item.homeScore,
+        item.awayScore,
+      );
     });
 
     return Math.round((hits.length / settlements.length) * 100);
+  }
+
+  private scoreReferenceHitRate(
+    settlements: Array<{
+      hitScore?: boolean | null;
+      hitScoreReference?: boolean | null;
+      hitScoreCandidate?: boolean | null;
+      homeScore: number;
+      awayScore: number;
+      predictionArchive: {
+        originalContent?: unknown;
+        featureSnapshot?: { modelOutput?: unknown } | null;
+      };
+    }>,
+  ) {
+    if (settlements.length === 0) {
+      return 0;
+    }
+
+    const hits = settlements.filter((item) => {
+      if (item.hitScoreReference !== undefined && item.hitScoreReference !== null) {
+        return item.hitScoreReference;
+      }
+      if (item.hitScore === true || item.hitScoreCandidate === true) {
+        return true;
+      }
+      return this.scoreCandidateSettlementFromArchive(
+        item.predictionArchive,
+        item.homeScore,
+        item.awayScore,
+        Boolean(item.hitScore),
+      ).hitScoreReference;
+    });
+
+    return Math.round((hits.length / settlements.length) * 100);
+  }
+
+  private unbeatenHitRate(
+    settlements: Array<{
+      hitUnbeaten?: boolean | null;
+      resultDirection: PredictionDirection;
+      predictionArchive: {
+        recommendationDirection: PredictionDirection;
+      };
+    }>,
+  ) {
+    if (settlements.length === 0) {
+      return 0;
+    }
+
+    const hits = settlements.filter((item) => {
+      if (item.hitUnbeaten !== undefined && item.hitUnbeaten !== null) {
+        return item.hitUnbeaten;
+      }
+      return this.isUnbeatenDirectionHit(
+        item.predictionArchive.recommendationDirection,
+        item.resultDirection,
+      );
+    });
+
+    return Math.round((hits.length / settlements.length) * 100);
+  }
+
+  private scoreCandidateSettlementFromArchive(
+    archive: {
+      originalContent?: unknown;
+      featureSnapshot?: { modelOutput?: unknown } | null;
+    },
+    homeScore: number,
+    awayScore: number,
+    hitScore: boolean,
+  ) {
+    const scoreModel = this.scoreModelOutputFromArchive(archive);
+    const matched = scoreModel.scoreCandidates.find((candidate: any) => {
+      return (
+        Number(candidate?.home) === homeScore &&
+        Number(candidate?.away) === awayScore
+      );
+    });
+    const hitScoreCandidate = Boolean(matched);
+
+    return {
+      hitScoreCandidate,
+      hitScoreReference: hitScore || hitScoreCandidate,
+      matchedScoreCandidateRank:
+        matched?.rank !== undefined ? Number(matched.rank) || null : null,
+      matchedScoreCandidateText: matched
+        ? String(matched.text || `${matched.home}-${matched.away}`)
+        : null,
+    };
+  }
+
+  private totalGoalsRangeHitFromArchive(
+    archive: {
+      originalContent?: unknown;
+      featureSnapshot?: { modelOutput?: unknown } | null;
+    },
+    homeScore: number,
+    awayScore: number,
+  ) {
+    const totalGoals = homeScore + awayScore;
+    const range = this.scoreModelOutputFromArchive(archive).totalGoalsRange;
+
+    if (range === '0-1球') {
+      return totalGoals <= 1;
+    }
+    if (range === '2-3球') {
+      return totalGoals >= 2 && totalGoals <= 3;
+    }
+    if (range === '4球以上') {
+      return totalGoals >= 4;
+    }
+    return false;
   }
 
   private brierScore(
@@ -3946,11 +4194,14 @@ export class PredictionsService {
       source: 'database',
       totalPredictions: 0,
       settledPredictions: 0,
+      archivedMatchCount: 0,
       last7DaysHitRate: 0,
       last30MatchesHitRate: 0,
       resultHitRate: 0,
+      unbeatenHitRate: 0,
       scoreHitRate: 0,
       scoreCandidateHitRate: 0,
+      scoreReferenceHitRate: 0,
       totalGoalsHitRate: 0,
       totalGoalsRangeHitRate: 0,
       currentHitStreak: 0,
@@ -3960,6 +4211,8 @@ export class PredictionsService {
         resultHitRate: 0,
         scoreHitRate: 0,
       },
+      highConfidenceHitRate: 0,
+      highConfidenceSettledCount: 0,
       cautiousStats: {
         count: 0,
         resultHitRate: 0,

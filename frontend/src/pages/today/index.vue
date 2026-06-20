@@ -41,6 +41,7 @@
       :key="item.id"
       class="recommend-card"
       :class="{ finished: isFinishedStatus(item.match.status), locked: isLockedForViewer(item) }"
+      @tap="goDetail(item.match.id)"
     >
       <view class="card-head">
         <view class="teams">
@@ -137,7 +138,7 @@
           <view class="lock-kicker">会员专享</view>
           <view class="lock-title">解锁完整推荐理由、风险提示与更多比分参考</view>
         </view>
-        <view class="unlock-btn" @tap="goMembership">立即解锁</view>
+        <view class="unlock-btn" @tap.stop="goMembership">立即解锁</view>
       </view>
     </view>
   </view>
@@ -177,7 +178,7 @@ const recommendationTitle = computed(() => data.value?.title || '今日推荐');
 const recommendationIntro = computed(() => {
   if (data.value?.intro) return data.value.intro;
 
-  return `今日共 ${matchCount.value} 场比赛，已更新 ${updatedCount.value} 场赛前分析`;
+  return `今日推荐 ${matchCount.value} 场，已更新 ${updatedCount.value} 场赛前分析`;
 });
 const publishTime = computed(() => formatPublishTime(data.value?.generatedAt));
 const normalizedMatches = computed(() => {
@@ -216,6 +217,10 @@ function goMembership() {
 
 function goChallenge(matchId: string) {
   uni.navigateTo({ url: `/pages/prediction-submit/index?matchId=${matchId}` });
+}
+
+function goDetail(matchId: string) {
+  uni.navigateTo({ url: `/pages/match-detail/index?id=${matchId}` });
 }
 
 function isLockedForViewer(item: RecommendationItem) {
