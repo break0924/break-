@@ -144,19 +144,19 @@ import {
   type StatMock,
 } from './mock';
 
-const predictionItems = ref<PredictionMock[]>(fallbackPredictions);
+const predictionItems = ref<PredictionMock[]>([]);
 const scheduleItems = ref<ScheduleMock[]>(fallbackSchedules);
 const statItems = ref<StatMock[]>(fallbackStats);
 const invite = ref<InviteMock>(fallbackInvite);
 const isMember = ref(false);
-const dataSource = ref<'cloudbase' | 'fallback'>('fallback');
+const dataSource = ref<'api' | 'fallback'>('fallback');
 
 const primaryPrediction = computed(() => predictionItems.value[0]);
 const secondaryPredictions = computed(() => predictionItems.value.slice(1));
 const stats = computed(() => statItems.value);
 const schedules = computed(() => scheduleItems.value);
 const homeStatusText = computed(() =>
-  dataSource.value === 'cloudbase' ? '云端预测已更新' : '最近开赛场次已更新',
+  dataSource.value === 'api' ? '云端预测已更新' : '最近开赛场次已更新',
 );
 const homeTags = computed(() => [
   '接下来4场重点比赛',
@@ -220,7 +220,7 @@ function applyHomeData(data: CloudHomeData) {
 
   predictionItems.value = upcomingPredictions.length
     ? upcomingPredictions.map(mapPrediction)
-    : fallbackPredictions;
+    : [];
   scheduleItems.value = (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).length
     ? (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).map(mapSchedule)
     : fallbackSchedules;
@@ -232,12 +232,17 @@ function applyHomeData(data: CloudHomeData) {
     rewards: fallbackInvite.rewards,
   };
   isMember.value = data.isMember;
-  dataSource.value = 'cloudbase';
+  dataSource.value = 'api';
 }
 
 function applyFallbackData() {
-  predictionItems.value = fallbackPredictions;
-  scheduleItems.value = fallbackSchedules;
+  if (import.meta.env.DEV || import.meta.env.VITE_DEMO_MODE === 'true') {
+    predictionItems.value = fallbackPredictions;
+    scheduleItems.value = fallbackSchedules;
+  } else {
+    predictionItems.value = [];
+    scheduleItems.value = [];
+  }
   statItems.value = fallbackStats;
   invite.value = fallbackInvite;
   isMember.value = false;

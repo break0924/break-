@@ -352,6 +352,7 @@ export class PredictionsService {
   }
 
   async getToday(date?: string) {
+    const now = new Date();
     const window = this.predictionWindow(
       date || this.toBeijingDateString(new Date()),
     );
@@ -366,17 +367,19 @@ export class PredictionsService {
         include: this.archiveInclude(),
       })
       .catch(() => []);
-    const recommendableArchives = this.recommendableArchives(archives, 4);
+    const activeTodayPredictions = this.activePredictions(
+      archives.map((item) => this.presentTodayPrediction(item)),
+      now,
+      4,
+    );
 
-    if (recommendableArchives.length > 0) {
+    if (activeTodayPredictions.length > 0) {
       return {
         date: window.businessDate,
         displayDate: window.businessDate,
         nextAvailableDate: window.businessDate,
         source: 'database',
-        predictions: recommendableArchives.map((item) =>
-          this.presentTodayPrediction(item),
-        ),
+        predictions: activeTodayPredictions,
       };
     }
 
@@ -385,41 +388,44 @@ export class PredictionsService {
         where: {
           status: PredictionArchiveStatus.PUBLISHED,
           isPublic: true,
-          kickoffAt: { gt: new Date() },
+          kickoffAt: { gt: now },
         },
         orderBy: { kickoffAt: 'asc' },
-        take: 8,
+        take: 50,
         include: this.archiveInclude(),
       })
       .catch(() => []);
-    const futureRecommendableArchives = this.recommendableArchives(
-      futureArchives,
+    const futurePredictions = this.nearestPredictionDay(
+      this.activePredictions(
+        futureArchives.map((item) => this.presentTodayPrediction(item)),
+        now,
+        50,
+      ),
       4,
     );
 
-    if (futureRecommendableArchives.length > 0) {
+    if (futurePredictions.length > 0) {
       const displayDate = this.toBeijingDateString(
-        futureRecommendableArchives[0].kickoffAt,
+        futurePredictions[0].kickoffAt,
       );
       return {
         date: displayDate,
         displayDate,
         nextAvailableDate: displayDate,
-        source: 'database',
-        predictions: futureRecommendableArchives.map((item) =>
-          this.presentTodayPrediction(item),
-        ),
+        source: 'next_available',
+        predictions: futurePredictions,
       };
     }
 
     const fallbackPredictions = this.fallbackDemoArchivesForDate(
       window.businessDate,
+      now,
     );
     return {
       date: fallbackPredictions.date,
       displayDate: fallbackPredictions.displayDate,
       nextAvailableDate: fallbackPredictions.nextAvailableDate,
-      source: 'demo',
+      source: fallbackPredictions.source,
       emptyReason: fallbackPredictions.emptyReason,
       predictions: fallbackPredictions.predictions,
     };
@@ -2859,7 +2865,7 @@ export class PredictionsService {
       });
   }
 
-  private fallbackDemoArchivesForDate(date: string) {
+  private fallbackDemoArchivesForDate(date: string, now = new Date()) {
     let selected: Array<any> = [];
 
     for (let offset = 0; offset <= 14; offset += 1) {
@@ -2870,8 +2876,11 @@ export class PredictionsService {
               new Date(`${date}T00:00:00.000+08:00`),
               offset,
             );
-      selected = this.recommendableMatches(
-        this.dynamicDemoMatchesForDate(targetDate, 8),
+      selected = this.activePredictions(
+        this.generatedDemoArchives(
+          this.dynamicDemoMatchesForDate(targetDate, 8),
+        ).map((item) => this.normalizeTodayPrediction(item)),
+        now,
         4,
       );
 
@@ -2890,10 +2899,10 @@ export class PredictionsService {
       nextAvailableDate: selected[0]
         ? this.toBeijingDateString(selected[0].kickoffAt)
         : null,
-      emptyReason: selected.length === 0 ? 'NO_ACTIVE_PREDICTIONS' : undefined,
-      predictions: this.generatedDemoArchives(selected).map((item) =>
-        this.normalizeTodayPrediction(item),
-      ),
+      source:
+        selected.length > 0 && displayDate !== date ? 'next_available' : 'demo',
+      emptyReason: selected.length === 0 ? 'NO_ACTIVE_MATCHES' : undefined,
+      predictions: selected,
     };
   }
 
@@ -2958,43 +2967,83 @@ export class PredictionsService {
       .slice(0, take);
   }
 
-  private recommendableArchives<T extends { kickoffAt: Date | string }>(
-    archives: T[],
+  private activePredictions<T extends { kickoffAt?: Date | string | null }>(
+    predictions: T[],
+    now: Date,
     take: number,
   ) {
-    const blockedStages = new Set(['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED']);
-
-    return archives
-      .filter((archive: any) => {
-        const stage = String(archive.predictionStage || '').toUpperCase();
-        const status = String(archive.status || '').toUpperCase();
-        const matchStatus = String(archive.match?.status || '').toUpperCase();
-        const resultStatus = String(archive.resultStatus || '').toUpperCase();
-        const archiveLabel = String(archive.archiveLabel || '');
-        if (
-          archiveLabel.includes('归档') ||
-          blockedStages.has(stage) ||
-          blockedStages.has(status) ||
-          blockedStages.has(matchStatus) ||
-          blockedStages.has(resultStatus) ||
-          archive.settlement
-        ) {
-          return false;
-        }
-
-        const displayStatus = this.displayStatus({
-          kickoffAt: archive.kickoffAt,
-          status: archive.match?.status,
-          homeScore: archive.match?.homeScore,
-          awayScore: archive.match?.awayScore,
-        });
-
-        return (
-          displayStatus === MatchStatus.SCHEDULED ||
-          displayStatus === MatchStatus.LIVE
-        );
-      })
+    return predictions
+      .filter((prediction) => this.isActivePrediction(prediction, now))
       .slice(0, take);
+  }
+
+  private nearestPredictionDay<T extends { kickoffAt?: Date | string | null }>(
+    predictions: T[],
+    take: number,
+  ) {
+    const first = predictions[0];
+    if (!first?.kickoffAt) {
+      return [];
+    }
+
+    const displayDate = this.toBeijingDateString(new Date(first.kickoffAt));
+    return predictions
+      .filter(
+        (item) =>
+          item.kickoffAt &&
+          this.toBeijingDateString(new Date(item.kickoffAt)) === displayDate,
+      )
+      .slice(0, take);
+  }
+
+  private isActivePrediction(
+    prediction: {
+      kickoffAt?: Date | string | null;
+      status?: string | null;
+      predictionStage?: string | null;
+      archiveLabel?: string | null;
+      resultStatus?: string | null;
+      settlement?: unknown;
+      match?: {
+        kickoffAt?: Date | string | null;
+        status?: string | null;
+        homeScore?: number | null;
+        awayScore?: number | null;
+      } | null;
+    },
+    now: Date,
+  ) {
+    const blockedStates = new Set(['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED']);
+    const stage = String(prediction.predictionStage || '').toUpperCase();
+    const status = String(prediction.status || '').toUpperCase();
+    const matchStatus = String(prediction.match?.status || '').toUpperCase();
+    const resultStatus = String(prediction.resultStatus || '').toUpperCase();
+    const archiveLabel = String(prediction.archiveLabel || '');
+
+    if (
+      archiveLabel.includes('归档') ||
+      blockedStates.has(stage) ||
+      blockedStates.has(status) ||
+      blockedStates.has(matchStatus) ||
+      blockedStates.has(resultStatus) ||
+      prediction.settlement
+    ) {
+      return false;
+    }
+
+    const kickoffAt = new Date(
+      prediction.kickoffAt || prediction.match?.kickoffAt || '',
+    ).getTime();
+    if (!Number.isFinite(kickoffAt)) {
+      return false;
+    }
+
+    const nowTime = now.getTime();
+    if (nowTime >= kickoffAt + 120 * 60 * 1000) {
+      return false;
+    }
+
+    return nowTime < kickoffAt || nowTime < kickoffAt + 120 * 60 * 1000;
   }
 
   private presentTodayPrediction<T extends { settlement?: unknown; corrections?: unknown[] }>(
