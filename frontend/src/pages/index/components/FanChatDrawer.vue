@@ -10,7 +10,12 @@
         <view class="chat-close" @tap="close">关闭</view>
       </view>
 
-      <scroll-view class="chat-list" scroll-y>
+      <scroll-view
+        class="chat-list"
+        scroll-y
+        :scroll-into-view="scrollIntoView"
+        scroll-with-animation
+      >
         <view v-if="loading" class="chat-empty">正在加载聊天消息...</view>
         <view v-else-if="messages.length === 0" class="chat-empty">
           还没人发言，来聊第一句吧
@@ -41,6 +46,7 @@
             </view>
           </view>
         </template>
+        <view id="chat-bottom-anchor" class="chat-bottom-anchor" />
       </scroll-view>
 
       <view class="chat-input-row">
@@ -49,6 +55,8 @@
           class="chat-input"
           maxlength="100"
           confirm-type="send"
+          :adjust-position="false"
+          cursor-spacing="24"
           placeholder="聊聊比赛，但别发广告和违规内容"
           @confirm="send"
         />
@@ -63,6 +71,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watch } from 'vue';
 import { api } from '../../../api';
+import { ApiRequestError } from '../../../api/http';
 import type { ChatMessage } from '../../../api/types';
 
 const props = defineProps<{
@@ -77,6 +86,7 @@ const messages = ref<ChatMessage[]>([]);
 const content = ref('');
 const loading = ref(false);
 const sending = ref(false);
+const scrollIntoView = ref('');
 let timer: ReturnType<typeof setInterval> | undefined;
 
 watch(
@@ -89,6 +99,7 @@ watch(
     }
 
     stopPolling();
+    scrollIntoView.value = '';
   },
   { immediate: true },
 );
@@ -98,6 +109,7 @@ onBeforeUnmount(() => {
 });
 
 function close() {
+  stopPolling();
   emit('close');
 }
 
@@ -138,6 +150,7 @@ async function refreshMessages(showLoading = true) {
 
   try {
     messages.value = await api.chatMessages();
+    scrollToBottom();
   } catch {
     uni.showToast({ title: '聊天消息加载失败', icon: 'none' });
   } finally {
@@ -148,7 +161,7 @@ async function refreshMessages(showLoading = true) {
 async function send() {
   const text = content.value.trim();
   if (!text) {
-    uni.showToast({ title: '请输入聊天内容', icon: 'none' });
+    uni.showToast({ title: '内容不能为空', icon: 'none' });
     return;
   }
 
@@ -159,15 +172,17 @@ async function send() {
   sending.value = true;
   try {
     const profile = uni.getStorageSync('userProfile') || {};
+    console.log('[CHAT_SEND_CONTENT]', text);
     const result = await api.sendChatMessage({
       content: text,
       nickname: profile.nickname || '球迷',
-      avatarUrl: profile.avatarUrl,
+      avatarUrl: profile.avatarUrl || '',
     });
+    console.log('[CHAT_SEND_RESPONSE]', result);
 
     if (!result.success) {
       uni.showToast({
-        title: typeof result.message === 'string' ? result.message : '发送失败',
+        title: normalizeSendError(result.message),
         icon: 'none',
       });
       return;
@@ -175,12 +190,47 @@ async function send() {
 
     content.value = '';
     await refreshMessages(false);
+    console.log('[CHAT_MESSAGES_AFTER_SEND]', messages.value);
+    scrollToBottom();
   } catch (error) {
     console.warn('send chat message failed:', error);
-    uni.showToast({ title: '当前网络异常，稍后再试', icon: 'none' });
+    uni.showToast({ title: normalizeSendError(error), icon: 'none' });
   } finally {
     sending.value = false;
   }
+}
+
+function scrollToBottom() {
+  scrollIntoView.value = '';
+  setTimeout(() => {
+    scrollIntoView.value = 'chat-bottom-anchor';
+  }, 50);
+}
+
+function normalizeSendError(error: unknown) {
+  const message = error instanceof ApiRequestError || error instanceof Error
+    ? error.message
+    : typeof error === 'string'
+      ? error
+      : '';
+
+  if (message.includes('不能为空') || message.includes('请输入')) {
+    return '内容不能为空';
+  }
+
+  if (message.includes('违规')) {
+    return '内容包含违规词';
+  }
+
+  if (message.includes('频繁')) {
+    return '发送太频繁，请稍后再试';
+  }
+
+  if (message.includes('100')) {
+    return '内容长度不能超过100字';
+  }
+
+  return '发送失败，请稍后重试';
 }
 
 function formatTime(value: string) {
@@ -206,10 +256,13 @@ function formatTime(value: string) {
 }
 
 .chat-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-height: 72vh;
   box-sizing: border-box;
-  padding: 26rpx 26rpx 30rpx;
+  padding: 26rpx 26rpx 0;
   border: 1rpx solid rgba(255, 216, 130, 0.18);
   border-radius: 32rpx 32rpx 0 0;
   background:
@@ -260,10 +313,16 @@ function formatTime(value: string) {
 }
 
 .chat-list {
+  flex: 1;
   height: 54vh;
   margin-top: 24rpx;
   padding-right: 4rpx;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
   box-sizing: border-box;
+}
+
+.chat-bottom-anchor {
+  height: 1rpx;
 }
 
 .chat-empty {
@@ -386,10 +445,18 @@ function formatTime(value: string) {
 }
 
 .chat-input-row {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 14rpx;
   margin-top: 18rpx;
+  margin-right: -26rpx;
+  margin-left: -26rpx;
+  padding: 18rpx 26rpx calc(24rpx + env(safe-area-inset-bottom));
+  border-top: 1rpx solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 9, 24, 0.98);
 }
 
 .chat-input {

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ChatMessageStatus, ChatSenderType } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
@@ -61,18 +61,15 @@ export class ChatService {
   async createMessage(dto: CreateChatMessageDto, ip: string) {
     const content = this.normalizeContent(dto.content);
     if (!content) {
-      throw new BadRequestException('内容不能为空');
+      return this.fail('内容不能为空');
     }
 
     if (content.length > 100) {
-      throw new BadRequestException('内容长度不能超过100字');
+      return this.fail('内容长度不能超过100字');
     }
 
     if (this.hasBannedWord(content)) {
-      return {
-        success: false,
-        message: '内容包含违规词，请修改后再发送',
-      };
+      return this.fail('内容包含违规词，请修改后再发送');
     }
 
     const rateLimitKey = `ip:${ip || 'unknown'}`;
@@ -85,7 +82,7 @@ export class ChatService {
     });
 
     if (recent) {
-      throw new BadRequestException('发送太频繁，请稍后再试');
+      return this.fail('发送太频繁，请稍后再试');
     }
 
     const message = await this.prisma.chatMessage.create({
@@ -263,5 +260,12 @@ export class ChatService {
   private hasBannedWord(content: string) {
     const normalized = content.toLowerCase();
     return BANNED_WORDS.some((word) => normalized.includes(word.toLowerCase()));
+  }
+
+  private fail(message: string) {
+    return {
+      success: false,
+      message,
+    };
   }
 }
