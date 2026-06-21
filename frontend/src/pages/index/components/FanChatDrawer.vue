@@ -20,7 +20,10 @@
             v-for="item in messages"
             :key="item.id"
             class="chat-message"
-            :class="{ 'team-message': isTeamMessage(item) }"
+            :class="{
+              'team-message': isTeamMessage(item),
+              'special-blessing-message': isSpecialBlessing(item),
+            }"
           >
             <view class="message-avatar">
               <image v-if="item.flagUrl || item.avatarUrl" :src="item.flagUrl || item.avatarUrl || ''" mode="aspectFill" />
@@ -28,8 +31,10 @@
             </view>
             <view class="message-body">
               <view class="message-meta">
-                <text class="message-name">{{ item.teamName || item.nickname || '球迷' }}</text>
-                <text v-if="isTeamMessage(item)" class="message-badge">世界杯祝福</text>
+                <text class="message-name">{{ messageTitle(item) }}</text>
+                <text v-if="isTeamMessage(item)" class="message-badge">
+                  {{ isSpecialBlessing(item) ? '特别祝福' : '世界杯祝福' }}
+                </text>
                 <text class="message-time">{{ formatTime(item.createdAt) }}</text>
               </view>
               <view class="message-content">{{ item.content }}</view>
@@ -98,6 +103,18 @@ function close() {
 
 function isTeamMessage(item: ChatMessage) {
   return item.senderType === 'TEAM' || item.messageType === 'TEAM_BLESSING';
+}
+
+function isSpecialBlessing(item: ChatMessage) {
+  return item.isSpecialBlessing || item.teamCode === 'CHN';
+}
+
+function messageTitle(item: ChatMessage) {
+  if (isSpecialBlessing(item)) {
+    return '中国 · 特别祝福';
+  }
+
+  return item.teamName || item.nickname || '球迷';
 }
 
 function startPolling() {
@@ -337,6 +354,35 @@ function formatTime(value: string) {
   background:
     linear-gradient(135deg, rgba(246, 198, 88, 0.1), rgba(64, 134, 255, 0.08)),
     rgba(255, 255, 255, 0.07);
+}
+
+.special-blessing-message .message-avatar {
+  border-color: rgba(255, 216, 130, 0.55);
+  background: rgba(255, 216, 130, 0.2);
+  box-shadow: 0 0 26rpx rgba(246, 198, 88, 0.2);
+}
+
+.special-blessing-message .message-name {
+  color: #ffe6aa;
+  font-size: 24rpx;
+}
+
+.special-blessing-message .message-badge {
+  background: rgba(255, 87, 87, 0.18);
+  color: #ffd6a8;
+}
+
+.special-blessing-message .message-content {
+  border-color: rgba(255, 216, 130, 0.34);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 216, 130, 0.18), transparent 38%),
+    linear-gradient(135deg, rgba(132, 20, 28, 0.38), rgba(246, 198, 88, 0.12)),
+    rgba(255, 255, 255, 0.08);
+  color: #fff5d7;
+  font-size: 29rpx;
+  font-weight: 800;
+  line-height: 1.5;
+  box-shadow: 0 12rpx 34rpx rgba(0, 0, 0, 0.16);
 }
 
 .chat-input-row {

@@ -1,5 +1,6 @@
 export const NANCY_BLESSING_BATCH_KEY = 'nancy_world_welcome_2026';
 export const NANCY_TEAM_MESSAGE_TYPE = 'TEAM_BLESSING';
+export const NANCY_CHINA_SPECIAL_TEAM_CODE = 'CHN';
 
 export type NancyTeamBlessing = {
   teamName: string;
@@ -59,3 +60,11 @@ export const NANCY_TEAM_BLESSINGS: NancyTeamBlessing[] = [
   { teamName: '加纳', teamCode: 'GHA', countryCode: 'GH', flagUrl: '/static/flags/GH.svg', message: '🇬🇭 Akwaaba, Nancy. May your life be golden, joyful, and full of blessings.' },
   { teamName: '巴拿马', teamCode: 'PAN', countryCode: 'PA', flagUrl: '/static/flags/PA.svg', message: '🇵🇦 Bienvenida, Nancy. Que crezcas con alegría, salud y una familia llena de amor.' },
 ];
+
+export const NANCY_CHINA_SPECIAL_BLESSING: NancyTeamBlessing = {
+  teamName: '中国',
+  teamCode: NANCY_CHINA_SPECIAL_TEAM_CODE,
+  countryCode: 'CN',
+  flagUrl: '/static/flags/CN.svg',
+  message: '楠汐，欢迎你的到来，世界和我们都爱着你！',
+};

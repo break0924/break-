@@ -4,6 +4,8 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
 import {
   NANCY_BLESSING_BATCH_KEY,
+  NANCY_CHINA_SPECIAL_BLESSING,
+  NANCY_CHINA_SPECIAL_TEAM_CODE,
   NANCY_TEAM_BLESSINGS,
   NANCY_TEAM_MESSAGE_TYPE,
 } from './nancy-team-blessings';
@@ -33,26 +35,27 @@ export class ChatService {
   async listMessages() {
     await this.seedNancyTeamBlessings();
 
-    const messages = await this.prisma.chatMessage.findMany({
-      where: { status: ChatMessageStatus.VISIBLE },
-      orderBy: { createdAt: 'desc' },
-      take: 50,
-      select: {
-        id: true,
-        nickname: true,
-        avatarUrl: true,
-        content: true,
-        senderType: true,
-        messageType: true,
-        teamName: true,
-        teamCode: true,
-        flagUrl: true,
-        batchKey: true,
-        createdAt: true,
-      },
-    });
+    const [blessings, userMessages] = await Promise.all([
+      this.prisma.chatMessage.findMany({
+        where: {
+          status: ChatMessageStatus.VISIBLE,
+          batchKey: NANCY_BLESSING_BATCH_KEY,
+        },
+        orderBy: { createdAt: 'asc' },
+        select: this.messageSelect(),
+      }),
+      this.prisma.chatMessage.findMany({
+        where: {
+          status: ChatMessageStatus.VISIBLE,
+          batchKey: null,
+        },
+        orderBy: { createdAt: 'desc' },
+        take: 50,
+        select: this.messageSelect(),
+      }),
+    ]);
 
-    return messages.reverse();
+    return [...this.sortBlessings(blessings), ...userMessages.reverse()];
   }
 
   async createMessage(dto: CreateChatMessageDto, ip: string) {
@@ -106,6 +109,7 @@ export class ChatService {
         teamCode: true,
         flagUrl: true,
         batchKey: true,
+        isSpecialBlessing: true,
         createdAt: true,
       },
     });
@@ -117,20 +121,31 @@ export class ChatService {
   }
 
   async seedNancyTeamBlessings() {
-    const existing = await this.prisma.chatMessage.count({
-      where: { batchKey: NANCY_BLESSING_BATCH_KEY },
+    const existingRegular = await this.prisma.chatMessage.count({
+      where: {
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        teamCode: { not: NANCY_CHINA_SPECIAL_TEAM_CODE },
+      },
+    });
+    const existingChina = await this.prisma.chatMessage.findFirst({
+      where: {
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        teamCode: NANCY_CHINA_SPECIAL_TEAM_CODE,
+      },
+      select: { id: true },
     });
 
-    if (existing >= NANCY_TEAM_BLESSINGS.length) {
+    if (existingRegular >= NANCY_TEAM_BLESSINGS.length && existingChina) {
+      await this.upsertChinaSpecialBlessing();
       return {
         success: true,
         batchKey: NANCY_BLESSING_BATCH_KEY,
         insertedCount: 0,
-        existingCount: existing,
+        existingCount: existingRegular + 1,
       };
     }
 
-    const createdAtBase = new Date(Date.now() - 48 * 1000);
+    const createdAtBase = new Date(Date.now() - 49 * 1000);
     const result = await this.prisma.chatMessage.createMany({
       data: NANCY_TEAM_BLESSINGS.map((item, index) => ({
         openid: null,
@@ -144,17 +159,92 @@ export class ChatService {
         teamCode: item.teamCode,
         flagUrl: item.flagUrl,
         batchKey: NANCY_BLESSING_BATCH_KEY,
+        isSpecialBlessing: false,
         createdAt: new Date(createdAtBase.getTime() + index * 1000),
       })),
       skipDuplicates: true,
     });
+    await this.upsertChinaSpecialBlessing();
 
     return {
       success: true,
       batchKey: NANCY_BLESSING_BATCH_KEY,
-      insertedCount: result.count,
-      existingCount: existing,
+      insertedCount: result.count + (existingChina ? 0 : 1),
+      existingCount: existingRegular + (existingChina ? 1 : 0),
     };
+  }
+
+  private async upsertChinaSpecialBlessing() {
+    const createdAt = new Date(Date.now() - 500);
+    return this.prisma.chatMessage.upsert({
+      where: {
+        batchKey_teamCode: {
+          batchKey: NANCY_BLESSING_BATCH_KEY,
+          teamCode: NANCY_CHINA_SPECIAL_TEAM_CODE,
+        },
+      },
+      create: {
+        openid: null,
+        nickname: NANCY_CHINA_SPECIAL_BLESSING.teamName,
+        avatarUrl: null,
+        content: NANCY_CHINA_SPECIAL_BLESSING.message,
+        status: ChatMessageStatus.VISIBLE,
+        senderType: ChatSenderType.TEAM,
+        messageType: NANCY_TEAM_MESSAGE_TYPE,
+        teamName: NANCY_CHINA_SPECIAL_BLESSING.teamName,
+        teamCode: NANCY_CHINA_SPECIAL_BLESSING.teamCode,
+        flagUrl: NANCY_CHINA_SPECIAL_BLESSING.flagUrl,
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        isSpecialBlessing: true,
+        createdAt,
+      },
+      update: {
+        nickname: NANCY_CHINA_SPECIAL_BLESSING.teamName,
+        content: NANCY_CHINA_SPECIAL_BLESSING.message,
+        status: ChatMessageStatus.VISIBLE,
+        senderType: ChatSenderType.TEAM,
+        messageType: NANCY_TEAM_MESSAGE_TYPE,
+        teamName: NANCY_CHINA_SPECIAL_BLESSING.teamName,
+        teamCode: NANCY_CHINA_SPECIAL_BLESSING.teamCode,
+        flagUrl: NANCY_CHINA_SPECIAL_BLESSING.flagUrl,
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        isSpecialBlessing: true,
+        createdAt,
+      },
+    });
+  }
+
+  private messageSelect() {
+    return {
+      id: true,
+      nickname: true,
+      avatarUrl: true,
+      content: true,
+      senderType: true,
+      messageType: true,
+      teamName: true,
+      teamCode: true,
+      flagUrl: true,
+      batchKey: true,
+      isSpecialBlessing: true,
+      createdAt: true,
+    };
+  }
+
+  private sortBlessings<T extends { teamCode: string | null; isSpecialBlessing: boolean }>(
+    blessings: T[],
+  ) {
+    const order = new Map(
+      NANCY_TEAM_BLESSINGS.map((item, index) => [item.teamCode, index]),
+    );
+
+    return [...blessings].sort((a, b) => {
+      if (a.isSpecialBlessing !== b.isSpecialBlessing) {
+        return a.isSpecialBlessing ? 1 : -1;
+      }
+
+      return (order.get(a.teamCode || '') ?? 999) - (order.get(b.teamCode || '') ?? 999);
+    });
   }
 
   private normalizeContent(content?: string) {

@@ -24,6 +24,7 @@ export type ChatMessage = {
   teamCode?: string | null;
   flagUrl?: string | null;
   batchKey?: string | null;
+  isSpecialBlessing?: boolean;
   createdAt: string;
 };
 

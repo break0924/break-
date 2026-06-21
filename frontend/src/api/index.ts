@@ -16,6 +16,7 @@ import {
   demoUpcomingRecommendation,
   demoUpcomingPredictionToday,
 } from '../mock/worldCupDemoData';
+import { DEMO_NANCY_TEAM_BLESSINGS } from '../mock/nancyTeamBlessings';
 import type {
   AiReport,
   AdminGeneratePredictionsResult,
@@ -122,7 +123,9 @@ export const api = {
     return request<UserProfile>({ url: '/me', method: 'GET' });
   },
   chatMessages() {
-    return request<ChatMessage[]>({ url: '/chat/messages', method: 'GET' });
+    return request<ChatMessage[]>({ url: '/chat/messages', method: 'GET' }).catch((error) =>
+      demoFallback(error, () => DEMO_NANCY_TEAM_BLESSINGS),
+    );
   },
   sendChatMessage(data: {
     content: string;
