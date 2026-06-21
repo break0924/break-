@@ -18,6 +18,12 @@ export type ChatMessage = {
   nickname: string;
   avatarUrl?: string | null;
   content: string;
+  senderType?: 'USER' | 'SYSTEM' | 'TEAM' | string;
+  messageType?: 'USER_MESSAGE' | 'TEAM_BLESSING' | string;
+  teamName?: string | null;
+  teamCode?: string | null;
+  flagUrl?: string | null;
+  batchKey?: string | null;
   createdAt: string;
 };
 

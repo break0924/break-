@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
+import { AdminRoleGuard } from '../auth/guards/admin-role.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ChatService } from './chat.service';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
 
@@ -24,5 +26,16 @@ export class ChatController {
     }
 
     return forwardedFor?.split(',')[0]?.trim() || request.ip || 'unknown';
+  }
+}
+
+@Controller('admin/chat')
+@UseGuards(JwtAuthGuard, AdminRoleGuard)
+export class AdminChatController {
+  constructor(private readonly chatService: ChatService) {}
+
+  @Post('seed-nancy-blessings')
+  seedNancyBlessings() {
+    return this.chatService.seedNancyTeamBlessings();
   }
 }

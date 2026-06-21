@@ -97,6 +97,12 @@ enum ChatMessageStatus {
   DELETED
 }
 
+enum ChatSenderType {
+  USER
+  SYSTEM
+  TEAM
+}
+
 model User {
   id                    String                 @id @default(cuid())
   openId                String                 @unique
@@ -661,6 +667,12 @@ model ChatMessage {
   avatarUrl String?
   content   String
   status    ChatMessageStatus @default(VISIBLE)
+  senderType ChatSenderType    @default(USER)
+  messageType String           @default("USER_MESSAGE")
+  teamName  String?
+  teamCode  String?
+  flagUrl   String?
+  batchKey  String?
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
   user      User?             @relation(fields: [userId], references: [id])
@@ -668,6 +680,8 @@ model ChatMessage {
   @@index([status, createdAt])
   @@index([openid, createdAt])
   @@index([userId, createdAt])
+  @@index([batchKey])
+  @@unique([batchKey, teamCode])
   @@map("chat_messages")
 }
 

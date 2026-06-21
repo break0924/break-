@@ -4,6 +4,7 @@
       <view class="chat-header">
         <view>
           <view class="chat-title">球迷聊天室</view>
+          <view class="chat-blessing-title">世界杯 48 队一起欢迎 Nancy</view>
           <view class="chat-tip">理性聊球，禁止广告、引流、博彩、投注等内容。</view>
         </view>
         <view class="chat-close" @tap="close">关闭</view>
@@ -15,14 +16,20 @@
           还没人发言，来聊第一句吧
         </view>
         <template v-else>
-          <view v-for="item in messages" :key="item.id" class="chat-message">
+          <view
+            v-for="item in messages"
+            :key="item.id"
+            class="chat-message"
+            :class="{ 'team-message': isTeamMessage(item) }"
+          >
             <view class="message-avatar">
-              <image v-if="item.avatarUrl" :src="item.avatarUrl" mode="aspectFill" />
+              <image v-if="item.flagUrl || item.avatarUrl" :src="item.flagUrl || item.avatarUrl || ''" mode="aspectFill" />
               <text v-else>{{ item.nickname.slice(0, 1) || '球' }}</text>
             </view>
             <view class="message-body">
               <view class="message-meta">
-                <text class="message-name">{{ item.nickname || '球迷' }}</text>
+                <text class="message-name">{{ item.teamName || item.nickname || '球迷' }}</text>
+                <text v-if="isTeamMessage(item)" class="message-badge">世界杯祝福</text>
                 <text class="message-time">{{ formatTime(item.createdAt) }}</text>
               </view>
               <view class="message-content">{{ item.content }}</view>
@@ -87,6 +94,10 @@ onBeforeUnmount(() => {
 
 function close() {
   emit('close');
+}
+
+function isTeamMessage(item: ChatMessage) {
+  return item.senderType === 'TEAM' || item.messageType === 'TEAM_BLESSING';
 }
 
 function startPolling() {
@@ -203,6 +214,18 @@ function formatTime(value: string) {
   font-weight: 900;
 }
 
+.chat-blessing-title {
+  display: inline-flex;
+  margin-top: 10rpx;
+  padding: 8rpx 14rpx;
+  border: 1rpx solid rgba(255, 216, 130, 0.22);
+  border-radius: 999rpx;
+  background: rgba(255, 216, 130, 0.12);
+  color: #ffe0a0;
+  font-size: 21rpx;
+  font-weight: 800;
+}
+
 .chat-tip {
   margin-top: 8rpx;
   color: rgba(214, 229, 255, 0.58);
@@ -254,6 +277,11 @@ function formatTime(value: string) {
   font-weight: 900;
 }
 
+.team-message .message-avatar {
+  border-radius: 16rpx;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .message-avatar image {
   width: 100%;
   height: 100%;
@@ -276,6 +304,15 @@ function formatTime(value: string) {
   font-weight: 800;
 }
 
+.message-badge {
+  padding: 5rpx 10rpx;
+  border-radius: 999rpx;
+  background: rgba(246, 198, 88, 0.16);
+  color: #ffe0a0;
+  font-size: 18rpx;
+  font-weight: 800;
+}
+
 .message-time {
   color: rgba(214, 229, 255, 0.38);
   font-size: 19rpx;
@@ -293,6 +330,13 @@ function formatTime(value: string) {
   font-size: 25rpx;
   line-height: 1.45;
   word-break: break-word;
+}
+
+.team-message .message-content {
+  border-color: rgba(255, 216, 130, 0.18);
+  background:
+    linear-gradient(135deg, rgba(246, 198, 88, 0.1), rgba(64, 134, 255, 0.08)),
+    rgba(255, 255, 255, 0.07);
 }
 
 .chat-input-row {

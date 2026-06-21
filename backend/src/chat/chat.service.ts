@@ -1,7 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ChatMessageStatus } from '@prisma/client';
+import { ChatMessageStatus, ChatSenderType } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
+import {
+  NANCY_BLESSING_BATCH_KEY,
+  NANCY_TEAM_BLESSINGS,
+  NANCY_TEAM_MESSAGE_TYPE,
+} from './nancy-team-blessings';
 
 const BANNED_WORDS = [
   '下注',
@@ -26,6 +31,8 @@ export class ChatService {
   constructor(private readonly prisma: PrismaService) {}
 
   async listMessages() {
+    await this.seedNancyTeamBlessings();
+
     const messages = await this.prisma.chatMessage.findMany({
       where: { status: ChatMessageStatus.VISIBLE },
       orderBy: { createdAt: 'desc' },
@@ -35,6 +42,12 @@ export class ChatService {
         nickname: true,
         avatarUrl: true,
         content: true,
+        senderType: true,
+        messageType: true,
+        teamName: true,
+        teamCode: true,
+        flagUrl: true,
+        batchKey: true,
         createdAt: true,
       },
     });
@@ -79,12 +92,20 @@ export class ChatService {
         avatarUrl: dto.avatarUrl || null,
         content,
         status: ChatMessageStatus.VISIBLE,
+        senderType: ChatSenderType.USER,
+        messageType: 'USER_MESSAGE',
       },
       select: {
         id: true,
         nickname: true,
         avatarUrl: true,
         content: true,
+        senderType: true,
+        messageType: true,
+        teamName: true,
+        teamCode: true,
+        flagUrl: true,
+        batchKey: true,
         createdAt: true,
       },
     });
@@ -92,6 +113,47 @@ export class ChatService {
     return {
       success: true,
       message,
+    };
+  }
+
+  async seedNancyTeamBlessings() {
+    const existing = await this.prisma.chatMessage.count({
+      where: { batchKey: NANCY_BLESSING_BATCH_KEY },
+    });
+
+    if (existing >= NANCY_TEAM_BLESSINGS.length) {
+      return {
+        success: true,
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        insertedCount: 0,
+        existingCount: existing,
+      };
+    }
+
+    const createdAtBase = new Date(Date.now() - 48 * 1000);
+    const result = await this.prisma.chatMessage.createMany({
+      data: NANCY_TEAM_BLESSINGS.map((item, index) => ({
+        openid: null,
+        nickname: item.teamName,
+        avatarUrl: null,
+        content: item.message,
+        status: ChatMessageStatus.VISIBLE,
+        senderType: ChatSenderType.TEAM,
+        messageType: NANCY_TEAM_MESSAGE_TYPE,
+        teamName: item.teamName,
+        teamCode: item.teamCode,
+        flagUrl: item.flagUrl,
+        batchKey: NANCY_BLESSING_BATCH_KEY,
+        createdAt: new Date(createdAtBase.getTime() + index * 1000),
+      })),
+      skipDuplicates: true,
+    });
+
+    return {
+      success: true,
+      batchKey: NANCY_BLESSING_BATCH_KEY,
+      insertedCount: result.count,
+      existingCount: existing,
     };
   }
 
