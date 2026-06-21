@@ -1,5 +1,7 @@
 import { callCloudContainer, canCallCloudContainer } from '../utils/cloudbase';
 
+const REQUEST_TIMEOUT_MS = 15000;
+
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.API_BASE_URL ||
@@ -85,6 +87,7 @@ export async function request<T>(options: RequestOptions): Promise<T> {
       method: String(options.method || 'GET'),
       header,
       data: options.data,
+      timeout: options.timeout || REQUEST_TIMEOUT_MS,
     });
 
     if (res.statusCode >= 200 && res.statusCode < 300) {
@@ -107,6 +110,7 @@ export async function request<T>(options: RequestOptions): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     uni.request({
       ...options,
+      timeout: options.timeout || REQUEST_TIMEOUT_MS,
       url: `${getApiBaseUrl()}${appendQuery(options.url, options.params)}`,
       header,
       success: (res) => {

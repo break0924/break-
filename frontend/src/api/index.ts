@@ -115,6 +115,15 @@ function normalizePredictionResponse(value: unknown): PredictionArchiveResponse 
   };
 }
 
+async function safeHomePart<T>(label: string, source: Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await source;
+  } catch (error) {
+    console.error(`homeData ${label} failed:`, error);
+    return fallback;
+  }
+}
+
 export const api = {
   homeData(date?: string) {
     if (isCloudbaseEnabled()) {
@@ -134,11 +143,18 @@ export const api = {
     }
 
     return Promise.all([
-      api.predictionToday(date),
-      api.matches(date ? { date } : undefined),
-      api.predictionStats(),
-      api.membershipStatus(),
-      api.inviteStatus(),
+      safeHomePart(
+        'predictionToday',
+        api.predictionToday(date),
+        {
+          date: date || '',
+          predictions: [],
+        },
+      ),
+      safeHomePart('matches', api.matches(date ? { date } : undefined), []),
+      safeHomePart('predictionStats', api.predictionStats(), DEMO_PREDICTION_STATS),
+      safeHomePart('membershipStatus', api.membershipStatus(), guestMembershipStatus()),
+      safeHomePart('inviteStatus', api.inviteStatus(), DEMO_INVITE_STATUS),
     ]).then(([today, matches, stats, membership, invite]) => ({
       date: today.date || date || '',
       isMember: membership.isMember,

@@ -223,11 +223,19 @@ async function loadHomeData() {
     const data = await api.homeData();
     let todayPredictions: PredictionArchiveResponse | undefined;
     if (!extractPredictions(data).length) {
-      todayPredictions = await api.predictionToday().catch(() => undefined);
+      todayPredictions = await api.predictionToday().catch((error) => {
+        console.error('home predictionToday failed:', error);
+        return undefined;
+      });
     }
     applyHomeData(data, todayPredictions);
-  } catch {
-    applyFallbackData();
+  } catch (error) {
+    console.error('homeData failed:', error);
+    const todayPredictions = await api.predictionToday().catch((predictionError) => {
+      console.error('home predictionToday fallback failed:', predictionError);
+      return undefined;
+    });
+    applyPredictionOnlyData(todayPredictions);
   }
 }
 
@@ -237,7 +245,7 @@ function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveRespons
   const upcomingPredictions = selectUpcomingPredictions(
     predictionSource.length ? predictionSource : todayPredictionSource,
   );
-  const upcomingMatches = selectUpcomingMatches(data.matches);
+  const upcomingMatches = selectUpcomingMatches(Array.isArray(data.matches) ? data.matches : []);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
       .map((item) => item.match)
@@ -249,14 +257,15 @@ function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveRespons
     : [];
   const selectedMatches = upcomingMatches.length ? upcomingMatches : matchesFromPredictions;
   scheduleItems.value = selectedMatches.map(mapSchedule);
-  statItems.value = mapStats(data.stats);
+  statItems.value = data.stats ? mapStats(data.stats) : fallbackStats;
+  const inviteStatus = data.invite || fallbackInvite;
   invite.value = {
-    code: data.invite.inviteCode || fallbackInvite.code,
-    invitedCount: data.invite.invitedCount || 0,
-    paidInvitedCount: data.invite.invitedPaidCount || 0,
+    code: 'inviteCode' in inviteStatus ? inviteStatus.inviteCode || fallbackInvite.code : fallbackInvite.code,
+    invitedCount: inviteStatus.invitedCount || 0,
+    paidInvitedCount: 'invitedPaidCount' in inviteStatus ? inviteStatus.invitedPaidCount || 0 : inviteStatus.paidInvitedCount || 0,
     rewards: fallbackInvite.rewards,
   };
-  isMember.value = data.isMember;
+  isMember.value = Boolean(data.isMember);
   dataSource.value = 'api';
   homeDisplayDate.value = nextPredictionDate(data, todayData);
 }
@@ -276,6 +285,25 @@ function applyFallbackData() {
   isMember.value = false;
   dataSource.value = 'fallback';
   homeDisplayDate.value = '';
+}
+
+function applyPredictionOnlyData(todayData?: PredictionArchiveResponse) {
+  const upcomingPredictions = selectUpcomingPredictions(extractPredictions(todayData));
+  const matchesFromPredictions = selectUpcomingMatches(
+    upcomingPredictions
+      .map((item) => item.match)
+      .filter((item): item is Match => Boolean(item)),
+  );
+
+  predictionItems.value = upcomingPredictions.map(mapPrediction);
+  scheduleItems.value = matchesFromPredictions.map(mapSchedule);
+  statItems.value = fallbackStats;
+  invite.value = fallbackInvite;
+  isMember.value = false;
+  dataSource.value = upcomingPredictions.length ? 'api' : 'fallback';
+  homeDisplayDate.value = todayData?.source === 'next_available'
+    ? todayData.nextAvailableDate || todayData.displayDate || todayData.date || ''
+    : '';
 }
 
 function mapPrediction(item: PredictionArchive): PredictionMock {

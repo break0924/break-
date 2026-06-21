@@ -7,6 +7,8 @@ type CloudFunctionResult<T> = {
   };
 };
 
+const CLOUD_REQUEST_TIMEOUT_MS = 15000;
+
 declare const wx: {
   cloud?: {
     init(options: { env?: string; traceUser?: boolean }): void;
@@ -16,12 +18,14 @@ declare const wx: {
       method?: string;
       header?: Record<string, string>;
       data?: unknown;
+      timeout?: number;
       success?: (res: { statusCode?: number; data: T }) => void;
       fail?: (error: { errMsg?: string }) => void;
     }): void;
     callFunction<T = unknown>(options: {
       name: string;
       data?: Record<string, unknown>;
+      timeout?: number;
       success?: (res: { result: T }) => void;
       fail?: (error: { errMsg?: string }) => void;
     }): void;
@@ -65,6 +69,7 @@ export function initCloudbase() {
 export async function callCloudFunction<T>(
   name: string,
   data: Record<string, unknown> = {},
+  timeout = CLOUD_REQUEST_TIMEOUT_MS,
 ): Promise<T> {
   initCloudbase();
 
@@ -73,10 +78,26 @@ export async function callCloudFunction<T>(
   }
 
   return new Promise<T>((resolve, reject) => {
+    let settled = false;
+    const timer = setTimeout(() => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      console.error('callFunction failed:', name, 'timeout');
+      reject(new Error('云函数请求超时'));
+    }, timeout);
+
     wx.cloud?.callFunction<CloudFunctionResult<T>>({
       name,
       data,
+      timeout,
       success: (res) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        clearTimeout(timer);
         const result = res.result;
         if (result?.success === false) {
           reject(new Error(result.error?.message || '云函数请求失败'));
@@ -86,6 +107,12 @@ export async function callCloudFunction<T>(
         resolve((result?.data ?? result) as T);
       },
       fail: (error) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        clearTimeout(timer);
+        console.error('callFunction failed:', name, error);
         reject(new Error(error.errMsg || '云函数请求失败'));
       },
     });
@@ -101,6 +128,7 @@ export async function callCloudContainer<T>(options: {
   method?: string;
   header?: Record<string, string>;
   data?: unknown;
+  timeout?: number;
 }): Promise<{ statusCode: number; data: T }> {
   initCloudbase();
 
@@ -113,24 +141,47 @@ export async function callCloudContainer<T>(options: {
   }
 
   return new Promise((resolve, reject) => {
+    let settled = false;
+    const timeout = options.timeout ?? CLOUD_REQUEST_TIMEOUT_MS;
+    const timer = setTimeout(() => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      console.error('callContainer failed:', options.path, 'timeout');
+      reject(new Error('云托管请求超时'));
+    }, timeout);
+
     wx.cloud?.callContainer<T>({
       config: {
         env: CLOUDBASE_ENV || undefined,
       },
       path: options.path,
       method: options.method || 'GET',
+      timeout,
       header: {
         'X-WX-SERVICE': CLOUD_CONTAINER_SERVICE,
         ...(options.header || {}),
       },
       data: options.data,
       success: (res) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        clearTimeout(timer);
         resolve({
           statusCode: res.statusCode || 200,
           data: res.data,
         });
       },
       fail: (error) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        clearTimeout(timer);
+        console.error('callContainer failed:', options.path, error);
         reject(new Error(error.errMsg || '云托管请求失败'));
       },
     });
