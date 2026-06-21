@@ -23,6 +23,7 @@ import type {
   AdminPublishPredictionsResult,
   AdminSyncMatchResult,
   ChallengeHome,
+  ChatMessage,
   CloudHomeData,
   DailyRecommendation,
   InviteStatus,
@@ -40,6 +41,7 @@ import type {
   MissingPredictionCheckResult,
   PredictionArchive,
   PredictionStats,
+  SendChatMessageResponse,
   Team,
   UserProfile,
 } from './types';
@@ -118,6 +120,20 @@ export const api = {
   },
   me() {
     return request<UserProfile>({ url: '/me', method: 'GET' });
+  },
+  chatMessages() {
+    return request<ChatMessage[]>({ url: '/chat/messages', method: 'GET' });
+  },
+  sendChatMessage(data: {
+    content: string;
+    nickname?: string;
+    avatarUrl?: string;
+  }) {
+    return request<SendChatMessageResponse>({
+      url: '/chat/messages',
+      method: 'POST',
+      data,
+    });
   },
   matches(params?: MatchListQuery) {
     if (isCloudbaseEnabled()) {

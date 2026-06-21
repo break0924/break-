@@ -13,6 +13,19 @@ export type LoginResponse = {
   user: UserProfile;
 };
 
+export type ChatMessage = {
+  id: string;
+  nickname: string;
+  avatarUrl?: string | null;
+  content: string;
+  createdAt: string;
+};
+
+export type SendChatMessageResponse = {
+  success: boolean;
+  message: ChatMessage | string;
+};
+
 export type Team = {
   id: string;
   name: string;

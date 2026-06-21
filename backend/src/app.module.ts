@@ -4,6 +4,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AiModule } from './ai/ai.module';
 import { AdminAiModule } from './admin-ai/admin-ai.module';
 import { AuthModule } from './auth/auth.module';
+import { ChatModule } from './chat/chat.module';
 import { ChallengeModule } from './challenge/challenge.module';
 import { CompatModule } from './compat/compat.module';
 import { EloModule } from './elo';
@@ -31,6 +32,7 @@ import { UsersModule } from './users/users.module';
     ScheduleModule.forRoot(),
     PrismaModule,
     AuthModule,
+    ChatModule,
     HealthModule,
     MatchMonitorModule,
     UsersModule,

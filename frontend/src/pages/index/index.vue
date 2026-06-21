@@ -16,7 +16,10 @@
           <view class="app-name">AI世界杯预测官</view>
           <view class="app-sub">World Cup AI Intelligence</view>
         </view>
-        <view class="nav-member" @tap="go('/pages/membership/index')">会员</view>
+        <view class="nav-actions">
+          <view class="nav-chat" @tap="chatVisible = true">球迷聊</view>
+          <view class="nav-member" @tap="go('/pages/membership/index')">会员</view>
+        </view>
       </view>
 
       <HomeBanner
@@ -114,6 +117,8 @@
         AI分析仅供足球数据参考，不承诺结果；挑战赛仅计算虚拟积分与称号。
       </view>
     </view>
+
+    <FanChatDrawer :visible="chatVisible" @close="chatVisible = false" />
   </view>
 </template>
 
@@ -123,6 +128,7 @@ import { computed, ref } from 'vue';
 import { api } from '../../api';
 import type { CloudHomeData, Match, PredictionArchive } from '../../api/types';
 import ChallengeBanner from './components/ChallengeBanner.vue';
+import FanChatDrawer from './components/FanChatDrawer.vue';
 import HomeBanner from './components/HomeBanner.vue';
 import InviteFriendsCard from './components/InviteFriendsCard.vue';
 import MembershipBenefits from './components/MembershipBenefits.vue';
@@ -150,6 +156,7 @@ const statItems = ref<StatMock[]>(fallbackStats);
 const invite = ref<InviteMock>(fallbackInvite);
 const isMember = ref(false);
 const dataSource = ref<'api' | 'fallback'>('fallback');
+const chatVisible = ref(false);
 
 const primaryPrediction = computed(() => predictionItems.value[0]);
 const secondaryPredictions = computed(() => predictionItems.value.slice(1));
