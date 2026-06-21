@@ -11,6 +11,7 @@ import { FootballDataModule } from './football-data/football-data.module';
 import { FormEngineModule } from './form-engine';
 import { HeadToHeadEngineModule } from './head-to-head-engine';
 import { HealthModule } from './health/health.module';
+import { JobsModule } from './jobs/jobs.module';
 import { MatchMonitorModule } from './match-monitor/match-monitor.module';
 import { MatchesModule } from './matches/matches.module';
 import { MembershipModule } from './membership/membership.module';
@@ -47,6 +48,7 @@ import { UsersModule } from './users/users.module';
     PredictionsModule,
     ResultSyncModule,
     AdminAiModule,
+    JobsModule,
   ],
 })
 export class AppModule {}

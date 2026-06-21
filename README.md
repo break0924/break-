@@ -316,6 +316,54 @@ FOOTBALL_DATA_PROVIDERS=API_FOOTBALL,SPORTMONKS,MANUAL
 - 第三方 API 请求超时为 10 秒，失败后最多自动重试 3 次。
 - 主数据源失败或返回空结果时，会自动切换备用数据源。
 
+## 每日自动刷新闭环
+
+为避免首页、推荐页出现“接下来 0 场”的过期状态，后端新增统一的每日刷新任务。它会复用现有赛程、预测、结算模块，把运营期最关键的动作串成一条幂等链路：
+
+```text
+刷新未来 14 天赛程
+更新比赛动态状态
+生成并发布近期未开赛预测
+结算已有比分的已结束比赛
+刷新历史命中率统计
+```
+
+默认执行时间均为北京时间：
+
+- 每天 00:10 执行主刷新：`JOBS_DAILY_REFRESH_CRON=10 0 * * *`
+- 每天 06:00 执行补刷新：`JOBS_DAILY_REFRESH_SUPPLEMENT_CRON=0 6 * * *`
+- 每小时执行状态刷新和结算：`JOBS_HOURLY_STATUS_CRON=0 * * * *`
+
+管理接口：
+
+```bash
+# 手动触发完整每日刷新
+curl -X POST "http://localhost:3000/api/admin/jobs/daily-refresh" \
+  -H "Authorization: Bearer <admin_jwt>"
+
+# 查看最近一次任务状态
+curl "http://localhost:3000/api/admin/jobs/status" \
+  -H "Authorization: Bearer <admin_jwt>"
+```
+
+任务说明：
+
+- `daily-refresh` 会读取未来 14 天比赛；有第三方数据源时优先更新真实数据，没有数据时 demo/fallback 环境会自动滚动生成未来演示赛程，避免本地验收时每天手动改数据。
+- 预测生成只处理近期日期，已存在公开预测不会重复生成；如比赛已进入锁定窗口，仍遵守预测锁定规则。
+- 动态状态按 `kickoffAt` 计算：未开始、进行中、已结束；有比分的已结束比赛会自动进入结算和归档统计。
+- `/api/predictions/today` 优先返回今天未结束比赛；今天没有可展示比赛时，返回未来最近一批未开赛比赛，并带上 `displayDate`、`nextAvailableDate` 和 `source`。
+
+关键环境变量：
+
+```env
+JOBS_ENABLE=true
+JOBS_DAILY_REFRESH_CRON=10 0 * * *
+JOBS_DAILY_REFRESH_SUPPLEMENT_CRON=0 6 * * *
+JOBS_HOURLY_STATUS_CRON=0 * * * *
+JOBS_DEMO_FALLBACK_ENABLE=true
+APP_TIMEZONE=Asia/Shanghai
+```
+
 ### 球队具体情况数据
 
 赛前分析不应只依赖固定模板。当前后端在 `FootballDataService.getPreMatchContext(externalMatchId)` 中预留了最低成本的数据接入层，优先使用普通 HTTP 请求读取 `API-Football`，失败后可按 `FOOTBALL_DATA_PROVIDERS` 切换备用源。
