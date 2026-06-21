@@ -136,7 +136,12 @@ import PredictionCard from './components/PredictionCard.vue';
 import ScheduleCard from './components/ScheduleCard.vue';
 import StatsCard from './components/StatsCard.vue';
 import { getTeamFlag } from '../../utils/assets';
-import { isActiveMatchLike, sortByKickoff } from '../../utils/activeMatches';
+import {
+  getNextAvailablePredictions,
+  isActiveMatchLike,
+  normalizePredictions,
+  sortByKickoff,
+} from '../../utils/activeMatches';
 import { consumeMembershipActivationTip } from '../../utils/membershipTips';
 import {
   benefits,
@@ -149,6 +154,8 @@ import {
   type ScheduleMock,
   type StatMock,
 } from './mock';
+
+declare const process: { env: { UNI_PLATFORM?: string } };
 
 const predictionItems = ref<PredictionMock[]>([]);
 const scheduleItems = ref<ScheduleMock[]>(getFallbackSchedules());
@@ -170,14 +177,16 @@ const homePredictionSubtitle = computed(() =>
 );
 const predictionSectionDesc = computed(() =>
   predictionItems.value.length > 0
-    ? '最近开赛场次已更新 · 赛前发布，临场滚动更新'
+    ? homePredictionSubtitle.value
     : '如当前时段暂无未开赛场次，将自动展示下一比赛日推荐',
 );
 const homeStatusText = computed(() =>
   dataSource.value === 'api' ? '云端预测已更新' : '最近开赛场次已更新',
 );
 const homeTags = computed(() => [
-  '接下来4场重点比赛',
+  predictionItems.value.length > 0
+    ? `${homeDisplayDate.value ? '下一比赛日' : '接下来'}${predictionItems.value.length}场重点比赛`
+    : '暂无可推荐比赛',
   '最近开赛场次已更新',
   '北京时间',
 ]);
@@ -255,10 +264,9 @@ function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveRespons
   );
   const todayPredictionSource = extractPredictions(todayData);
   const parsedPredictions = todayPredictionSource.length ? todayPredictionSource : predictionSource;
-  const upcomingPredictions = visiblePredictions(parsedPredictions);
-  console.log('[HOME_TODAY_RAW]', todayData || data);
-  console.log('[HOME_TODAY_PARSED]', parsedPredictions);
-  console.log('[HOME_TODAY_VISIBLE]', upcomingPredictions);
+  const selection = selectVisiblePredictions(parsedPredictions);
+  const upcomingPredictions = selection.visiblePredictions;
+  logHomePredictions(todayData || data, parsedPredictions, selection);
   const upcomingMatches = selectUpcomingMatches(Array.isArray(data.matches) ? data.matches : []);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
@@ -274,15 +282,18 @@ function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveRespons
   const statsSource = statsData || data.stats;
   statItems.value = statsSource ? mapStats(statsSource) : fallbackStats;
   const inviteStatus = data.invite || fallbackInvite;
+  const inviteRecord = inviteStatus as InviteMock & { inviteCode?: string; invitedPaidCount?: number };
   invite.value = {
-    code: 'inviteCode' in inviteStatus ? inviteStatus.inviteCode || fallbackInvite.code : fallbackInvite.code,
+    code: inviteRecord.inviteCode || inviteRecord.code || fallbackInvite.code,
     invitedCount: inviteStatus.invitedCount || 0,
-    paidInvitedCount: 'invitedPaidCount' in inviteStatus ? inviteStatus.invitedPaidCount || 0 : inviteStatus.paidInvitedCount || 0,
+    paidInvitedCount: inviteRecord.invitedPaidCount || inviteRecord.paidInvitedCount || 0,
     rewards: fallbackInvite.rewards,
   };
   isMember.value = Boolean(data.isMember);
   dataSource.value = 'api';
-  homeDisplayDate.value = nextPredictionDate(data, todayData);
+  homeDisplayDate.value = selection.source === 'next_available'
+    ? selection.displayDate || nextPredictionDate(data, todayData)
+    : nextPredictionDate(data, todayData);
 }
 
 function applyFallbackData() {
@@ -304,10 +315,9 @@ function applyFallbackData() {
 
 function applyPredictionOnlyData(todayData?: PredictionArchiveResponse, statsData?: PredictionStats) {
   const parsedPredictions = extractPredictions(todayData);
-  const upcomingPredictions = visiblePredictions(parsedPredictions);
-  console.log('[HOME_TODAY_RAW]', todayData);
-  console.log('[HOME_TODAY_PARSED]', parsedPredictions);
-  console.log('[HOME_TODAY_VISIBLE]', upcomingPredictions);
+  const selection = selectVisiblePredictions(parsedPredictions);
+  const upcomingPredictions = selection.visiblePredictions;
+  logHomePredictions(todayData, parsedPredictions, selection);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
       .map((item) => item.match)
@@ -320,14 +330,29 @@ function applyPredictionOnlyData(todayData?: PredictionArchiveResponse, statsDat
   invite.value = fallbackInvite;
   isMember.value = false;
   dataSource.value = upcomingPredictions.length ? 'api' : 'fallback';
-  homeDisplayDate.value = todayData?.source === 'next_available'
-    ? todayData.nextAvailableDate || todayData.displayDate || todayData.date || ''
+  const todayMeta: Partial<PredictionArchiveResponse> = todayData || {};
+  homeDisplayDate.value = selection.source === 'next_available' || todayMeta.source === 'next_available'
+    ? selection.displayDate || todayMeta.nextAvailableDate || todayMeta.displayDate || todayMeta.date || ''
     : '';
 }
 
-function visiblePredictions(items: PredictionArchive[]) {
-  const activeItems = selectUpcomingPredictions(items);
-  return (activeItems.length ? activeItems : items.slice(0, 4));
+function selectVisiblePredictions(items: PredictionArchive[]) {
+  return getNextAvailablePredictions(items, Date.now(), 4);
+}
+
+function logHomePredictions(
+  raw: unknown,
+  parsedPredictions: PredictionArchive[],
+  selection: ReturnType<typeof selectVisiblePredictions>,
+) {
+  const visiblePredictions = selection.visiblePredictions;
+  console.log('[HOME_PLATFORM]', process.env.UNI_PLATFORM);
+  console.log('[HOME_TODAY_RAW]', raw);
+  console.log('[HOME_TODAY_PARSED]', parsedPredictions);
+  console.log('[HOME_TODAY_VISIBLE]', visiblePredictions);
+  console.log('[HOME_TODAY_FEATURED]', visiblePredictions[0]);
+  console.log('[HOME_TODAY_REST]', visiblePredictions.slice(1));
+  console.log('[HOME_TODAY_FILTERED_OUT]', selection.filteredOutPredictions);
 }
 
 function mergePredictionSources(...sources: PredictionArchive[][]) {
@@ -360,7 +385,7 @@ function extractPredictionsFromMatches(matches?: Match[]) {
           }
         : null;
     })
-    .filter((item): item is PredictionArchive => Boolean(item));
+    .filter(Boolean) as PredictionArchive[];
 }
 
 function mapPrediction(item: PredictionArchive): PredictionMock {
@@ -408,19 +433,7 @@ function mapPrediction(item: PredictionArchive): PredictionMock {
 }
 
 function extractPredictions(source?: unknown): PredictionArchive[] {
-  const value = unwrapData(source);
-  if (!value || typeof value !== 'object') {
-    return [];
-  }
-
-  for (const key of ['predictions', 'items', 'matches', 'recommendedMatches']) {
-    const candidate = (value as Record<string, unknown>)[key];
-    if (Array.isArray(candidate)) {
-      return candidate as PredictionArchive[];
-    }
-  }
-
-  return [];
+  return normalizePredictions(source);
 }
 
 function parseJsonPayload(source?: unknown): unknown {
@@ -575,20 +588,10 @@ function riskText(value?: string | number | null) {
   return '低';
 }
 
-function selectUpcomingPredictions(items: PredictionArchive[]) {
-  const now = Date.now();
-  return sortByKickoff(items.filter((item) => isActivePrediction(item, now)))
-    .slice(0, 4);
-}
-
 function selectUpcomingMatches(items: Match[]) {
   const now = Date.now();
   return sortByKickoff(items.filter((item) => isActiveMatch(item, now)))
     .slice(0, 4);
-}
-
-function isActivePrediction(item: PredictionArchive, now = Date.now()) {
-  return isActiveMatchLike(item, now);
 }
 
 function isActiveMatch(item: Match, now = Date.now()) {

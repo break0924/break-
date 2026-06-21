@@ -329,8 +329,10 @@ export type OddsSnapshot = {
 };
 
 export type PredictionArchiveResponse = {
-  source?: 'database' | 'demo';
+  source?: 'database' | 'demo' | 'next_available' | string;
   date?: string;
+  displayDate?: string;
+  nextAvailableDate?: string | null;
   predictions: PredictionArchive[];
 };
 
