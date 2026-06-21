@@ -139,6 +139,25 @@ function normalizePredictionResponse(value: unknown): PredictionArchiveResponse 
   };
 }
 
+function normalizeChatMessages(value: unknown): ChatMessage[] {
+  const direct = extractArray<ChatMessage>(value, [
+    'messages',
+    'items',
+    'data',
+  ]);
+
+  if (direct.length > 0) {
+    return direct;
+  }
+
+  const source = unwrapData(value);
+  return Array.isArray(source) ? source as ChatMessage[] : [];
+}
+
+function localChatBlessings() {
+  return [...DEMO_NANCY_TEAM_BLESSINGS];
+}
+
 async function safeHomePart<T>(label: string, source: Promise<T>, fallback: T): Promise<T> {
   try {
     return await source;
@@ -204,9 +223,22 @@ export const api = {
     return request<UserProfile>({ url: '/me', method: 'GET' });
   },
   chatMessages() {
-    return request<ChatMessage[]>({ url: '/chat/messages', method: 'GET' }).catch((error) =>
-      demoFallback(error, () => DEMO_NANCY_TEAM_BLESSINGS),
-    );
+    return request<unknown>({ url: '/chat/messages', method: 'GET' })
+      .then((response) => {
+        const messages = normalizeChatMessages(response);
+        console.log('[CHAT_MESSAGES_RESPONSE]', response);
+        console.log('[CHAT_MESSAGES_PARSED]', messages);
+        if (messages.length > 0) {
+          return messages;
+        }
+
+        console.warn('chatMessages empty, using local blessings fallback');
+        return localChatBlessings();
+      })
+      .catch((error) => {
+        console.warn('chatMessages failed, using local blessings fallback:', error);
+        return localChatBlessings();
+      });
   },
   sendChatMessage(data: {
     content: string;

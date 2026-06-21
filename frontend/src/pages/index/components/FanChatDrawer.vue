@@ -176,8 +176,8 @@ async function send() {
     content.value = '';
     await refreshMessages(false);
   } catch (error) {
-    const message = error instanceof Error ? error.message : '发送失败';
-    uni.showToast({ title: message, icon: 'none' });
+    console.warn('send chat message failed:', error);
+    uni.showToast({ title: '当前网络异常，稍后再试', icon: 'none' });
   } finally {
     sending.value = false;
   }
