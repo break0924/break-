@@ -74,6 +74,47 @@ function guestMembershipStatus(): MembershipStatus {
   };
 }
 
+function unwrapData(value: unknown): unknown {
+  if (value && typeof value === 'object' && 'data' in value) {
+    return (value as { data?: unknown }).data ?? value;
+  }
+
+  return value;
+}
+
+function extractArray<T>(value: unknown, keys: string[]): T[] {
+  const source = unwrapData(value);
+  if (Array.isArray(source)) {
+    return source as T[];
+  }
+
+  if (!source || typeof source !== 'object') {
+    return [];
+  }
+
+  for (const key of keys) {
+    const candidate = (source as Record<string, unknown>)[key];
+    if (Array.isArray(candidate)) {
+      return candidate as T[];
+    }
+  }
+
+  return [];
+}
+
+function normalizePredictionResponse(value: unknown): PredictionArchiveResponse {
+  const source = unwrapData(value) as Partial<PredictionArchiveResponse> | undefined;
+  return {
+    ...(source && typeof source === 'object' ? source : {}),
+    predictions: extractArray<PredictionArchive>(value, [
+      'predictions',
+      'items',
+      'matches',
+      'recommendedMatches',
+    ]),
+  };
+}
+
 export const api = {
   homeData(date?: string) {
     if (isCloudbaseEnabled()) {
@@ -101,7 +142,7 @@ export const api = {
     ]).then(([today, matches, stats, membership, invite]) => ({
       date: today.date || date || '',
       isMember: membership.isMember,
-      predictions: today.predictions || [],
+      predictions: normalizePredictionResponse(today).predictions,
       matches,
       stats,
       membership,
@@ -260,17 +301,23 @@ export const api = {
     }).catch((error) => demoFallback(error, () => DEMO_LEADERBOARD));
   },
   predictionToday(date?: string) {
-    if (isCloudbaseEnabled()) {
-      return callCloudFunction<PredictionArchiveResponse>('predictions', compact({
-        action: 'today',
-        date,
-      })).catch((error) => demoFallback(error, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
-    }
-
     return request<PredictionArchiveResponse>({
       url: `/predictions/today${date ? `?date=${encodeURIComponent(date)}` : ''}`,
       method: 'GET',
-    }).catch((error) => demoFallback(error, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
+    })
+      .then((response) => normalizePredictionResponse(response))
+      .catch((error) => {
+        if (isCloudbaseEnabled()) {
+          return callCloudFunction<PredictionArchiveResponse>('predictions', compact({
+            action: 'today',
+            date,
+          }))
+            .then((response) => normalizePredictionResponse(response))
+            .catch((cloudError) => demoFallback(cloudError, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
+        }
+
+        return demoFallback(error, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4)));
+      });
   },
   matchPrediction(matchId: string) {
     return request<PredictionArchive>({

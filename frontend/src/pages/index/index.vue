@@ -126,7 +126,7 @@
 import { onShow } from '@dcloudio/uni-app';
 import { computed, ref } from 'vue';
 import { api } from '../../api';
-import type { CloudHomeData, Match, PredictionArchive } from '../../api/types';
+import type { CloudHomeData, Match, PredictionArchive, PredictionArchiveResponse } from '../../api/types';
 import ChallengeBanner from './components/ChallengeBanner.vue';
 import FanChatDrawer from './components/FanChatDrawer.vue';
 import HomeBanner from './components/HomeBanner.vue';
@@ -221,14 +221,22 @@ function openPredictionDetail(_prediction: PredictionMock) {
 async function loadHomeData() {
   try {
     const data = await api.homeData();
-    applyHomeData(data);
+    let todayPredictions: PredictionArchiveResponse | undefined;
+    if (!extractPredictions(data).length) {
+      todayPredictions = await api.predictionToday().catch(() => undefined);
+    }
+    applyHomeData(data, todayPredictions);
   } catch {
     applyFallbackData();
   }
 }
 
-function applyHomeData(data: CloudHomeData) {
-  const upcomingPredictions = selectUpcomingPredictions(data.predictions);
+function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveResponse) {
+  const predictionSource = extractPredictions(data);
+  const todayPredictionSource = extractPredictions(todayData);
+  const upcomingPredictions = selectUpcomingPredictions(
+    predictionSource.length ? predictionSource : todayPredictionSource,
+  );
   const upcomingMatches = selectUpcomingMatches(data.matches);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
@@ -250,9 +258,7 @@ function applyHomeData(data: CloudHomeData) {
   };
   isMember.value = data.isMember;
   dataSource.value = 'api';
-  homeDisplayDate.value = data.nextAvailableDate && data.date && data.nextAvailableDate !== data.date
-    ? data.nextAvailableDate
-    : '';
+  homeDisplayDate.value = nextPredictionDate(data, todayData);
 }
 
 function applyFallbackData() {
@@ -273,23 +279,40 @@ function applyFallbackData() {
 }
 
 function mapPrediction(item: PredictionArchive): PredictionMock {
+  const record = item as PredictionArchive & Record<string, unknown>;
+  const match = item.match;
+  const homeTeamName = stringValue(record.homeTeamName)
+    || stringValue(record.homeTeam)
+    || match?.homeTeam?.name
+    || '';
+  const awayTeamName = stringValue(record.awayTeamName)
+    || stringValue(record.awayTeam)
+    || match?.awayTeam?.name
+    || '';
+  const predictedHome = numberValue(record.predictedHome);
+  const predictedAway = numberValue(record.predictedAway);
+  const predictedScore = stringValue(record.predictedScore)
+    || (predictedHome !== null && predictedAway !== null ? `${predictedHome}-${predictedAway}` : '--');
+
   return {
     id: item.id,
     matchId: item.matchId,
-    kickoffTime: clockText(item.kickoffAt),
+    kickoffTime: clockText(predictionKickoffAt(item)),
     groupName: item.match?.groupName || '',
-    homeTeam: item.homeTeamName,
-    homeFlag: teamFlag(item.match?.homeTeam),
-    awayTeam: item.awayTeamName,
-    awayFlag: teamFlag(item.match?.awayTeam),
-    predictedScore: item.predictedScore || `${item.predictedHome}-${item.predictedAway}`,
+    homeTeam: homeTeamName,
+    homeFlag: predictionFlag(item, 'home'),
+    awayTeam: awayTeamName,
+    awayFlag: predictionFlag(item, 'away'),
+    predictedScore,
     scoreCandidates: item.scoreCandidates,
     totalGoalsRange: item.totalGoalsRange,
     overUnderLean: item.overUnderLean,
-    direction: directionText(item.recommendationDirection),
-    confidence: levelText(item.confidenceLevel ?? item.confidenceIndex),
-    risk: riskText(item.riskLevel ?? item.riskIndex),
-    summary: item.shortAnalysis || item.recommendationReason || '赛前模型已完成综合分析，建议结合临场信息理性参考。',
+    direction: directionText(stringValue(record.recommendationDirection)),
+    confidence: levelText(record.confidenceLevel ?? record.confidenceIndex ?? record.confidence),
+    risk: riskText(record.riskLevel ?? record.riskIndex ?? record.risk),
+    summary: stringValue(record.shortAnalysis)
+      || stringValue(record.recommendationReason)
+      || '赛前模型已完成综合分析，建议结合临场信息理性参考。',
     archiveLabel: item.publishedAt ? `已更新 ${dateTimeText(item.publishedAt)}` : '已更新',
     probabilities: {
       home: Number(item.homeWinProbability ?? item.homeWinProb ?? 0),
@@ -297,6 +320,69 @@ function mapPrediction(item: PredictionArchive): PredictionMock {
       away: Number(item.awayWinProbability ?? item.awayWinProb ?? 0),
     },
   };
+}
+
+function extractPredictions(source?: unknown): PredictionArchive[] {
+  const value = unwrapData(source);
+  if (!value || typeof value !== 'object') {
+    return [];
+  }
+
+  for (const key of ['predictions', 'items', 'matches', 'recommendedMatches']) {
+    const candidate = (value as Record<string, unknown>)[key];
+    if (Array.isArray(candidate)) {
+      return candidate as PredictionArchive[];
+    }
+  }
+
+  return [];
+}
+
+function unwrapData(source?: unknown): unknown {
+  if (source && typeof source === 'object' && 'data' in source) {
+    return (source as { data?: unknown }).data ?? source;
+  }
+
+  return source;
+}
+
+function nextPredictionDate(data: CloudHomeData, todayData?: PredictionArchiveResponse) {
+  const source = unwrapData(todayData) as Partial<PredictionArchiveResponse> | undefined;
+  const nextAvailableDate = source?.nextAvailableDate || data.nextAvailableDate;
+  const displayDate = source?.displayDate || data.displayDate;
+  const date = source?.date || data.date;
+  const isNextAvailable = source?.source === 'next_available'
+    || Boolean(nextAvailableDate && data.date && nextAvailableDate !== data.date);
+
+  return isNextAvailable ? (nextAvailableDate || displayDate || date || '') : '';
+}
+
+function predictionKickoffAt(item: PredictionArchive) {
+  const record = item as PredictionArchive & Record<string, unknown>;
+  return stringValue(record.kickoffAt)
+    || stringValue(record.kickoffTime)
+    || item.match?.kickoffAt
+    || '';
+}
+
+function predictionFlag(item: PredictionArchive, side: 'home' | 'away') {
+  const record = item as PredictionArchive & Record<string, unknown>;
+  const direct = stringValue(record[side === 'home' ? 'homeFlag' : 'awayFlag'])
+    || stringValue(record[side === 'home' ? 'homeFlagUrl' : 'awayFlagUrl']);
+  if (direct) {
+    return direct;
+  }
+
+  return teamFlag(side === 'home' ? item.match?.homeTeam : item.match?.awayTeam);
+}
+
+function stringValue(value: unknown) {
+  return typeof value === 'string' ? value : '';
+}
+
+function numberValue(value: unknown) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
 }
 
 function mapSchedule(match: Match): ScheduleMock {
