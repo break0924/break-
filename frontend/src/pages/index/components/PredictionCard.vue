@@ -54,8 +54,8 @@
 
         <view v-if="featured" class="deep-insight">
           <view class="insight-head">
-            <text class="archive-badge">预测已归档</text>
-            <text>{{ prediction.archiveLabel || '已归档' }}</text>
+            <text class="archive-badge">赛前预测</text>
+            <text>{{ prediction.archiveLabel || '已更新' }}</text>
           </view>
           <view class="summary-text">
             {{ prediction.summary || 'AI已完成赛前综合分析，建议结合阵容、状态与临场信息理性参考。' }}

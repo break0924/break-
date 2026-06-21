@@ -395,6 +395,9 @@ export type InviteStatus = {
 
 export type CloudHomeData = {
   date: string;
+  displayDate?: string;
+  nextAvailableDate?: string | null;
+  source?: string;
   isMember: boolean;
   predictions: PredictionArchive[];
   matches: Match[];

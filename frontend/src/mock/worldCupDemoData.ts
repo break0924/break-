@@ -14,6 +14,7 @@ import type {
   PredictionStats,
   Team,
 } from '../api/types';
+import { isActiveMatchLike, sortByKickoff } from '../utils/activeMatches';
 
 export const DEMO_TODAY = '2026-06-17';
 const tz = 'Asia/Shanghai';
@@ -366,10 +367,9 @@ export function demoMatches(params?: MatchListQuery): Match[] {
 }
 
 export function demoUpcomingMatches(limit = 4, now = new Date()): Match[] {
-  const currentTime = now.getTime();
-  return DEMO_MATCHES
-    .filter((item) => isUpcomingMatch(item, currentTime))
-    .sort((a, b) => new Date(a.kickoffAt).getTime() - new Date(b.kickoffAt).getTime())
+  return sortByKickoff(
+    DEMO_MATCHES.filter((item) => isActiveMatchLike(item, now)),
+  )
     .slice(0, limit);
 }
 
@@ -665,14 +665,6 @@ function buildDemoPredictionStats(): PredictionStats {
 
 function demoPredictionByMatch(id: string) {
   return DEMO_PREDICTIONS.find((item) => item.matchId === id) || buildPrediction(DEMO_MATCHES.find((item) => item.id === id)!);
-}
-
-function isUpcomingMatch(matchItem: Match, currentTime: number) {
-  if (['FINISHED', 'LIVE', 'POSTPONED', 'CANCELLED'].includes(String(matchItem.status))) {
-    return false;
-  }
-
-  return new Date(matchItem.kickoffAt).getTime() > currentTime;
 }
 
 function buildMatchAnalysisContext(matchItem: Match, seed: PredictionSeed): MatchAnalysisContext {

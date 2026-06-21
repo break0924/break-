@@ -2751,6 +2751,10 @@ export class PredictionsService {
         modelOutput?: unknown;
       } | null;
       match?: {
+        kickoffAt?: Date | string | null;
+        matchDate?: Date | string | null;
+        kickoffTime?: string | null;
+        status?: string | null;
         homeScore?: number | null;
         awayScore?: number | null;
       } | null;
@@ -2770,10 +2774,12 @@ export class PredictionsService {
     const scoreModel = this.scoreModelOutputFromArchive(item);
     const oddsSnapshot = this.oddsSnapshotOutputFromArchive(item);
     const settlement = archive.settlement || this.virtualSettlementFromArchive(item);
+    const effectiveKickoffAt = this.effectiveKickoffAt(item);
 
     return {
       ...archive,
       settlement,
+      kickoffAt: effectiveKickoffAt.toISOString(),
       predictionStage: stage,
       archiveLabel: stage === 'FINAL' ? '最终版预测' : '预测已归档',
       resultStatus: settlement ? 'SETTLED' : 'PENDING_RESULT',
@@ -3008,16 +3014,46 @@ export class PredictionsService {
               new Date(`${date}T00:00:00.000+08:00`),
               offset,
             );
+      const scheduledMatches = demoScheduleMatches.filter(
+        (match) => this.matchDateString(match.matchDate) === targetDate,
+      );
+      if (scheduledMatches.length === 0) {
+        continue;
+      }
+
       selected = this.activePredictions(
-        this.generatedDemoArchives(
-          this.dynamicDemoMatchesForDate(targetDate, 8),
-        ).map((item) => this.normalizeTodayPrediction(item)),
+        this.generatedDemoArchives(scheduledMatches).map((item) =>
+          this.normalizeTodayPrediction(item),
+        ),
         now,
         4,
       );
 
       if (selected.length > 0) {
         break;
+      }
+    }
+
+    if (selected.length === 0) {
+      for (let offset = 0; offset <= 14; offset += 1) {
+        const targetDate =
+          offset === 0
+            ? date
+            : this.addBeijingDays(
+                new Date(`${date}T00:00:00.000+08:00`),
+                offset,
+              );
+        selected = this.activePredictions(
+          this.generatedDemoArchives(
+            this.dynamicDemoMatchesForDate(targetDate, 8),
+          ).map((item) => this.normalizeTodayPrediction(item)),
+          now,
+          4,
+        );
+
+        if (selected.length > 0) {
+          break;
+        }
       }
     }
 
@@ -3138,6 +3174,8 @@ export class PredictionsService {
       settlement?: unknown;
       match?: {
         kickoffAt?: Date | string | null;
+        matchDate?: Date | string | null;
+        kickoffTime?: string | null;
         status?: string | null;
         homeScore?: number | null;
         awayScore?: number | null;
@@ -3145,7 +3183,19 @@ export class PredictionsService {
     },
     now: Date,
   ) {
-    const blockedStates = new Set(['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED']);
+    const blockedStates = new Set([
+      'ARCHIVED',
+      'ENDED',
+      'FINISHED',
+      'COMPLETED',
+      'FULL_TIME',
+      'FT',
+      'RESULTED',
+      'SETTLED',
+      'POSTPONED',
+      'CANCELLED',
+      'CANCELED',
+    ]);
     const stage = String(prediction.predictionStage || '').toUpperCase();
     const status = String(prediction.status || '').toUpperCase();
     const matchStatus = String(prediction.match?.status || '').toUpperCase();
@@ -3163,9 +3213,7 @@ export class PredictionsService {
       return false;
     }
 
-    const kickoffAt = new Date(
-      prediction.kickoffAt || prediction.match?.kickoffAt || '',
-    ).getTime();
+    const kickoffAt = this.effectiveKickoffAt(prediction).getTime();
     if (!Number.isFinite(kickoffAt)) {
       return false;
     }
@@ -3175,7 +3223,50 @@ export class PredictionsService {
       return false;
     }
 
-    return nowTime < kickoffAt || nowTime < kickoffAt + 120 * 60 * 1000;
+    return (
+      nowTime < kickoffAt ||
+      (nowTime >= kickoffAt && nowTime < kickoffAt + 120 * 60 * 1000)
+    );
+  }
+
+  private effectiveKickoffAt(item: {
+    kickoffAt?: Date | string | null;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
+    match?: {
+      kickoffAt?: Date | string | null;
+      matchDate?: Date | string | null;
+      kickoffTime?: string | null;
+    } | null;
+  }) {
+    const source = item.match || item;
+    const date = this.matchDateString(source.matchDate);
+    const time = source.kickoffTime || item.kickoffTime;
+    if (date && time) {
+      return new Date(`${date}T${time}:00+08:00`);
+    }
+
+    return new Date(item.kickoffAt || source.kickoffAt || '');
+  }
+
+  private matchDateString(value?: Date | string | null) {
+    if (!value) {
+      return null;
+    }
+
+    if (typeof value === 'string') {
+      const matched = /^(\d{4}-\d{2}-\d{2})/.exec(value);
+      if (matched) {
+        return matched[1];
+      }
+    }
+
+    const date = new Date(value);
+    if (!Number.isFinite(date.getTime())) {
+      return null;
+    }
+
+    return this.toDateOnly(date);
   }
 
   private presentTodayPrediction<T extends { settlement?: unknown; corrections?: unknown[] }>(
@@ -4185,8 +4276,9 @@ export class PredictionsService {
     return `${year}-${month}-${day}`;
   }
 
-  private toBeijingDateString(value: Date) {
-    return this.toDateOnly(new Date(value.getTime() + 8 * 60 * 60 * 1000));
+  private toBeijingDateString(value: Date | string) {
+    const date = value instanceof Date ? value : new Date(value);
+    return this.toDateOnly(new Date(date.getTime() + 8 * 60 * 60 * 1000));
   }
 
   private emptyStats() {

@@ -632,13 +632,17 @@ export class MatchesService {
   private presentMatch<T extends {
     externalId?: string | null;
     kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
     status?: MatchStatus | string | null;
     homeScore?: number | null;
     awayScore?: number | null;
   }>(match: T) {
     const withFallbackResult = this.withFallbackResult(match);
+    const effectiveKickoffAt = this.effectiveKickoffAt(withFallbackResult);
     return {
       ...withFallbackResult,
+      kickoffAt: effectiveKickoffAt.toISOString(),
       status: this.displayStatus(withFallbackResult),
       resultStatus: this.resultStatus(withFallbackResult),
     };
@@ -647,11 +651,13 @@ export class MatchesService {
   private withFallbackResult<T extends {
     externalId?: string | null;
     kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
     status?: MatchStatus | string | null;
     homeScore?: number | null;
     awayScore?: number | null;
   }>(match: T) {
-    if (this.hasResult(match) || !this.isPastResultWindow(match.kickoffAt)) {
+    if (this.hasResult(match) || !this.isPastResultWindow(match)) {
       return match;
     }
 
@@ -673,13 +679,15 @@ export class MatchesService {
 
   private resultStatus(match: {
     kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
     homeScore?: number | null;
     awayScore?: number | null;
   }) {
     if (this.hasResult(match)) {
       return 'RESULTED';
     }
-    if (this.isPastResultWindow(match.kickoffAt)) {
+    if (this.isPastResultWindow(match)) {
       return 'PENDING_RESULT';
     }
     return 'PENDING';
@@ -687,6 +695,8 @@ export class MatchesService {
 
   private displayStatus(match: {
     kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
     status?: MatchStatus | string | null;
     homeScore?: number | null;
     awayScore?: number | null;
@@ -703,7 +713,7 @@ export class MatchesService {
       return MatchStatus.FINISHED;
     }
 
-    const kickoffAt = new Date(match.kickoffAt).getTime();
+    const kickoffAt = this.effectiveKickoffAt(match).getTime();
     if (!Number.isFinite(kickoffAt)) {
       return match.status || MatchStatus.SCHEDULED;
     }
@@ -732,12 +742,49 @@ export class MatchesService {
     );
   }
 
-  private isPastResultWindow(kickoffAt: Date | string) {
-    const kickoffTime = new Date(kickoffAt).getTime();
+  private isPastResultWindow(match: {
+    kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
+  }) {
+    const kickoffTime = this.effectiveKickoffAt(match).getTime();
     return (
       Number.isFinite(kickoffTime) &&
       Date.now() >= kickoffTime + 120 * 60 * 1000
     );
+  }
+
+  private effectiveKickoffAt(match: {
+    kickoffAt: Date | string;
+    matchDate?: Date | string | null;
+    kickoffTime?: string | null;
+  }) {
+    const date = this.matchDateString(match.matchDate);
+    if (date && match.kickoffTime) {
+      return new Date(`${date}T${match.kickoffTime}:00+08:00`);
+    }
+
+    return new Date(match.kickoffAt);
+  }
+
+  private matchDateString(value?: Date | string | null) {
+    if (!value) {
+      return null;
+    }
+
+    if (typeof value === 'string') {
+      const matched = /^(\d{4}-\d{2}-\d{2})/.exec(value);
+      if (matched) {
+        return matched[1];
+      }
+    }
+
+    const date = new Date(value);
+    if (!Number.isFinite(date.getTime())) {
+      return null;
+    }
+
+    return this.toDateOnly(date);
   }
 
   private toShanghaiDate(value: Date) {

@@ -24,7 +24,7 @@
 
       <HomeBanner
         title="2026世界杯 AI每日预测"
-        :subtitle="`接下来 ${predictionItems.length} 场重点比赛预测已更新`"
+        :subtitle="homePredictionSubtitle"
         :status="homeStatusText"
         :tags="homeTags"
         @primary="go('/pages/today/index')"
@@ -36,7 +36,7 @@
           <view>
             <view class="section-title">接下来 AI 预测</view>
             <view class="section-desc">
-              接下来 {{ predictionItems.length }} 场重点比赛预测 · 最近开赛场次已更新
+              {{ predictionSectionDesc }}
             </view>
           </view>
           <view class="section-chip">重点更新</view>
@@ -136,13 +136,13 @@ import PredictionCard from './components/PredictionCard.vue';
 import ScheduleCard from './components/ScheduleCard.vue';
 import StatsCard from './components/StatsCard.vue';
 import { getTeamFlag } from '../../utils/assets';
-import { normalizeMatchStatus } from '../../utils/format';
+import { isActiveMatchLike, sortByKickoff } from '../../utils/activeMatches';
 import { consumeMembershipActivationTip } from '../../utils/membershipTips';
 import {
   benefits,
   invite as fallbackInvite,
-  predictions as fallbackPredictions,
-  schedules as fallbackSchedules,
+  getFallbackPredictions,
+  getFallbackSchedules,
   stats as fallbackStats,
   type InviteMock,
   type PredictionMock,
@@ -151,17 +151,28 @@ import {
 } from './mock';
 
 const predictionItems = ref<PredictionMock[]>([]);
-const scheduleItems = ref<ScheduleMock[]>(fallbackSchedules);
+const scheduleItems = ref<ScheduleMock[]>(getFallbackSchedules());
 const statItems = ref<StatMock[]>(fallbackStats);
 const invite = ref<InviteMock>(fallbackInvite);
 const isMember = ref(false);
 const dataSource = ref<'api' | 'fallback'>('fallback');
 const chatVisible = ref(false);
+const homeDisplayDate = ref('');
 
 const primaryPrediction = computed(() => predictionItems.value[0]);
 const secondaryPredictions = computed(() => predictionItems.value.slice(1));
 const stats = computed(() => statItems.value);
 const schedules = computed(() => scheduleItems.value);
+const homePredictionSubtitle = computed(() =>
+  predictionItems.value.length > 0
+    ? `${homeDisplayDate.value ? '下一比赛日' : '接下来'} ${predictionItems.value.length} 场重点比赛预测已更新`
+    : '暂无可推荐比赛',
+);
+const predictionSectionDesc = computed(() =>
+  predictionItems.value.length > 0
+    ? '最近开赛场次已更新 · 赛前发布，临场滚动更新'
+    : '如当前时段暂无未开赛场次，将自动展示下一比赛日推荐',
+);
 const homeStatusText = computed(() =>
   dataSource.value === 'api' ? '云端预测已更新' : '最近开赛场次已更新',
 );
@@ -228,9 +239,8 @@ function applyHomeData(data: CloudHomeData) {
   predictionItems.value = upcomingPredictions.length
     ? upcomingPredictions.map(mapPrediction)
     : [];
-  scheduleItems.value = (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).length
-    ? (upcomingMatches.length ? upcomingMatches : matchesFromPredictions).map(mapSchedule)
-    : fallbackSchedules;
+  const selectedMatches = upcomingMatches.length ? upcomingMatches : matchesFromPredictions;
+  scheduleItems.value = selectedMatches.map(mapSchedule);
   statItems.value = mapStats(data.stats);
   invite.value = {
     code: data.invite.inviteCode || fallbackInvite.code,
@@ -240,9 +250,14 @@ function applyHomeData(data: CloudHomeData) {
   };
   isMember.value = data.isMember;
   dataSource.value = 'api';
+  homeDisplayDate.value = data.nextAvailableDate && data.date && data.nextAvailableDate !== data.date
+    ? data.nextAvailableDate
+    : '';
 }
 
 function applyFallbackData() {
+  const fallbackPredictions = getFallbackPredictions();
+  const fallbackSchedules = getFallbackSchedules();
   if (import.meta.env.DEV || import.meta.env.VITE_DEMO_MODE === 'true') {
     predictionItems.value = fallbackPredictions;
     scheduleItems.value = fallbackSchedules;
@@ -254,6 +269,7 @@ function applyFallbackData() {
   invite.value = fallbackInvite;
   isMember.value = false;
   dataSource.value = 'fallback';
+  homeDisplayDate.value = '';
 }
 
 function mapPrediction(item: PredictionArchive): PredictionMock {
@@ -359,51 +375,22 @@ function riskText(value?: string | number | null) {
 
 function selectUpcomingPredictions(items: PredictionArchive[]) {
   const now = Date.now();
-  return [...items]
-    .filter((item) => isActivePrediction(item, now))
-    .sort((a, b) => new Date(a.kickoffAt).getTime() - new Date(b.kickoffAt).getTime())
+  return sortByKickoff(items.filter((item) => isActivePrediction(item, now)))
     .slice(0, 4);
 }
 
 function selectUpcomingMatches(items: Match[]) {
   const now = Date.now();
-  return [...items]
-    .filter((item) => isActiveMatch(item, now))
-    .sort((a, b) => new Date(a.kickoffAt).getTime() - new Date(b.kickoffAt).getTime())
+  return sortByKickoff(items.filter((item) => isActiveMatch(item, now)))
     .slice(0, 4);
 }
 
 function isActivePrediction(item: PredictionArchive, now = Date.now()) {
-  const archiveLabel = String(item.archiveLabel || '');
-  const resultStatus = String(item.resultStatus || '').toUpperCase();
-  const stage = String(item.predictionStage || '').toUpperCase();
-  if (
-    archiveLabel.includes('归档') ||
-    ['ARCHIVED', 'ENDED', 'FINISHED', 'RESULTED'].includes(stage) ||
-    ['SETTLED', 'RESULTED'].includes(resultStatus)
-  ) {
-    return false;
-  }
-
-  return isActiveKickoff(item.kickoffAt, now) && isActiveMatchStatus(item.match?.status);
+  return isActiveMatchLike(item, now);
 }
 
 function isActiveMatch(item: Match, now = Date.now()) {
-  return isActiveKickoff(item.kickoffAt, now) && isActiveMatchStatus(item.status);
-}
-
-function isActiveMatchStatus(status?: string | null) {
-  const normalized = normalizeMatchStatus(status);
-  return normalized === 'SCHEDULED' || normalized === 'LIVE';
-}
-
-function isActiveKickoff(kickoffAt?: string | null, now = Date.now()) {
-  if (!kickoffAt) {
-    return false;
-  }
-
-  const kickoffTime = new Date(kickoffAt).getTime();
-  return Number.isFinite(kickoffTime) && now < kickoffTime + 120 * 60 * 1000;
+  return isActiveMatchLike(item, now);
 }
 
 function clockText(value?: string) {

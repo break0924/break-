@@ -61,17 +61,25 @@ export type InviteMock = {
   rewards: string[];
 };
 
-export const predictions: PredictionMock[] = demoHomePredictions();
+export function getFallbackPredictions(): PredictionMock[] {
+  return demoHomePredictions();
+}
 
-export const schedules: ScheduleMock[] = predictions.map((item) => ({
-  id: `s-${item.id}`,
-  kickoffTime: item.kickoffTime,
-  groupName: item.groupName,
-  homeTeam: item.homeTeam,
-  homeFlag: item.homeFlag,
-  awayTeam: item.awayTeam,
-  awayFlag: item.awayFlag,
-}));
+export const predictions: PredictionMock[] = getFallbackPredictions();
+
+export function getFallbackSchedules(): ScheduleMock[] {
+  return getFallbackPredictions().map((item) => ({
+    id: `s-${item.id}`,
+    kickoffTime: item.kickoffTime,
+    groupName: item.groupName,
+    homeTeam: item.homeTeam,
+    homeFlag: item.homeFlag,
+    awayTeam: item.awayTeam,
+    awayFlag: item.awayFlag,
+  }));
+}
+
+export const schedules: ScheduleMock[] = getFallbackSchedules();
 
 export const stats: StatMock[] = [
   {
