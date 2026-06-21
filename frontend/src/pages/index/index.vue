@@ -126,7 +126,7 @@
 import { onShow } from '@dcloudio/uni-app';
 import { computed, ref } from 'vue';
 import { api } from '../../api';
-import type { CloudHomeData, Match, PredictionArchive, PredictionArchiveResponse } from '../../api/types';
+import type { CloudHomeData, Match, PredictionArchive, PredictionArchiveResponse, PredictionStats } from '../../api/types';
 import ChallengeBanner from './components/ChallengeBanner.vue';
 import FanChatDrawer from './components/FanChatDrawer.vue';
 import HomeBanner from './components/HomeBanner.vue';
@@ -220,31 +220,45 @@ function openPredictionDetail(_prediction: PredictionMock) {
 
 async function loadHomeData() {
   try {
-    const data = await api.homeData();
-    let todayPredictions: PredictionArchiveResponse | undefined;
-    if (!extractPredictions(data).length) {
-      todayPredictions = await api.predictionToday().catch((error) => {
+    const [data, todayPredictions, stats] = await Promise.all([
+      api.homeData(),
+      api.predictionToday().catch((error) => {
         console.error('home predictionToday failed:', error);
         return undefined;
-      });
-    }
-    applyHomeData(data, todayPredictions);
+      }),
+      api.predictionStats().catch((error) => {
+        console.error('home predictionStats failed:', error);
+        return undefined;
+      }),
+    ]);
+    applyHomeData(data, todayPredictions, stats);
   } catch (error) {
     console.error('homeData failed:', error);
-    const todayPredictions = await api.predictionToday().catch((predictionError) => {
-      console.error('home predictionToday fallback failed:', predictionError);
-      return undefined;
-    });
-    applyPredictionOnlyData(todayPredictions);
+    const [todayPredictions, stats] = await Promise.all([
+      api.predictionToday().catch((predictionError) => {
+        console.error('home predictionToday fallback failed:', predictionError);
+        return undefined;
+      }),
+      api.predictionStats().catch((statsError) => {
+        console.error('home predictionStats fallback failed:', statsError);
+        return undefined;
+      }),
+    ]);
+    applyPredictionOnlyData(todayPredictions, stats);
   }
 }
 
-function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveResponse) {
-  const predictionSource = extractPredictions(data);
-  const todayPredictionSource = extractPredictions(todayData);
-  const upcomingPredictions = selectUpcomingPredictions(
-    predictionSource.length ? predictionSource : todayPredictionSource,
+function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveResponse, statsData?: PredictionStats) {
+  const predictionSource = mergePredictionSources(
+    extractPredictions(data),
+    extractPredictionsFromMatches(data.matches),
   );
+  const todayPredictionSource = extractPredictions(todayData);
+  const parsedPredictions = todayPredictionSource.length ? todayPredictionSource : predictionSource;
+  const upcomingPredictions = visiblePredictions(parsedPredictions);
+  console.log('[HOME_TODAY_RAW]', todayData || data);
+  console.log('[HOME_TODAY_PARSED]', parsedPredictions);
+  console.log('[HOME_TODAY_VISIBLE]', upcomingPredictions);
   const upcomingMatches = selectUpcomingMatches(Array.isArray(data.matches) ? data.matches : []);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
@@ -257,7 +271,8 @@ function applyHomeData(data: CloudHomeData, todayData?: PredictionArchiveRespons
     : [];
   const selectedMatches = upcomingMatches.length ? upcomingMatches : matchesFromPredictions;
   scheduleItems.value = selectedMatches.map(mapSchedule);
-  statItems.value = data.stats ? mapStats(data.stats) : fallbackStats;
+  const statsSource = statsData || data.stats;
+  statItems.value = statsSource ? mapStats(statsSource) : fallbackStats;
   const inviteStatus = data.invite || fallbackInvite;
   invite.value = {
     code: 'inviteCode' in inviteStatus ? inviteStatus.inviteCode || fallbackInvite.code : fallbackInvite.code,
@@ -287,8 +302,12 @@ function applyFallbackData() {
   homeDisplayDate.value = '';
 }
 
-function applyPredictionOnlyData(todayData?: PredictionArchiveResponse) {
-  const upcomingPredictions = selectUpcomingPredictions(extractPredictions(todayData));
+function applyPredictionOnlyData(todayData?: PredictionArchiveResponse, statsData?: PredictionStats) {
+  const parsedPredictions = extractPredictions(todayData);
+  const upcomingPredictions = visiblePredictions(parsedPredictions);
+  console.log('[HOME_TODAY_RAW]', todayData);
+  console.log('[HOME_TODAY_PARSED]', parsedPredictions);
+  console.log('[HOME_TODAY_VISIBLE]', upcomingPredictions);
   const matchesFromPredictions = selectUpcomingMatches(
     upcomingPredictions
       .map((item) => item.match)
@@ -297,13 +316,51 @@ function applyPredictionOnlyData(todayData?: PredictionArchiveResponse) {
 
   predictionItems.value = upcomingPredictions.map(mapPrediction);
   scheduleItems.value = matchesFromPredictions.map(mapSchedule);
-  statItems.value = fallbackStats;
+  statItems.value = statsData ? mapStats(statsData) : fallbackStats;
   invite.value = fallbackInvite;
   isMember.value = false;
   dataSource.value = upcomingPredictions.length ? 'api' : 'fallback';
   homeDisplayDate.value = todayData?.source === 'next_available'
     ? todayData.nextAvailableDate || todayData.displayDate || todayData.date || ''
     : '';
+}
+
+function visiblePredictions(items: PredictionArchive[]) {
+  const activeItems = selectUpcomingPredictions(items);
+  return (activeItems.length ? activeItems : items.slice(0, 4));
+}
+
+function mergePredictionSources(...sources: PredictionArchive[][]) {
+  const seen = new Set<string>();
+  return sources.flat().filter((item) => {
+    const key = item.id || item.matchId;
+    if (!key || seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+function extractPredictionsFromMatches(matches?: Match[]) {
+  if (!Array.isArray(matches)) {
+    return [];
+  }
+
+  return matches
+    .map((match) => {
+      const prediction = (match as Match & { aiPrediction?: PredictionArchive | null }).aiPrediction;
+      return prediction
+        ? {
+            ...prediction,
+            match,
+            kickoffAt: prediction.kickoffAt || match.kickoffAt,
+            homeTeamName: prediction.homeTeamName || match.homeTeam.name,
+            awayTeamName: prediction.awayTeamName || match.awayTeam.name,
+          }
+        : null;
+    })
+    .filter((item): item is PredictionArchive => Boolean(item));
 }
 
 function mapPrediction(item: PredictionArchive): PredictionMock {
@@ -450,6 +507,13 @@ function mapSchedule(match: Match): ScheduleMock {
 }
 
 function mapStats(source: CloudHomeData['stats']): StatMock[] {
+  const totalPredictions = Number(
+    source.totalPredictions
+      || source.archivedMatchCount
+      || source.recentPredictions?.length
+      || 0,
+  );
+
   return [
     {
       label: '胜平负命中率',
@@ -463,7 +527,7 @@ function mapStats(source: CloudHomeData['stats']): StatMock[] {
     },
     {
       label: '总预测场次',
-      value: String(source.totalPredictions || 0),
+      value: String(totalPredictions),
       hint: '累计归档记录',
     },
   ];

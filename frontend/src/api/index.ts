@@ -139,6 +139,18 @@ function normalizePredictionResponse(value: unknown): PredictionArchiveResponse 
   };
 }
 
+function normalizePredictionStats(value: unknown): PredictionStats {
+  const source = unwrapData(value);
+  const stats = source && typeof source === 'object' && 'stats' in source
+    ? unwrapData((source as { stats?: unknown }).stats)
+    : source;
+
+  return {
+    ...DEMO_PREDICTION_STATS,
+    ...(stats && typeof stats === 'object' ? stats : {}),
+  } as PredictionStats;
+}
+
 function normalizeChatMessages(value: unknown): ChatMessage[] {
   const direct = extractArray<ChatMessage>(value, [
     'messages',
@@ -419,16 +431,32 @@ export const api = {
     }).catch((error) => demoFallback(error, () => demoPredictionArchive(params)));
   },
   predictionStats() {
-    if (isCloudbaseEnabled()) {
-      return callCloudFunction<PredictionStats>('predictions', {
-        action: 'stats',
-      }).catch((error) => demoFallback(error, () => DEMO_PREDICTION_STATS));
-    }
-
     return request<PredictionStats>({
       url: '/predictions/stats',
       method: 'GET',
-    }).catch((error) => demoFallback(error, () => DEMO_PREDICTION_STATS));
+    })
+      .then((response) => {
+        const parsed = normalizePredictionStats(response);
+        console.log('[HOME_STATS_RAW]', response);
+        console.log('[HOME_STATS_PARSED]', parsed);
+        return parsed;
+      })
+      .catch((error) => {
+        if (isCloudbaseEnabled()) {
+          return callCloudFunction<PredictionStats>('predictions', {
+            action: 'stats',
+          })
+            .then((response) => {
+              const parsed = normalizePredictionStats(response);
+              console.log('[HOME_STATS_RAW]', response);
+              console.log('[HOME_STATS_PARSED]', parsed);
+              return parsed;
+            })
+            .catch((cloudError) => demoFallback(cloudError, () => DEMO_PREDICTION_STATS));
+        }
+
+        return demoFallback(error, () => DEMO_PREDICTION_STATS);
+      });
   },
   inviteStatus(): Promise<InviteStatus> {
     if (isCloudbaseEnabled()) {
