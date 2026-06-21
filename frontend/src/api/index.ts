@@ -74,12 +74,36 @@ function guestMembershipStatus(): MembershipStatus {
   };
 }
 
-function unwrapData(value: unknown): unknown {
-  if (value && typeof value === 'object' && 'data' in value) {
-    return (value as { data?: unknown }).data ?? value;
+function parseJsonPayload(value: unknown): unknown {
+  if (typeof value !== 'string') {
+    return value;
   }
 
-  return value;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return value;
+  }
+}
+
+function unwrapData(value: unknown): unknown {
+  let current = parseJsonPayload(value);
+
+  for (let index = 0; index < 5; index += 1) {
+    if (!current || typeof current !== 'object') {
+      return current;
+    }
+
+    const record = current as Record<string, unknown>;
+    const next = record.data ?? record.result;
+    if (next === undefined || next === current) {
+      return current;
+    }
+
+    current = parseJsonPayload(next);
+  }
+
+  return current;
 }
 
 function extractArray<T>(value: unknown, keys: string[]): T[] {
@@ -321,14 +345,24 @@ export const api = {
       url: `/predictions/today${date ? `?date=${encodeURIComponent(date)}` : ''}`,
       method: 'GET',
     })
-      .then((response) => normalizePredictionResponse(response))
+      .then((response) => {
+        const parsed = normalizePredictionResponse(response);
+        console.log('[HOME_PREDICTIONS_RESPONSE]', response);
+        console.log('[HOME_PREDICTIONS_PARSED]', parsed.predictions);
+        return parsed;
+      })
       .catch((error) => {
         if (isCloudbaseEnabled()) {
           return callCloudFunction<PredictionArchiveResponse>('predictions', compact({
             action: 'today',
             date,
           }))
-            .then((response) => normalizePredictionResponse(response))
+            .then((response) => {
+              const parsed = normalizePredictionResponse(response);
+              console.log('[HOME_PREDICTIONS_RESPONSE]', response);
+              console.log('[HOME_PREDICTIONS_PARSED]', parsed.predictions);
+              return parsed;
+            })
             .catch((cloudError) => demoFallback(cloudError, () => (date ? demoPredictionToday(date) : demoUpcomingPredictionToday(4))));
         }
 

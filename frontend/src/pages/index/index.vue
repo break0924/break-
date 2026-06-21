@@ -366,12 +366,36 @@ function extractPredictions(source?: unknown): PredictionArchive[] {
   return [];
 }
 
-function unwrapData(source?: unknown): unknown {
-  if (source && typeof source === 'object' && 'data' in source) {
-    return (source as { data?: unknown }).data ?? source;
+function parseJsonPayload(source?: unknown): unknown {
+  if (typeof source !== 'string') {
+    return source;
   }
 
-  return source;
+  try {
+    return JSON.parse(source);
+  } catch {
+    return source;
+  }
+}
+
+function unwrapData(source?: unknown): unknown {
+  let current = parseJsonPayload(source);
+
+  for (let index = 0; index < 5; index += 1) {
+    if (!current || typeof current !== 'object') {
+      return current;
+    }
+
+    const record = current as Record<string, unknown>;
+    const next = record.data ?? record.result;
+    if (next === undefined || next === current) {
+      return current;
+    }
+
+    current = parseJsonPayload(next);
+  }
+
+  return current;
 }
 
 function nextPredictionDate(data: CloudHomeData, todayData?: PredictionArchiveResponse) {
